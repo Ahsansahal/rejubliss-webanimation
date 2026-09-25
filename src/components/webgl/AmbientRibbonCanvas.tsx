@@ -16,11 +16,21 @@ function FloatingGoldDust() {
     const tempColor = new THREE.Color();
 
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 16;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      // Deterministic pseudo-random generation to comply with React 19 render purity
+      const r1 = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+      const rand1 = r1 - Math.floor(r1);
+      const r2 = Math.sin(i * 39.3456 + 11.123) * 43758.5453;
+      const rand2 = r2 - Math.floor(r2);
+      const r3 = Math.sin(i * 73.1567 + 94.678) * 43758.5453;
+      const rand3 = r3 - Math.floor(r3);
+      const r4 = Math.sin(i * 91.2435 + 45.981) * 43758.5453;
+      const rand4 = r4 - Math.floor(r4);
 
-      tempColor.copy(goldA).lerp(goldB, Math.random());
+      pos[i * 3] = (rand1 - 0.5) * 16;
+      pos[i * 3 + 1] = (rand2 - 0.5) * 12;
+      pos[i * 3 + 2] = (rand3 - 0.5) * 8;
+
+      tempColor.copy(goldA).lerp(goldB, rand4);
       col[i * 3] = tempColor.r;
       col[i * 3 + 1] = tempColor.g;
       col[i * 3 + 2] = tempColor.b;

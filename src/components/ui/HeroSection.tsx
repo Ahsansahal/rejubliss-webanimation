@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Terminal, Flame, Zap } from "lucide-react";
+import { Sparkles, Terminal, Zap } from "lucide-react";
 import confetti from "canvas-confetti";
 import { THEME_PRESETS, WebGLSettings } from "../webgl/types";
 
