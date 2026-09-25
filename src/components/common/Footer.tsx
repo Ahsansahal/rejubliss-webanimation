@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Phone,
@@ -25,31 +26,35 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#071913] text-[#a1b3aa] pt-16 pb-10 border-t border-[#0d382c]">
+    <footer className="bg-[#050e1b] text-slate-400 pt-16 pb-10 border-t border-[#0e2238]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-[#12382c]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-[#0e2238]">
           {/* Col 1: Brand & Bio (3 cols) */}
           <div className="lg:col-span-3 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-[#cba145] shadow-sm">
-                <span className="font-serif font-black text-xl text-[#0a2920] tracking-tighter">
-                  R
-                </span>
+              <div className="relative flex items-center justify-center w-10 h-10">
+                <Image
+                  src="/images/logo-emblem.png"
+                  alt="Rejubliss 3D Animation Studios"
+                  width={40}
+                  height={40}
+                  className="object-contain drop-shadow-[0_0_12px_rgba(0,229,255,0.4)]"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-serif text-2xl font-bold tracking-tight text-white leading-none">
                   Rejubliss
                 </span>
-                <span className="text-[10px] uppercase tracking-wider font-semibold text-[#cba145] mt-1">
-                  Design, Animate, Develop, Grow
+                <span className="text-[10px] uppercase tracking-wider font-semibold text-[#00e5ff] mt-1">
+                  3D Animation Studios
                 </span>
               </div>
             </Link>
 
-            <p className="text-sm text-[#8fa298] leading-relaxed mt-2 max-w-sm">
-              A creative digital agency specializing in website design, graphic
-              design, 2D/3D animation, and motion design.
+            <p className="text-sm text-slate-400 leading-relaxed mt-2 max-w-sm">
+              Next-generation 3D animation, photorealistic CGI, WebGL experiences,
+              and motion design that elevate brands beyond limits.
             </p>
 
             {/* Social Icons */}
@@ -84,7 +89,7 @@ export function Footer() {
                   key={item.label}
                   href={`#${item.label.toLowerCase()}`}
                   aria-label={item.label}
-                  className="w-8 h-8 rounded-full bg-[#0d2f24] text-[#a1b3aa] hover:bg-[#cba145] hover:text-[#0a2920] flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full bg-[#0a1e36] text-slate-400 hover:bg-[#00e5ff] hover:text-[#050e1b] flex items-center justify-center transition-colors border border-cyan-900/30"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                     {item.icon}
@@ -99,22 +104,22 @@ export function Footer() {
             <h4 className="font-serif text-white font-bold text-base mb-2">
               Quick Links
             </h4>
-            <Link href="/" className="text-sm hover:text-[#cba145] transition-colors">
+            <Link href="/" className="text-sm hover:text-[#00e5ff] transition-colors">
               Home
             </Link>
-            <Link href="#about" className="text-sm hover:text-[#cba145] transition-colors">
-              About Us
-            </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
               Our Services
             </Link>
-            <Link href="#portfolio" className="text-sm hover:text-[#cba145] transition-colors">
+            <Link href="#portfolio" className="text-sm hover:text-[#00e5ff] transition-colors">
               Portfolio
             </Link>
-            <Link href="#blog" className="text-sm hover:text-[#cba145] transition-colors">
-              Blog
+            <Link href="#portfolio-spotlight" className="text-sm hover:text-[#00e5ff] transition-colors">
+              Spotlight Releases
             </Link>
-            <Link href="#contact" className="text-sm hover:text-[#cba145] transition-colors">
+            <Link href="#about" className="text-sm hover:text-[#00e5ff] transition-colors">
+              About Studio
+            </Link>
+            <Link href="#contact" className="text-sm hover:text-[#00e5ff] transition-colors">
               Contact
             </Link>
           </div>
@@ -124,23 +129,23 @@ export function Footer() {
             <h4 className="font-serif text-white font-bold text-base mb-2">
               Our Services
             </h4>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              Website Design & Development
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              3D Product Animation
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              Graphic Design
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              Photorealistic CGI
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              2D Animation
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              Interactive WebGL
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              3D Animation
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              2D & 3D Character Design
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              Motion Design
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              Dynamic Motion Design
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#cba145] transition-colors">
-              Consultation
+            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+              Creative Consultation
             </Link>
           </div>
 
@@ -150,19 +155,19 @@ export function Footer() {
               Contact Us
             </h4>
             <div className="flex items-center gap-2.5">
-              <Phone size={14} className="text-[#cba145] shrink-0" />
+              <Phone size={14} className="text-[#00e5ff] shrink-0" />
               <span>+44 20 8123 4567</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Mail size={14} className="text-[#cba145] shrink-0" />
+              <Mail size={14} className="text-[#00e5ff] shrink-0" />
               <span>info@rejubliss.co.uk</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <MapPin size={14} className="text-[#cba145] shrink-0" />
+              <MapPin size={14} className="text-[#00e5ff] shrink-0" />
               <span>London, United Kingdom</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Clock size={14} className="text-[#cba145] shrink-0" />
+              <Clock size={14} className="text-[#00e5ff] shrink-0" />
               <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
             </div>
           </div>
@@ -170,10 +175,10 @@ export function Footer() {
           {/* Col 5: Subscribe to Our Newsletter (3 cols) */}
           <div className="lg:col-span-3 flex flex-col gap-3">
             <h4 className="font-serif text-white font-bold text-base mb-2">
-              Subscribe to Our Newsletter
+              Subscribe to Newsletter
             </h4>
-            <p className="text-sm text-[#8fa298] leading-relaxed mb-1">
-              Get the latest updates, insights, and creative inspiration.
+            <p className="text-sm text-slate-400 leading-relaxed mb-1">
+              Get the latest 3D animation insights, WebGL showcases, and creative inspiration.
             </p>
 
             <form onSubmit={handleSubscribe} className="relative mt-2">
@@ -183,19 +188,19 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-white text-[#0a2920] px-4 py-3 pr-12 rounded-full text-xs font-medium placeholder-[#7d8c85] outline-none focus:ring-2 focus:ring-[#cba145]"
+                className="w-full bg-[#0a1e36] text-white px-4 py-3 pr-12 rounded-full text-xs font-medium placeholder-slate-400 outline-none border border-[#163352] focus:border-[#00e5ff] focus:ring-2 focus:ring-[#00e5ff]/30 transition-all"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 rounded-full bg-[#cba145] text-[#0a2920] flex items-center justify-center hover:bg-[#dfb962] transition-colors"
+                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 rounded-full bg-gradient-to-r from-[#00e5ff] to-[#0284c7] text-[#050e1b] flex items-center justify-center hover:brightness-110 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
               >
                 <ArrowRight size={15} />
               </button>
             </form>
 
             {subscribed && (
-              <div className="flex items-center gap-1.5 text-xs text-[#cba145] mt-1">
+              <div className="flex items-center gap-1.5 text-xs text-[#00e5ff] mt-1">
                 <CheckCircle2 size={13} />
                 <span>Thank you for subscribing!</span>
               </div>
@@ -204,19 +209,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#7d8c85] gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <div>
-            <span>© 2026 Rejubliss. All rights reserved.</span>
+            <span>© 2026 Rejubliss 3D Animation Studios. All rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-6">
-            <Link href="#privacy" className="hover:text-white transition-colors">
+            <Link href="#privacy" className="hover:text-[#00e5ff] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#terms" className="hover:text-white transition-colors">
+            <Link href="#terms" className="hover:text-[#00e5ff] transition-colors">
               Terms & Conditions
             </Link>
-            <Link href="#sitemap" className="hover:text-white transition-colors">
+            <Link href="#sitemap" className="hover:text-[#00e5ff] transition-colors">
               Sitemap
             </Link>
           </div>
@@ -225,3 +230,4 @@ export function Footer() {
     </footer>
   );
 }
+

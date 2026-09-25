@@ -11,7 +11,7 @@ export function Hero() {
   const [showreelOpen, setShowreelOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-[#faf8f5] pt-28 pb-20 sm:pt-32 lg:pt-36 lg:pb-28">
+    <section className="relative overflow-hidden bg-[#f8fafc] pt-28 pb-20 sm:pt-32 lg:pt-36 lg:pb-28">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Headline, Description, CTAs, Stats */}
@@ -23,8 +23,8 @@ export function Hero() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 mb-4"
             >
-              <span className="text-[12px] font-bold tracking-widest uppercase text-[#cba145]">
-                Creative Digital Agency
+              <span className="text-[12px] font-bold tracking-widest uppercase text-[#00A3E0]">
+                3D Animation & Creative Studio
               </span>
             </motion.div>
 
@@ -33,13 +33,13 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-serif text-5xl sm:text-6xl lg:text-[68px] leading-[1.08] font-bold text-[#0a2920] mb-6 tracking-tight"
+              className="font-serif text-5xl sm:text-6xl lg:text-[68px] leading-[1.08] font-bold text-[#071527] mb-6 tracking-tight"
             >
               Ideas Into{" "}
-              <span className="text-[#cba145] font-normal italic font-serif">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e5ff] via-[#00A3E0] to-[#0284c7] font-normal italic font-serif">
                 Extraordinary
               </span>{" "}
-              Digital Experiences
+              3D & Digital Experiences
             </motion.h1>
 
             {/* Subheading text */}
@@ -47,10 +47,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[#5e6d66] text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
+              className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 max-w-lg"
             >
-              We design, develop, and animate digital experiences that help
-              brands stand out, engage audiences, and grow in a digital world.
+              We craft cinematic 3D animations, photorealistic CGI, dynamic motion design,
+              and interactive WebGL experiences that captivate audiences and elevate brands.
             </motion.p>
 
             {/* CTA Group */}
@@ -62,24 +62,24 @@ export function Hero() {
             >
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-3 bg-[#0a2920] text-white px-7 py-3.5 rounded-full text-[15px] font-semibold hover:bg-[#071d17] hover:shadow-xl hover:shadow-[#0a2920]/15 transition-all duration-300 group"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#00A3E0] to-[#0284c7] text-white px-7 py-3.5 rounded-full text-[15px] font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 group"
               >
                 <span>Start Your Project</span>
                 <ArrowRight
                   size={16}
-                  className="text-[#cba145] group-hover:translate-x-1.5 transition-transform"
+                  className="text-white group-hover:translate-x-1.5 transition-transform"
                 />
               </Link>
 
               <button
                 type="button"
                 onClick={() => setShowreelOpen(true)}
-                className="inline-flex items-center gap-3 bg-white text-[#0a2920] border border-[#ede8df] px-6 py-3.5 rounded-full text-[15px] font-semibold hover:bg-[#f4efe6] transition-colors shadow-sm"
+                className="inline-flex items-center gap-3 bg-white text-[#071527] border border-slate-200 px-6 py-3.5 rounded-full text-[15px] font-semibold hover:bg-slate-50 transition-colors shadow-sm"
               >
-                <div className="w-6 h-6 rounded-full bg-[#0a2920] text-white flex items-center justify-center">
-                  <Play size={11} className="ml-0.5 fill-white" />
+                <div className="w-6 h-6 rounded-full bg-[#071527] text-white flex items-center justify-center">
+                  <Play size={11} className="ml-0.5 fill-[#00e5ff] text-[#00e5ff]" />
                 </div>
-                <span>Watch Showreel</span>
+                <span>Watch 3D Showreel</span>
               </button>
             </motion.div>
 
@@ -88,32 +88,32 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="grid grid-cols-3 gap-6 pt-6 border-t border-[#ede8df]/80 max-w-md"
+              className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-200 max-w-md"
             >
               <div>
-                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#0a2920]">
+                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#071527]">
                   100+
                 </span>
-                <span className="text-[13px] text-[#7d8c85] font-medium">
-                  Projects Delivered
+                <span className="text-[13px] text-slate-500 font-medium">
+                  3D & CGI Projects
                 </span>
               </div>
 
               <div>
-                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#0a2920]">
+                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#071527]">
                   50+
                 </span>
-                <span className="text-[13px] text-[#7d8c85] font-medium">
-                  Happy Clients
+                <span className="text-[13px] text-slate-500 font-medium">
+                  Global Brands
                 </span>
               </div>
 
               <div>
-                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#0a2920]">
-                  10+
+                <span className="block font-serif text-3xl sm:text-4xl font-bold text-[#071527]">
+                  15+
                 </span>
-                <span className="text-[13px] text-[#7d8c85] font-medium">
-                  Creative Specialists
+                <span className="text-[13px] text-slate-500 font-medium">
+                  Studio Awards
                 </span>
               </div>
             </motion.div>
@@ -127,7 +127,7 @@ export function Hero() {
                 initial={{ opacity: 0, scale: 0.92, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.2 }}
-                className="relative z-10 w-[82%] sm:w-[78%] rounded-2xl overflow-hidden shadow-2xl shadow-black/15 border border-[#ede8df]"
+                className="relative z-10 w-[82%] sm:w-[78%] rounded-2xl overflow-hidden shadow-2xl shadow-cyan-950/10 border border-slate-200/90"
               >
                 <div className="relative aspect-[16/10] w-full">
                   <Image
@@ -147,7 +147,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                className="absolute -top-4 sm:-top-8 left-2 sm:left-6 z-20 w-36 sm:w-44 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl border border-[#ede8df]"
+                className="absolute -top-4 sm:-top-8 left-2 sm:left-6 z-20 w-36 sm:w-44 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl shadow-cyan-950/5 border border-slate-200/90 hover:border-cyan-400/50 transition-colors"
               >
                 <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
@@ -159,7 +159,7 @@ export function Hero() {
                   />
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-[#5e6d66]">
+                  <span className="text-[11px] font-semibold text-slate-600">
                     Web Design
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 whileHover={{ y: -6, scale: 1.04 }}
-                className="absolute -bottom-6 sm:-bottom-8 left-6 sm:left-14 z-20 w-32 sm:w-38 bg-white p-2 rounded-xl shadow-xl border border-[#ede8df]"
+                className="absolute -bottom-6 sm:-bottom-8 left-6 sm:left-14 z-20 w-32 sm:w-38 bg-white p-2 rounded-xl shadow-xl shadow-cyan-950/5 border border-slate-200/90 hover:border-cyan-400/50 transition-colors"
               >
                 <div className="relative aspect-square w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
@@ -183,7 +183,7 @@ export function Hero() {
                   />
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-[#5e6d66]">
+                  <span className="text-[11px] font-semibold text-slate-600">
                     Graphic Design
                   </span>
                 </div>
@@ -195,7 +195,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.35 }}
                 whileHover={{ y: -6, scale: 1.04 }}
-                className="absolute -top-6 sm:-top-10 right-2 sm:right-6 z-20 w-36 sm:w-44 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl border border-[#ede8df]"
+                className="absolute -top-6 sm:-top-10 right-2 sm:right-6 z-20 w-36 sm:w-44 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl shadow-cyan-950/5 border border-slate-200/90 hover:border-cyan-400/50 transition-colors"
               >
                 <div className="relative aspect-[16/10] w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
@@ -207,7 +207,7 @@ export function Hero() {
                   />
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-[#5e6d66]">
+                  <span className="text-[11px] font-semibold text-slate-600">
                     3D Animation
                   </span>
                 </div>
@@ -219,7 +219,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
                 whileHover={{ y: -6, scale: 1.04 }}
-                className="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-8 z-20 w-32 sm:w-40 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl border border-[#ede8df]"
+                className="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-8 z-20 w-32 sm:w-40 bg-white p-2 sm:p-2.5 rounded-xl shadow-xl shadow-cyan-950/5 border border-slate-200/90 hover:border-cyan-400/50 transition-colors"
               >
                 <div className="relative aspect-square w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
@@ -231,7 +231,7 @@ export function Hero() {
                   />
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-[#5e6d66]">
+                  <span className="text-[11px] font-semibold text-slate-600">
                     Motion Design
                   </span>
                 </div>
@@ -243,7 +243,7 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 whileHover={{ y: -6, scale: 1.04 }}
-                className="absolute -bottom-8 sm:-bottom-12 right-6 sm:right-16 z-20 w-28 sm:w-34 bg-white p-2 rounded-xl shadow-xl border border-[#ede8df]"
+                className="absolute -bottom-8 sm:-bottom-12 right-6 sm:right-16 z-20 w-28 sm:w-34 bg-white p-2 rounded-xl shadow-xl shadow-cyan-950/5 border border-slate-200/90 hover:border-cyan-400/50 transition-colors"
               >
                 <div className="relative aspect-[9/16] w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
@@ -268,16 +268,16 @@ export function Hero() {
                 transition={{ duration: 0.7, delay: 0.6 }}
                 className="absolute -right-4 sm:-right-12 bottom-6 z-30 flex flex-col items-center pointer-events-none"
               >
-                <span className="font-script-title text-3xl sm:text-4xl text-[#0a2920] font-bold leading-tight drop-shadow-sm">
+                <span className="font-script-title text-3xl sm:text-4xl text-[#071527] font-bold leading-tight drop-shadow-sm">
                   Let&apos;s
                   <br />
                   Create
                   <br />
                   Together
                 </span>
-                {/* Golden hand-drawn curved swoosh */}
+                {/* Cyan hand-drawn curved swoosh */}
                 <svg
-                  className="w-20 h-6 text-[#cba145] -mt-1 stroke-current fill-none"
+                  className="w-20 h-6 text-[#00A3E0] -mt-1 stroke-current fill-none"
                   viewBox="0 0 100 30"
                   strokeWidth="3"
                   strokeLinecap="round"
@@ -288,12 +288,12 @@ export function Hero() {
             </div>
 
             {/* Mouse "Scroll Down" Indicator */}
-            <div className="flex flex-col items-center justify-center mt-12 sm:mt-16 text-[#7d8c85]">
-              <div className="w-5 h-8 rounded-full border-2 border-[#7d8c85]/40 flex items-start justify-center p-1">
+            <div className="flex flex-col items-center justify-center mt-12 sm:mt-16 text-slate-400">
+              <div className="w-5 h-8 rounded-full border-2 border-slate-300 flex items-start justify-center p-1">
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                  className="w-1 h-2 rounded-full bg-[#0a2920]"
+                  className="w-1 h-2 rounded-full bg-[#00A3E0]"
                 />
               </div>
               <span className="text-[11px] font-medium tracking-wider uppercase mt-1.5">

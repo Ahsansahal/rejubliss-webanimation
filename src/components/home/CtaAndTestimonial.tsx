@@ -41,16 +41,16 @@ export function CtaAndTestimonial() {
   const currentTestimonial = TESTIMONIALS[currentIndex];
 
   return (
-    <section className="py-16 bg-[#faf8f5]">
+    <section className="py-16 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Card: Dark Forest Green CTA Banner with 3D Gold Ribbon */}
+          {/* Left Card: Midnight Obsidian CTA Banner with 3D Ribbon */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-[#0a2920] rounded-3xl overflow-hidden relative border border-[#0d382c] shadow-xl flex flex-col sm:flex-row items-center min-h-[340px]"
+            className="lg:col-span-7 bg-gradient-to-r from-[#050e1b] via-[#071527] to-[#0a1e36] rounded-3xl overflow-hidden relative border border-cyan-500/20 shadow-xl flex flex-col sm:flex-row items-center min-h-[340px]"
           >
             {/* 3D Golden Ribbon visual on the left */}
             <div className="relative w-full sm:w-[45%] h-56 sm:h-full min-h-[280px]">
@@ -61,12 +61,12 @@ export function CtaAndTestimonial() {
                 sizes="(max-width: 640px) 100vw, 360px"
                 className="object-cover object-left"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0a2920]/40 to-[#0a2920]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#071527]/50 to-[#071527]" />
             </div>
 
             {/* Content on the right */}
             <div className="relative z-10 p-8 sm:p-10 flex-1 flex flex-col justify-center">
-              <span className="text-[11px] font-bold tracking-widest uppercase text-[#cba145] mb-2 block">
+              <span className="text-[11px] font-bold tracking-widest uppercase text-[#00e5ff] mb-2 block">
                 Let&apos;s Work Together
               </span>
 
@@ -74,14 +74,14 @@ export function CtaAndTestimonial() {
                 Ready to Build Something Amazing?
               </h2>
 
-              <p className="text-[#a1b3aa] text-sm sm:text-base leading-relaxed mb-6">
-                Let&apos;s turn your ideas into stunning digital experiences.
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                Let&apos;s turn your vision into groundbreaking 3D animation and interactive digital experiences.
               </p>
 
               <div>
                 <Link
                   href="#contact"
-                  className="inline-flex items-center gap-2.5 bg-[#cba145] text-[#0a2920] font-bold px-6 py-3 rounded-full text-sm hover:bg-[#dfb962] hover:shadow-lg transition-all duration-200 group"
+                  className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#00A3E0] to-[#0284c7] text-white font-bold px-6 py-3 rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-200 group"
                 >
                   <span>Start Your Project</span>
                   <ArrowRight
@@ -99,12 +99,12 @@ export function CtaAndTestimonial() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-5 bg-white rounded-3xl p-8 sm:p-10 border border-[#ede8df] shadow-sm flex flex-col justify-between"
+            className="lg:col-span-5 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm flex flex-col justify-between"
           >
             <div>
               {/* Quote Mark Icon */}
-              <div className="w-10 h-10 rounded-full bg-[#faf8f5] border border-[#ede8df] text-[#cba145] flex items-center justify-center mb-6">
-                <Quote size={18} className="fill-[#cba145]" />
+              <div className="w-10 h-10 rounded-full bg-cyan-50 border border-cyan-200 text-[#00A3E0] flex items-center justify-center mb-6">
+                <Quote size={18} className="fill-[#00A3E0]" />
               </div>
 
               {/* Testimonial Quote */}
@@ -115,7 +115,7 @@ export function CtaAndTestimonial() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.3 }}
-                  className="font-serif text-lg sm:text-[19px] text-[#0a2920] leading-relaxed mb-8 italic"
+                  className="font-serif text-lg sm:text-[19px] text-[#071527] leading-relaxed mb-8 italic"
                 >
                   &ldquo;{currentTestimonial.quote}&rdquo;
                 </motion.p>
@@ -123,9 +123,9 @@ export function CtaAndTestimonial() {
             </div>
 
             {/* Author details & Rating */}
-            <div className="flex items-center justify-between pt-6 border-t border-[#ede8df] flex-wrap gap-4">
+            <div className="flex items-center justify-between pt-6 border-t border-slate-200 flex-wrap gap-4">
               <div className="flex items-center gap-3.5">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-[#ede8df]">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-slate-200">
                   <Image
                     src={currentTestimonial.avatar}
                     alt={currentTestimonial.author}
@@ -135,10 +135,10 @@ export function CtaAndTestimonial() {
                   />
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-[15px] text-[#0a2920]">
+                  <h4 className="font-serif font-bold text-[15px] text-[#071527]">
                     {currentTestimonial.author}
                   </h4>
-                  <span className="text-[12px] text-[#7d8c85]">
+                  <span className="text-[12px] text-slate-500">
                     {currentTestimonial.role}
                   </span>
                 </div>
@@ -146,9 +146,9 @@ export function CtaAndTestimonial() {
 
               {/* Stars & Navigation Arrows */}
               <div className="flex flex-col items-end gap-2">
-                <div className="flex items-center gap-1 text-[#cba145]">
+                <div className="flex items-center gap-1 text-amber-500">
                   {[...Array(currentTestimonial.rating)].map((_, i) => (
-                    <Star key={i} size={14} className="fill-[#cba145]" />
+                    <Star key={i} size={14} className="fill-amber-500 text-amber-500" />
                   ))}
                 </div>
 
@@ -157,7 +157,7 @@ export function CtaAndTestimonial() {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Previous testimonial"
-                    className="w-7 h-7 rounded-full border border-[#ede8df] flex items-center justify-center text-[#5e6d66] hover:bg-[#faf8f5] hover:text-[#0a2920] transition-colors"
+                    className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 hover:text-[#00A3E0] hover:border-cyan-300 transition-colors"
                   >
                     <ChevronLeft size={14} />
                   </button>
@@ -165,7 +165,7 @@ export function CtaAndTestimonial() {
                     type="button"
                     onClick={handleNext}
                     aria-label="Next testimonial"
-                    className="w-7 h-7 rounded-full border border-[#ede8df] flex items-center justify-center text-[#5e6d66] hover:bg-[#faf8f5] hover:text-[#0a2920] transition-colors"
+                    className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 hover:text-[#00A3E0] hover:border-cyan-300 transition-colors"
                   >
                     <ChevronRight size={14} />
                   </button>

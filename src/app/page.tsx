@@ -6,6 +6,7 @@ import { Header } from "@/components/common/Header";
 import { Hero } from "@/components/home/Hero";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
+import { V2ExpandingBookShowcase } from "@/components/home/V2ExpandingBookShowcase";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { CtaAndTestimonial } from "@/components/home/CtaAndTestimonial";
 import { Footer } from "@/components/common/Footer";
@@ -21,8 +22,8 @@ const DynamicAmbientCanvas = dynamic(
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#faf8f5] flex flex-col relative selection:bg-[#cba145]/20 selection:text-[#0a2920]">
-      {/* Background WebGL subtle golden dust particles */}
+    <main className="min-h-screen bg-[#f8fafc] flex flex-col relative selection:bg-[#00e5ff]/25 selection:text-[#071527]">
+      {/* Background WebGL subtle crystalline cyan & sapphire dust particles */}
       <DynamicAmbientCanvas />
 
       {/* Header with Topbar & Main Nav */}
@@ -36,6 +37,9 @@ export default function HomePage() {
 
       {/* Featured Work Showcase with Interactive Filter Pills */}
       <FeaturedWork />
+
+      {/* Interactive Accordion Book Showcase */}
+      <V2ExpandingBookShowcase />
 
       {/* Process Section */}
       <ProcessSection />

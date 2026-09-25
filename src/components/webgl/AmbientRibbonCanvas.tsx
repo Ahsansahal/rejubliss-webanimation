@@ -11,8 +11,8 @@ function FloatingGoldDust() {
   const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    const goldA = new THREE.Color("#cba145");
-    const goldB = new THREE.Color("#dfb962");
+    const cyanA = new THREE.Color("#00e5ff");
+    const cyanB = new THREE.Color("#0284c7");
     const tempColor = new THREE.Color();
 
     for (let i = 0; i < count; i++) {
@@ -30,7 +30,7 @@ function FloatingGoldDust() {
       pos[i * 3 + 1] = (rand2 - 0.5) * 12;
       pos[i * 3 + 2] = (rand3 - 0.5) * 8;
 
-      tempColor.copy(goldA).lerp(goldB, rand4);
+      tempColor.copy(cyanA).lerp(cyanB, rand4);
       col[i * 3] = tempColor.r;
       col[i * 3 + 1] = tempColor.g;
       col[i * 3 + 2] = tempColor.b;

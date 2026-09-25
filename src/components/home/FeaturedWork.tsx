@@ -71,30 +71,30 @@ export function FeaturedWork() {
   });
 
   return (
-    <section id="portfolio" className="py-20 bg-[#faf8f5]">
+    <section id="portfolio" className="py-20 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-[#cba145]" />
-              <span className="text-[12px] font-bold tracking-widest uppercase text-[#cba145]">
+              <span className="w-6 h-0.5 bg-[#00A3E0]" />
+              <span className="text-[12px] font-bold tracking-widest uppercase text-[#00A3E0]">
                 Featured Work
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a2920] leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#071527] leading-tight">
               Projects That Make an Impact
             </h2>
           </div>
 
           <Link
             href="#portfolio"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2920] hover:text-[#cba145] transition-colors group shrink-0"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#071527] hover:text-[#00A3E0] transition-colors group shrink-0"
           >
             <span>View All Projects</span>
             <ArrowRight
               size={15}
-              className="text-[#cba145] group-hover:translate-x-1 transition-transform"
+              className="text-[#00A3E0] group-hover:translate-x-1 transition-transform"
             />
           </Link>
         </div>
@@ -110,8 +110,8 @@ export function FeaturedWork() {
                 onClick={() => setActiveFilter(filter.value)}
                 className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
                   isActive
-                    ? "bg-[#0a2920] text-white shadow-md"
-                    : "bg-[#f4efe6] text-[#5e6d66] hover:bg-[#ede8df] hover:text-[#0a2920]"
+                    ? "bg-[#00A3E0] text-white shadow-md shadow-cyan-500/25"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-[#071527]"
                 }`}
               >
                 {filter.label}
@@ -137,10 +137,10 @@ export function FeaturedWork() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35 }}
                   whileHover={{ y: -6 }}
-                  className="bg-white rounded-2xl p-4 border border-[#ede8df] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                  className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-sm hover:border-cyan-400/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
                 >
                   {/* Project Image */}
-                  <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden mb-4 bg-[#f4efe6]">
+                  <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden mb-4 bg-slate-100">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -150,24 +150,24 @@ export function FeaturedWork() {
                     />
 
                     {/* Floating circular icon badge */}
-                    <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-[#0a2920]/90 text-white flex items-center justify-center shadow-md backdrop-blur-sm">
-                      <Icon size={14} className="text-[#cba145]" />
+                    <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-[#071527]/90 text-white flex items-center justify-center shadow-md backdrop-blur-sm border border-cyan-500/30">
+                      <Icon size={14} className="text-[#00e5ff]" />
                     </div>
                   </div>
 
                   {/* Card Details & Action Button */}
                   <div className="flex items-center justify-between mt-1">
                     <div>
-                      <h3 className="font-serif text-[17px] font-bold text-[#0a2920] leading-snug group-hover:text-[#cba145] transition-colors">
+                      <h3 className="font-serif text-[17px] font-bold text-[#071527] leading-snug group-hover:text-[#00A3E0] transition-colors">
                         {project.title}
                       </h3>
-                      <span className="text-[12px] text-[#7d8c85] font-medium">
+                      <span className="text-[12px] text-slate-500 font-medium">
                         {project.category}
                       </span>
                     </div>
 
                     {/* Circular Action Arrow */}
-                    <div className="w-8 h-8 rounded-full bg-[#f4efe6] text-[#0a2920] flex items-center justify-center group-hover:bg-[#0a2920] group-hover:text-[#cba145] transition-all duration-300 shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-slate-100 text-[#071527] flex items-center justify-center group-hover:bg-[#00A3E0] group-hover:text-white transition-all duration-300 shrink-0">
                       <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>

@@ -39,18 +39,18 @@ const STEPS = [
 
 export function ProcessSection() {
   return (
-    <section id="about" className="py-20 bg-[#faf8f5]">
+    <section id="about" className="py-20 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Section Header */}
         <div className="mb-14">
           <div className="flex items-center gap-2 mb-3">
-            <span className="w-6 h-0.5 bg-[#cba145]" />
-            <span className="text-[12px] font-bold tracking-widest uppercase text-[#cba145]">
+            <span className="w-6 h-0.5 bg-[#00A3E0]" />
+            <span className="text-[12px] font-bold tracking-widest uppercase text-[#00A3E0]">
               Our Process
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a2920] leading-tight">
-            From Idea to Extraordinary
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#071527] leading-tight">
+            From Concept to CGI Masterpiece
           </h2>
         </div>
 
@@ -71,29 +71,29 @@ export function ProcessSection() {
               >
                 <div className="flex items-center gap-3 mb-3">
                   {/* Step Icon in soft pill */}
-                  <div className="w-12 h-12 rounded-xl bg-white border border-[#ede8df] text-[#0a2920] flex items-center justify-center shadow-sm group-hover:border-[#cba145] group-hover:text-[#cba145] transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-[#071527] flex items-center justify-center shadow-sm group-hover:border-[#00e5ff] group-hover:text-[#00A3E0] group-hover:shadow-md group-hover:shadow-cyan-500/15 transition-all">
                     <Icon size={20} />
                   </div>
 
                   {/* Step Number & Title */}
                   <div className="flex flex-col">
-                    <span className="text-[12px] font-bold text-[#7d8c85]">
+                    <span className="text-[12px] font-bold text-slate-400">
                       {step.number}
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#0a2920]">
+                    <h3 className="font-serif text-lg font-bold text-[#071527]">
                       {step.title}
                     </h3>
                   </div>
                 </div>
 
                 {/* Step Description */}
-                <p className="text-[13px] text-[#5e6d66] leading-relaxed max-w-[200px]">
+                <p className="text-[13px] text-slate-500 leading-relaxed max-w-[200px]">
                   {step.description}
                 </p>
 
                 {/* Connector Arrow (desktop) */}
                 {!isLast && (
-                  <div className="hidden lg:block absolute -right-4 top-6 text-[#cba145]/40 pointer-events-none">
+                  <div className="hidden lg:block absolute -right-4 top-6 text-[#00A3E0]/40 pointer-events-none">
                     <svg className="w-6 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>

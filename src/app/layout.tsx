@@ -23,16 +23,16 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Rejubliss | Design, Animate, Develop, Grow",
+  title: "Rejubliss | 3D Animation Studios",
   description:
-    "We design, develop, and animate digital experiences that help brands stand out, engage audiences, and grow in a digital world.",
+    "Next-generation 3D animation, photorealistic CGI, WebGL experiences, and motion design that elevate brands beyond limits.",
   keywords: [
-    "Digital Agency",
-    "Website Design",
-    "2D Animation",
-    "3D Animation",
+    "3D Animation Studio",
+    "CGI Animation",
+    "WebGL Development",
     "Motion Design",
-    "Brand Identity",
+    "Product Visualization",
+    "Visual Effects",
     "Rejubliss",
   ],
 };
@@ -47,7 +47,7 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${caveat.variable}`}
     >
-      <body className="font-sans antialiased text-[#1b2621] bg-[#faf8f5] selection:bg-[#d4af37]/20 selection:text-[#0a2920]">
+      <body className="font-sans antialiased text-[#0b1b36] bg-[#f8fafc] selection:bg-[#00e5ff]/25 selection:text-[#071527]">
         {children}
       </body>
     </html>

@@ -62,34 +62,33 @@ const SERVICES: ServiceItem[] = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-[#faf8f5]">
+    <section id="services" className="py-20 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-[#cba145]" />
-              <span className="text-[12px] font-bold tracking-widest uppercase text-[#cba145]">
+              <span className="w-6 h-0.5 bg-[#00A3E0]" />
+              <span className="text-[12px] font-bold tracking-widest uppercase text-[#00A3E0]">
                 Our Services
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#0a2920] leading-tight">
-              Creative Services for Modern Brands
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#071527] leading-tight">
+              Creative 3D & Digital Services
             </h2>
-            <p className="text-[#5e6d66] text-sm sm:text-base mt-2 max-w-xl">
-              From websites to animations, we bring your ideas to life with
-              creativity, technology, and strategy.
+            <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-xl">
+              From cinematic 3D animations to interactive WebGL experiences, we engineer digital art that accelerates modern brands.
             </p>
           </div>
 
           <Link
             href="#services"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#0a2920] hover:text-[#cba145] transition-colors group shrink-0"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#071527] hover:text-[#00A3E0] transition-colors group shrink-0"
           >
             <span>View All Services</span>
             <ArrowRight
               size={15}
-              className="text-[#cba145] group-hover:translate-x-1 transition-transform"
+              className="text-[#00A3E0] group-hover:translate-x-1 transition-transform"
             />
           </Link>
         </div>
@@ -106,11 +105,11 @@ export function ServicesSection() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="bg-white rounded-2xl p-4 sm:p-4.5 border border-[#ede8df] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-2xl p-4 sm:p-4.5 border border-slate-200/90 shadow-sm hover:border-cyan-400/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Image container with floating icon badge */}
-                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden mb-5 bg-[#f4efe6]">
+                  <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden mb-5 bg-slate-100">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -120,18 +119,18 @@ export function ServicesSection() {
                     />
 
                     {/* Floating circular icon badge */}
-                    <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-[#0a2920] text-white flex items-center justify-center shadow-md">
-                      <Icon size={14} className="text-[#cba145]" />
+                    <div className="absolute bottom-3 left-3 w-8 h-8 rounded-full bg-[#071527] text-white flex items-center justify-center shadow-md border border-cyan-500/30">
+                      <Icon size={14} className="text-[#00e5ff]" />
                     </div>
                   </div>
 
                   {/* Card Title */}
-                  <h3 className="font-serif text-[17px] font-bold text-[#0a2920] mb-2 leading-snug">
+                  <h3 className="font-serif text-[17px] font-bold text-[#071527] mb-2 leading-snug group-hover:text-[#00A3E0] transition-colors">
                     {service.title}
                   </h3>
 
                   {/* Card Description */}
-                  <p className="text-[13px] text-[#5e6d66] leading-relaxed mb-4">
+                  <p className="text-[13px] text-slate-500 leading-relaxed mb-4">
                     {service.description}
                   </p>
                 </div>
@@ -139,12 +138,12 @@ export function ServicesSection() {
                 {/* Learn More link */}
                 <Link
                   href="#contact"
-                  className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#0a2920] group-hover:text-[#cba145] transition-colors mt-auto pt-2"
+                  className="inline-flex items-center gap-1.5 text-[12px] font-bold text-[#071527] group-hover:text-[#00A3E0] transition-colors mt-auto pt-2"
                 >
                   <span>Learn More</span>
                   <ArrowRight
                     size={13}
-                    className="text-[#cba145] group-hover:translate-x-1 transition-transform"
+                    className="text-[#00A3E0] group-hover:translate-x-1 transition-transform"
                   />
                 </Link>
               </motion.div>
