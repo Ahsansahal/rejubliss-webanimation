@@ -124,21 +124,19 @@ body {
 }
 
 .animate-border-beam {
-  animation: border-beam var(--duration, 9s) infinite linear;
+  animation: border-beam var(--duration, 8s) infinite linear;
 }
 
-@keyframes border-beam-svg {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -100;
-  }
+.border-beam-container {
+  border: 1.5px solid transparent;
+  -webkit-mask-clip: padding-box, border-box;
+  mask-clip: padding-box, border-box;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
 }
 
-.animate-border-beam-svg {
-  animation: border-beam-svg var(--duration, 7s) infinite linear;
-}
 
 @keyframes beam-slide {
   0% {

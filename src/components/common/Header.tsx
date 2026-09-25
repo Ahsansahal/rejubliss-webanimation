@@ -71,73 +71,56 @@ export function Header() {
             mobileMenuOpen ? "rounded-[30px]" : "rounded-full"
           }`}
         >
-        {/* ========================================================================= */}
-        {/* Animated Light Beam 1: Radiant Perimeter Border Travelling Light Beam      */}
-        {/* Continuously glides around the full outer contour of the liquid navbar     */}
-        {/* ========================================================================= */}
-        <svg
-          className="pointer-events-none absolute inset-0 w-full h-full rounded-[inherit] overflow-visible z-30"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="header-border-beam" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#00e5ff" stopOpacity="0" />
-              <stop offset="25%" stopColor="#00e5ff" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="75%" stopColor="#00A3E0" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <motion.rect
-            x="1.5"
-            y="1.5"
-            width="calc(100% - 3px)"
-            height="calc(100% - 3px)"
-            rx={mobileMenuOpen ? 29 : 9999}
-            fill="none"
-            stroke="url(#header-border-beam)"
-            strokeWidth="2.5"
-            pathLength="100"
-            strokeDasharray="20 80"
-            animate={{
-              strokeDashoffset: [0, -100],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 7,
-              ease: "linear",
-            }}
-            style={{
-              filter: "drop-shadow(0 0 6px #00e5ff) drop-shadow(0 0 14px #00A3E0)",
-            }}
-          />
-        </svg>
+          {/* ========================================================================= */}
+          {/* Animated Light Beam 1: Moving Luminous Bottom Laser Beam Streak            */}
+          {/* Contained inside a clipped pill overlay so it never leaks past rounded ends*/}
+          {/* ========================================================================= */}
+          <div
+            className={`absolute inset-0 overflow-hidden pointer-events-none z-10 ${
+              mobileMenuOpen ? "rounded-[30px]" : "rounded-full"
+            }`}
+          >
+            <div className="absolute bottom-0 left-0 right-0 h-[2px]">
+              <motion.div
+                className="w-64 h-full bg-gradient-to-r from-transparent via-[#00e5ff] via-white to-transparent"
+                style={{
+                  boxShadow: "0 0 16px #00e5ff, 0 0 28px #00A3E0",
+                }}
+                animate={{
+                  x: ["-100%", "900%"],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
 
-        {/* ========================================================================= */}
-        {/* Animated Light Beam 2: Moving Luminous Bottom Laser Beam Streak            */}
-        {/* Glides continuously across the bottom baseline with brilliant cyan glow   */}
-        {/* ========================================================================= */}
-        <div className="absolute bottom-0 left-0 right-0 h-[3px] overflow-hidden pointer-events-none z-20 rounded-b-full">
-          <motion.div
-            className="absolute top-0 bottom-0 w-64 sm:w-80 bg-gradient-to-r from-transparent via-[#00e5ff] via-white to-transparent"
-            style={{
-              boxShadow: "0 0 16px #00e5ff, 0 0 28px #00e5ff, 0 0 45px rgba(0, 163, 224, 0.9)",
-            }}
-            animate={{
-              left: ["-350px", "100%"],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 3.6,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-          />
-        </div>
+            {/* Ambient Top Glow Accent (subtle and clipped to rounded pill) */}
+            <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-[#00e5ff]/50 to-transparent" />
+          </div>
 
-        {/* ========================================================================= */}
-        {/* Animated Light Beam 3: Ambient Top Glare & Specular Accent Line           */}
-        {/* ========================================================================= */}
-        <div className="absolute top-0 left-1/6 right-1/6 h-[2px] bg-gradient-to-r from-transparent via-[#00e5ff] via-white/90 to-transparent pointer-events-none z-20 shadow-[0_0_14px_#00e5ff,0_0_24px_#00A3E0]" />
+          {/* ========================================================================= */}
+          {/* Animated Light Beam 2: Glowing Perimeter Border Beam                       */}
+          {/* Glides continuously around the exact outer perimeter contour of the navbar */}
+          {/* ========================================================================= */}
+          <div
+            style={
+              {
+                "--size": "320px",
+                "--duration": "8s",
+                "--color-from": "#00e5ff",
+                "--color-to": "#00A3E0",
+              } as React.CSSProperties
+            }
+            className={`border-beam-container pointer-events-none absolute inset-0 z-20 after:absolute after:aspect-square after:w-[calc(var(--size))] after:animate-border-beam after:[background:linear-gradient(to_left,var(--color-from),#ffffff,var(--color-to),transparent)] after:[offset-anchor:90%_50%] ${
+              mobileMenuOpen
+                ? "rounded-[30px] after:[offset-path:rect(0_100%_100%_0_round_30px)]"
+                : "rounded-full after:[offset-path:rect(0_100%_100%_0_round_9999px)]"
+            }`}
+          />
+
 
 
           {/* ========================================================================= */}
