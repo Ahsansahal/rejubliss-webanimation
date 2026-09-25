@@ -29,17 +29,17 @@ export default function HomePage() {
       {/* Header with Topbar & Main Nav */}
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Section 1) */}
       <Hero />
 
-      {/* Services Section */}
+      {/* Services Section (Section 2) */}
       <ServicesSection />
 
-      {/* Featured Work Showcase with Interactive Filter Pills */}
-      <FeaturedWork />
-
-      {/* Interactive Accordion Book Showcase */}
+      {/* Interactive Accordion Portfolio Showcase (Section 3) */}
       <V2ExpandingBookShowcase />
+
+      {/* Featured Work Showcase with Interactive Filter Pills (Section 4) */}
+      <FeaturedWork />
 
       {/* Process Section */}
       <ProcessSection />

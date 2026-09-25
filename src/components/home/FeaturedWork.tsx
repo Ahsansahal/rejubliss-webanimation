@@ -71,7 +71,7 @@ export function FeaturedWork() {
   });
 
   return (
-    <section id="portfolio" className="py-20 bg-[#f8fafc]">
+    <section id="featured-work" className="py-20 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">

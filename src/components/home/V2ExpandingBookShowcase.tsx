@@ -175,7 +175,8 @@ export function V2ExpandingBookShowcase() {
   };
 
   return (
-    <section id="portfolio-spotlight" className="relative py-16 sm:py-24 bg-gradient-to-b from-[#F7FAFD] via-[#FFFFFF] to-[#EFF7FD] border-t border-b border-slate-200/80 overflow-hidden w-full font-sans transition-colors duration-300">
+    <section id="portfolio" className="relative py-16 sm:py-24 bg-gradient-to-b from-[#F7FAFD] via-[#FFFFFF] to-[#EFF7FD] border-t border-b border-slate-200/80 overflow-hidden w-full font-sans transition-colors duration-300">
+      <div id="portfolio-spotlight" className="absolute -top-20" />
       {/* Background ambient lighting accents */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-cyan-200/35 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-10 w-[500px] h-[450px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none" />
