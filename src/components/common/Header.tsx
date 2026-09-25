@@ -10,8 +10,40 @@ import {
   ChevronDown,
   Menu,
   X,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const MEGA_SERVICES = [
+  {
+    title: "3D Product Animation",
+    subtitle: "Photorealistic CGI, raytraced lighting & explosive assembly views.",
+    image: "/images/sneaker_3d.jpg",
+    badge: "3D CGI",
+    href: "#services",
+  },
+  {
+    title: "Interactive Web & WebGL",
+    subtitle: "High-performance websites with fluid 3D WebGL experiences.",
+    image: "/images/hero_tablet.jpg",
+    badge: "WebGL",
+    href: "#services",
+  },
+  {
+    title: "2D & 3D Character Motion",
+    subtitle: "Narrative character animation, explainer videos & brand stories.",
+    image: "/images/character_animation.jpg",
+    badge: "Animation",
+    href: "#services",
+  },
+  {
+    title: "Dynamic Motion Design",
+    subtitle: "Cinematic broadcast graphics, kinetic typography & fluid VFX.",
+    image: "/images/gold_motion.jpg",
+    badge: "Motion VFX",
+    href: "#services",
+  },
+];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -97,7 +129,7 @@ export function Header() {
               Home
             </Link>
 
-            {/* Services Dropdown */}
+            {/* Services Mega Menu */}
             <div
               className="relative"
               onMouseEnter={() => setServicesDropdown(true)}
@@ -122,48 +154,133 @@ export function Header() {
               <AnimatePresence>
                 {servicesDropdown && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                    transition={{ duration: 0.18 }}
-                    className="absolute left-0 top-full pt-2 w-64 z-50 pointer-events-auto"
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute -left-[140px] sm:-left-[200px] md:-left-[260px] lg:-left-[300px] xl:-left-[320px] top-full pt-3 w-[880px] lg:w-[960px] xl:w-[1000px] max-w-[95vw] z-50 pointer-events-auto"
                   >
-                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-cyan-950/20 border border-slate-200/90 p-2 py-3">
-                      <Link
-                        href="#services"
-                        onClick={() => setServicesDropdown(false)}
-                        className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
-                      >
-                        Website Design & Development
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => setServicesDropdown(false)}
-                        className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
-                      >
-                        Graphic Design & Branding
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => setServicesDropdown(false)}
-                        className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
-                      >
-                        2D Animated Explainers
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => setServicesDropdown(false)}
-                        className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
-                      >
-                        3D Product Animation
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => setServicesDropdown(false)}
-                        className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
-                      >
-                        Dynamic Motion Design
-                      </Link>
+                    <div className="bg-white/95 dark:bg-[#071527]/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-cyan-950/20 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 overflow-hidden relative">
+                      {/* Subtle top cyan glow line */}
+                      <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-[#00e5ff] to-transparent" />
+
+                      {/* Header / Category label */}
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 dark:border-slate-800/80">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] animate-pulse" />
+                          <span className="text-xs font-bold uppercase tracking-widest text-[#00A3E0]">
+                            Studio Capabilities & Services
+                          </span>
+                        </div>
+                        <Link
+                          href="#services"
+                          onClick={() => setServicesDropdown(false)}
+                          className="text-xs font-semibold text-slate-500 hover:text-[#00A3E0] transition-colors flex items-center gap-1 group"
+                        >
+                          <span>View All Services</span>
+                          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                        </Link>
+                      </div>
+
+                      {/* Main Grid: 4 Service Cards with Pictures (8 cols) + 1 Featured Spotlight (4 cols) */}
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
+                        {/* Left: 4 Service Cards in 2x2 grid */}
+                        <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {MEGA_SERVICES.map((srv) => (
+                            <Link
+                              key={srv.title}
+                              href={srv.href}
+                              onClick={() => setServicesDropdown(false)}
+                              className="group flex flex-col p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 hover:bg-cyan-50/40 dark:hover:bg-cyan-950/20 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
+                            >
+                              {/* Image Thumbnail with floating badge */}
+                              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-2.5 bg-slate-100 dark:bg-slate-800">
+                                <Image
+                                  src={srv.image}
+                                  alt={srv.title}
+                                  fill
+                                  sizes="280px"
+                                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                />
+                                <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-[#071527]/85 backdrop-blur-sm border border-cyan-500/30 text-[10px] font-bold text-[#00e5ff] tracking-wide uppercase">
+                                  {srv.badge}
+                                </div>
+                              </div>
+
+                              {/* Title & Description */}
+                              <div className="flex items-center justify-between mb-1">
+                                <h4 className="font-serif font-bold text-[14px] text-[#071527] dark:text-white group-hover:text-[#00A3E0] transition-colors leading-snug">
+                                  {srv.title}
+                                </h4>
+                                <ArrowRight
+                                  size={13}
+                                  className="text-slate-400 group-hover:text-[#00A3E0] group-hover:translate-x-1 transition-all shrink-0 ml-1"
+                                />
+                              </div>
+                              <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+                                {srv.subtitle}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Right: Featured Spotlight Showcase Card with Picture */}
+                        <div className="lg:col-span-4 flex flex-col">
+                          <Link
+                            href="#portfolio-spotlight"
+                            onClick={() => setServicesDropdown(false)}
+                            className="group flex-1 flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-b from-[#071527] to-[#050e1b] text-white border border-cyan-500/30 hover:border-cyan-400 hover:shadow-xl hover:shadow-cyan-500/20 transition-all duration-300 relative overflow-hidden"
+                          >
+                            {/* Spotlight Image */}
+                            <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden mb-3 bg-slate-900">
+                              <Image
+                                src="/images/car_3d.jpg"
+                                alt="Featured 3D Showcase - McLaren Cyber GT"
+                                fill
+                                sizes="300px"
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                              <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-cyan-500 text-[#050e1b] text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                                ⭐ Spotlight Project
+                              </div>
+                            </div>
+
+                            {/* Details */}
+                            <div>
+                              <div className="text-[10px] font-bold text-[#00e5ff] uppercase tracking-wider mb-1">
+                                Automotive CGI & WebGL
+                              </div>
+                              <h4 className="font-serif font-bold text-[16px] text-white group-hover:text-[#00e5ff] transition-colors leading-tight mb-1.5">
+                                McLaren Cyber GT Raytraced CGI
+                              </h4>
+                              <p className="text-[11.5px] text-slate-300 leading-relaxed mb-3">
+                                Explore our photorealistic CGI commercial breakdown and interactive 3D WebGL experience.
+                              </p>
+                            </div>
+
+                            <div className="pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-[#00e5ff]">
+                              <span>Explore Case Study</span>
+                              <ArrowRight size={13} className="group-hover:translate-x-1.5 transition-transform" />
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Bottom Bar: Action Links */}
+                      <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+                        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                          <Sparkles size={13} className="text-[#00A3E0]" />
+                          <span>Ready to elevate your product with cinematic 3D CGI or WebGL?</span>
+                        </div>
+                        <Link
+                          href="#contact"
+                          onClick={() => setServicesDropdown(false)}
+                          className="font-bold text-[#00A3E0] hover:text-cyan-600 transition-colors flex items-center gap-1"
+                        >
+                          <span>Request Free Estimate</span>
+                          <ArrowRight size={12} />
+                        </Link>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -291,58 +408,40 @@ export function Header() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="pl-3 pt-1 pb-1 flex flex-col gap-2 border-l-2 border-cyan-500/40 ml-1 mt-1 overflow-hidden text-xs"
+                      className="pt-2 pb-1 flex flex-col gap-2.5 overflow-hidden"
                     >
-                      <Link
-                        href="#services"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
-                      >
-                        Website Design & Development
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
-                      >
-                        Graphic Design & Branding
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
-                      >
-                        2D Animated Explainers
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
-                      >
-                        3D Product Animation
-                      </Link>
-                      <Link
-                        href="#services"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
-                      >
-                        Dynamic Motion Design
-                      </Link>
+                      {MEGA_SERVICES.map((srv) => (
+                        <Link
+                          key={srv.title}
+                          href={srv.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileServicesOpen(false);
+                          }}
+                          className="flex items-center gap-3 p-2 rounded-xl bg-slate-50/80 hover:bg-cyan-50/60 border border-slate-200/80 transition-colors group"
+                        >
+                          <div className="relative aspect-[16/10] w-14 h-10 rounded-lg overflow-hidden shrink-0 bg-slate-200">
+                            <Image
+                              src={srv.image}
+                              alt={srv.title}
+                              fill
+                              sizes="56px"
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-bold text-[#071527] group-hover:text-[#00A3E0] truncate">
+                                {srv.title}
+                              </span>
+                            </div>
+                            <span className="text-[10px] text-slate-500 block truncate">
+                              {srv.badge} • {srv.subtitle}
+                            </span>
+                          </div>
+                          <ArrowRight size={12} className="text-slate-400 group-hover:text-[#00A3E0] shrink-0" />
+                        </Link>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
