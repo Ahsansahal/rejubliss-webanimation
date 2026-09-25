@@ -43,7 +43,7 @@
     "badge": "Motion Design Award",
     "rating": 4.8,
     "reviewsCount": 175,
-    "image": "/images/gold_motion.jpg",
+    "image": "/images/cyan_motion.jpg",
     "metaDescription": "Hypnotic procedural fluid simulations and dynamic particle ribbons synced to spatial audio frequencies for brand sound design.",
     "scope": ["Houdini Pyro Simulation", "Fluid Surface Meshing", "Broadcast Graphics", "Audio-Reactive Logic"]
   },
@@ -115,7 +115,7 @@
     "badge": "Luxury Design Award",
     "rating": 5.0,
     "reviewsCount": 310,
-    "image": "/images/golden_ribbon_cta.jpg",
+    "image": "/images/cyan_ribbon_cta.jpg",
     "metaDescription": "Sublime macro product cinematography capturing dropper micro-droplets, luminous amber glass refractions, and botanical flora.",
     "scope": ["Macro Caustics", "Viscosity Modeling", "High-End Retouching", "Social Video Cutdowns"]
   },

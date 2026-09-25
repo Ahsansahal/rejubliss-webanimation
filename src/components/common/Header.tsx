@@ -39,7 +39,7 @@ const MEGA_SERVICES = [
   {
     title: "Dynamic Motion Design",
     subtitle: "Cinematic broadcast graphics, kinetic typography & fluid VFX.",
-    image: "/images/gold_motion.jpg",
+    image: "/images/cyan_motion.jpg",
     badge: "Motion VFX",
     href: "#services",
   },
@@ -97,12 +97,12 @@ export function Header() {
         <div className="px-4 sm:px-6 py-3 flex items-center justify-between relative z-10">
           {/* Brand Logo with Emblem */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-200/90 shadow-md shadow-cyan-500/10 group-hover:shadow-cyan-500/30 group-hover:scale-105 transition-all duration-300 p-1.5 overflow-hidden">
+            <div className="relative flex items-center justify-center w-11 h-11 transition-transform group-hover:scale-105 duration-300">
               <Image
                 src="/images/logo-emblem.png"
                 alt="Rejubliss 3D Animation Studios Logo"
-                width={36}
-                height={36}
+                width={42}
+                height={42}
                 className="object-contain"
                 priority
               />

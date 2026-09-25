@@ -213,7 +213,7 @@ export function Hero() {
                 </div>
               </motion.div>
 
-              {/* Floating Card 4: Mid-Right Golden Motion Ribbon (Motion Design) */}
+              {/* Floating Card 4: Mid-Right Cyan Motion Ribbon (Motion Design) */}
               <motion.div
                 initial={{ opacity: 0, x: 35, y: 15 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
@@ -223,8 +223,8 @@ export function Hero() {
               >
                 <div className="relative aspect-square w-full rounded-lg overflow-hidden mb-1.5">
                   <Image
-                    src="/images/gold_motion.jpg"
-                    alt="Fluid Motion Design"
+                    src="/images/cyan_motion.jpg"
+                    alt="Fluid Cyan Motion Design"
                     fill
                     sizes="160px"
                     className="object-cover"

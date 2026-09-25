@@ -52,11 +52,11 @@ export function CtaAndTestimonial() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 bg-gradient-to-br from-cyan-50/90 via-white to-sky-100/80 rounded-3xl overflow-hidden relative border border-cyan-200/90 shadow-xl shadow-cyan-500/10 flex flex-col sm:flex-row items-center min-h-[340px]"
           >
-            {/* 3D Golden Ribbon visual on the left */}
+            {/* 3D Cyan Crystalline Ribbon visual on the left */}
             <div className="relative w-full sm:w-[45%] h-56 sm:h-full min-h-[280px]">
               <Image
-                src="/images/golden_ribbon_cta.jpg"
-                alt="3D Golden Ribbon Motion"
+                src="/images/cyan_ribbon_cta.jpg"
+                alt="3D Crystalline Cyan Ribbon Motion"
                 fill
                 sizes="(max-width: 640px) 100vw, 360px"
                 className="object-cover object-left"
@@ -146,9 +146,9 @@ export function CtaAndTestimonial() {
 
               {/* Stars & Navigation Arrows */}
               <div className="flex flex-col items-end gap-2">
-                <div className="flex items-center gap-1 text-amber-500">
+                <div className="flex items-center gap-1 text-[#00A3E0]">
                   {[...Array(currentTestimonial.rating)].map((_, i) => (
-                    <Star key={i} size={14} className="fill-amber-500 text-amber-500" />
+                    <Star key={i} size={14} className="fill-[#00A3E0] text-[#00A3E0]" />
                   ))}
                 </div>
 

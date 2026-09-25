@@ -55,7 +55,7 @@ const SERVICES: ServiceItem[] = [
     id: "motion-design",
     title: "Motion Design",
     description: "Dynamic motion graphics and animations for digital experiences.",
-    image: "/images/gold_motion.jpg",
+    image: "/images/cyan_motion.jpg",
     icon: Activity,
   },
 ];

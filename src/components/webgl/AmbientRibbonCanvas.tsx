@@ -4,7 +4,7 @@ import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-function FloatingGoldDust() {
+function FloatingCyanDust() {
   const pointsRef = useRef<THREE.Points>(null!);
   const count = 300;
 
@@ -83,7 +83,7 @@ export function AmbientRibbonCanvas() {
         gl={{ alpha: true, antialias: true }}
       >
         <ambientLight intensity={0.6} />
-        <FloatingGoldDust />
+        <FloatingCyanDust />
       </Canvas>
     </div>
   );

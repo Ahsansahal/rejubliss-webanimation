@@ -49,12 +49,12 @@ function getBadgeColor(cat: string): string {
     case "3D Animation":
       return "bg-cyan-50 text-[#00A3E0] border-cyan-200";
     case "Web Design":
-      return "bg-blue-50 text-blue-700 border-blue-200";
+      return "bg-sky-50 text-[#0284c7] border-sky-200";
     case "Motion Graphics":
-      return "bg-indigo-50 text-indigo-700 border-indigo-200";
+      return "bg-cyan-50/70 text-[#0092c7] border-cyan-200";
     case "Brand & CGI":
     default:
-      return "bg-sky-50 text-sky-800 border-sky-200";
+      return "bg-blue-50/70 text-[#071527] border-cyan-200";
   }
 }
 
@@ -377,8 +377,8 @@ export function V2ExpandingBookShowcase() {
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200/90 px-3 py-1 rounded-full text-xs font-bold text-amber-900 shadow-sm">
-                            <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                          <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200/90 px-3 py-1 rounded-full text-xs font-bold text-[#071527] shadow-sm">
+                            <Star className="w-3.5 h-3.5 fill-[#00A3E0] text-[#00A3E0]" />
                             <span>{project.rating.toFixed(1)}</span>
                             <span className="text-slate-500 font-normal">
                               ({project.reviewsCount}+ client ratings)
@@ -444,7 +444,7 @@ export function V2ExpandingBookShowcase() {
 
                             {/* Impact metric and format highlight */}
                             <div className="flex items-center gap-4 text-xs font-semibold text-slate-700 pt-1">
-                              <span className="flex items-center gap-1 text-emerald-600 font-bold">
+                              <span className="flex items-center gap-1 text-[#00A3E0] font-bold">
                                 <TrendingUp className="w-3.5 h-3.5" />
                                 <span>{project.impactMetric}</span>
                               </span>
@@ -459,7 +459,7 @@ export function V2ExpandingBookShowcase() {
                         {/* Bottom Action Footer */}
                         <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                           <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="w-2 h-2 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] animate-pulse" />
                             <span>Delivered with Production Excellence</span>
                           </div>
 
@@ -554,14 +554,14 @@ export function V2ExpandingBookShowcase() {
                           <p className="text-xs font-bold text-[#00A3E0]">
                             Client: {project.client}
                           </p>
-                          <div className="flex items-center gap-1 text-xs text-amber-600 font-bold">
-                            <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                          <div className="flex items-center gap-1 text-xs text-[#00A3E0] font-bold">
+                            <Star className="w-3.5 h-3.5 fill-[#00A3E0] text-[#00A3E0]" />
                             <span>{project.rating.toFixed(1)}</span>
                             <span className="text-slate-500 font-normal">
                               ({project.reviewsCount}+)
                             </span>
                           </div>
-                          <p className="text-xs text-emerald-600 font-semibold">
+                          <p className="text-xs text-[#00A3E0] font-semibold">
                             {project.impactMetric}
                           </p>
                           <p className="text-xs text-slate-600 line-clamp-2">

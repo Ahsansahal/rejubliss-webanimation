@@ -65,12 +65,12 @@ export function Footer() {
             <div className="flex flex-col items-start gap-5 max-w-md w-full">
               {/* Brand Logo Header */}
               <Link href="/" className="flex items-center gap-3.5 group">
-                <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-200/90 shadow-sm transition-transform group-hover:scale-105 duration-300">
+                <div className="relative flex items-center justify-center w-11 h-11 transition-transform group-hover:scale-105 duration-300">
                   <Image
                     src="/images/logo-emblem.png"
                     alt="Rejubliss 3D Animation Studios"
-                    width={36}
-                    height={36}
+                    width={42}
+                    height={42}
                     className="object-contain"
                   />
                 </div>
