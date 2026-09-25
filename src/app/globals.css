@@ -127,6 +127,19 @@ body {
   animation: border-beam var(--duration, 9s) infinite linear;
 }
 
+@keyframes border-beam-svg {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.animate-border-beam-svg {
+  animation: border-beam-svg var(--duration, 7s) infinite linear;
+}
+
 @keyframes beam-slide {
   0% {
     transform: translateX(-100%);
@@ -147,3 +160,4 @@ body {
 .animate-beam-slide {
   animation: beam-slide 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
