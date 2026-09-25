@@ -44,13 +44,13 @@ export function CtaAndTestimonial() {
     <section className="py-16 bg-[#f8fafc]">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Card: Midnight Obsidian CTA Banner with 3D Ribbon */}
+          {/* Left Card: Light Luxury CTA Banner with 3D Ribbon */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-gradient-to-r from-[#050e1b] via-[#071527] to-[#0a1e36] rounded-3xl overflow-hidden relative border border-cyan-500/20 shadow-xl flex flex-col sm:flex-row items-center min-h-[340px]"
+            className="lg:col-span-7 bg-gradient-to-br from-cyan-50/90 via-white to-sky-100/80 rounded-3xl overflow-hidden relative border border-cyan-200/90 shadow-xl shadow-cyan-500/10 flex flex-col sm:flex-row items-center min-h-[340px]"
           >
             {/* 3D Golden Ribbon visual on the left */}
             <div className="relative w-full sm:w-[45%] h-56 sm:h-full min-h-[280px]">
@@ -61,20 +61,20 @@ export function CtaAndTestimonial() {
                 sizes="(max-width: 640px) 100vw, 360px"
                 className="object-cover object-left"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#071527]/50 to-[#071527]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-white" />
             </div>
 
             {/* Content on the right */}
             <div className="relative z-10 p-8 sm:p-10 flex-1 flex flex-col justify-center">
-              <span className="text-[11px] font-bold tracking-widest uppercase text-[#00e5ff] mb-2 block">
+              <span className="text-[11px] font-bold tracking-widest uppercase text-[#00A3E0] mb-2 block">
                 Let&apos;s Work Together
               </span>
 
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-bold text-white leading-tight mb-3">
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-bold text-[#071527] leading-tight mb-3">
                 Ready to Build Something Amazing?
               </h2>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
                 Let&apos;s turn your vision into groundbreaking 3D animation and interactive digital experiences.
               </p>
 

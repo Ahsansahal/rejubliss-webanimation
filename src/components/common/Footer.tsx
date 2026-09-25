@@ -26,33 +26,33 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#050e1b] text-slate-400 pt-16 pb-10 border-t border-[#0e2238]">
+    <footer className="bg-white text-slate-600 pt-16 pb-10 border-t border-slate-200">
       <div className="max-w-[97%] w-[97%] mx-auto px-2 sm:px-4">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-[#0e2238]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-slate-200">
           {/* Col 1: Brand & Bio (3 cols) */}
           <div className="lg:col-span-3 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative flex items-center justify-center w-10 h-10">
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-200/90 shadow-sm">
                 <Image
                   src="/images/logo-emblem.png"
                   alt="Rejubliss 3D Animation Studios"
-                  width={40}
-                  height={40}
-                  className="object-contain drop-shadow-[0_0_12px_rgba(0,229,255,0.4)]"
+                  width={34}
+                  height={34}
+                  className="object-contain"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold tracking-tight text-white leading-none">
+                <span className="font-serif text-2xl font-bold tracking-tight text-[#071527] leading-none">
                   Rejubliss
                 </span>
-                <span className="text-[10px] uppercase tracking-wider font-semibold text-[#00e5ff] mt-1">
+                <span className="text-[10px] uppercase tracking-wider font-semibold text-[#00A3E0] mt-1">
                   3D Animation Studios
                 </span>
               </div>
             </Link>
 
-            <p className="text-sm text-slate-400 leading-relaxed mt-2 max-w-sm">
+            <p className="text-sm text-slate-600 leading-relaxed mt-2 max-w-sm">
               Next-generation 3D animation, photorealistic CGI, WebGL experiences,
               and motion design that elevate brands beyond limits.
             </p>
@@ -89,7 +89,7 @@ export function Footer() {
                   key={item.label}
                   href={`#${item.label.toLowerCase()}`}
                   aria-label={item.label}
-                  className="w-8 h-8 rounded-full bg-[#0a1e36] text-slate-400 hover:bg-[#00e5ff] hover:text-[#050e1b] flex items-center justify-center transition-colors border border-cyan-900/30"
+                  className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:bg-[#00A3E0] hover:text-white flex items-center justify-center transition-colors border border-slate-200"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                     {item.icon}
@@ -101,83 +101,83 @@ export function Footer() {
 
           {/* Col 2: Quick Links (2 cols) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-serif text-white font-bold text-base mb-2">
+            <h4 className="font-serif text-[#071527] font-bold text-base mb-2">
               Quick Links
             </h4>
-            <Link href="/" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="/" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Home
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Our Services
             </Link>
-            <Link href="#portfolio" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#portfolio" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Portfolio
             </Link>
-            <Link href="#portfolio-spotlight" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#portfolio-spotlight" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Spotlight Releases
             </Link>
-            <Link href="#about" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#about" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               About Studio
             </Link>
-            <Link href="#contact" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#contact" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Contact
             </Link>
           </div>
 
           {/* Col 3: Our Services (2 cols) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-serif text-white font-bold text-base mb-2">
+            <h4 className="font-serif text-[#071527] font-bold text-base mb-2">
               Our Services
             </h4>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               3D Product Animation
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Photorealistic CGI
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Interactive WebGL
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               2D & 3D Character Design
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Dynamic Motion Design
             </Link>
-            <Link href="#services" className="text-sm hover:text-[#00e5ff] transition-colors">
+            <Link href="#services" className="text-sm text-slate-600 hover:text-[#00A3E0] transition-colors">
               Creative Consultation
             </Link>
           </div>
 
           {/* Col 4: Contact Us (2 cols) */}
           <div className="lg:col-span-2 flex flex-col gap-3 text-sm">
-            <h4 className="font-serif text-white font-bold text-base mb-2">
+            <h4 className="font-serif text-[#071527] font-bold text-base mb-2">
               Contact Us
             </h4>
             <div className="flex items-center gap-2.5">
-              <Phone size={14} className="text-[#00e5ff] shrink-0" />
+              <Phone size={14} className="text-[#00A3E0] shrink-0" />
               <span>+44 20 8123 4567</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Mail size={14} className="text-[#00e5ff] shrink-0" />
+              <Mail size={14} className="text-[#00A3E0] shrink-0" />
               <span>info@rejubliss.co.uk</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <MapPin size={14} className="text-[#00e5ff] shrink-0" />
+              <MapPin size={14} className="text-[#00A3E0] shrink-0" />
               <span>London, United Kingdom</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Clock size={14} className="text-[#00e5ff] shrink-0" />
+              <Clock size={14} className="text-[#00A3E0] shrink-0" />
               <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
             </div>
           </div>
 
           {/* Col 5: Subscribe to Our Newsletter (3 cols) */}
           <div className="lg:col-span-3 flex flex-col gap-3">
-            <h4 className="font-serif text-white font-bold text-base mb-2">
+            <h4 className="font-serif text-[#071527] font-bold text-base mb-2">
               Subscribe to Newsletter
             </h4>
-            <p className="text-sm text-slate-400 leading-relaxed mb-1">
+            <p className="text-sm text-slate-600 leading-relaxed mb-1">
               Get the latest 3D animation insights, WebGL showcases, and creative inspiration.
             </p>
 
@@ -188,19 +188,19 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-[#0a1e36] text-white px-4 py-3 pr-12 rounded-full text-xs font-medium placeholder-slate-400 outline-none border border-[#163352] focus:border-[#00e5ff] focus:ring-2 focus:ring-[#00e5ff]/30 transition-all"
+                className="w-full bg-slate-50 text-[#071527] px-4 py-3 pr-12 rounded-full text-xs font-medium placeholder-slate-400 outline-none border border-slate-200 focus:border-[#00A3E0] focus:ring-2 focus:ring-[#00A3E0]/20 transition-all"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 rounded-full bg-gradient-to-r from-[#00e5ff] to-[#0284c7] text-[#050e1b] flex items-center justify-center hover:brightness-110 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 rounded-full bg-gradient-to-r from-[#00A3E0] to-[#0284c7] text-white flex items-center justify-center hover:brightness-110 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
               >
                 <ArrowRight size={15} />
               </button>
             </form>
 
             {subscribed && (
-              <div className="flex items-center gap-1.5 text-xs text-[#00e5ff] mt-1">
+              <div className="flex items-center gap-1.5 text-xs text-[#00A3E0] mt-1">
                 <CheckCircle2 size={13} />
                 <span>Thank you for subscribing!</span>
               </div>
@@ -215,13 +215,13 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <Link href="#privacy" className="hover:text-[#00e5ff] transition-colors">
+            <Link href="#privacy" className="hover:text-[#00A3E0] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#terms" className="hover:text-[#00e5ff] transition-colors">
+            <Link href="#terms" className="hover:text-[#00A3E0] transition-colors">
               Terms & Conditions
             </Link>
-            <Link href="#sitemap" className="hover:text-[#00e5ff] transition-colors">
+            <Link href="#sitemap" className="hover:text-[#00A3E0] transition-colors">
               Sitemap
             </Link>
           </div>
@@ -230,4 +230,3 @@ export function Footer() {
     </footer>
   );
 }
-

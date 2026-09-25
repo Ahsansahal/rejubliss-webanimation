@@ -97,7 +97,7 @@ export function Header() {
         <div className="px-4 sm:px-6 py-3 flex items-center justify-between relative z-10">
           {/* Brand Logo with Emblem */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900 border border-cyan-500/40 shadow-md shadow-cyan-500/20 group-hover:shadow-cyan-500/40 group-hover:scale-105 transition-all duration-300 p-1.5 overflow-hidden">
+            <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-200/90 shadow-md shadow-cyan-500/10 group-hover:shadow-cyan-500/30 group-hover:scale-105 transition-all duration-300 p-1.5 overflow-hidden">
               <Image
                 src="/images/logo-emblem.png"
                 alt="Rejubliss 3D Animation Studios Logo"
@@ -160,12 +160,12 @@ export function Header() {
                     transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute -left-[140px] sm:-left-[200px] md:-left-[260px] lg:-left-[300px] xl:-left-[320px] top-full pt-3 w-[880px] lg:w-[960px] xl:w-[1000px] max-w-[95vw] z-50 pointer-events-auto"
                   >
-                    <div className="bg-white/95 dark:bg-[#071527]/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-cyan-950/20 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 overflow-hidden relative">
+                    <div className="bg-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-cyan-950/10 border border-slate-200 p-5 sm:p-6 overflow-hidden relative">
                       {/* Subtle top cyan glow line */}
                       <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-[#00e5ff] to-transparent" />
 
                       {/* Header / Category label */}
-                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 dark:border-slate-800/80">
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] animate-pulse" />
                           <span className="text-xs font-bold uppercase tracking-widest text-[#00A3E0]">
@@ -191,10 +191,10 @@ export function Header() {
                               key={srv.title}
                               href={srv.href}
                               onClick={() => setServicesDropdown(false)}
-                              className="group flex flex-col p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 hover:bg-cyan-50/40 dark:hover:bg-cyan-950/20 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
+                              className="group flex flex-col p-3 rounded-2xl border border-slate-200/90 bg-slate-50/70 hover:bg-cyan-50/40 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
                             >
                               {/* Image Thumbnail with floating badge */}
-                              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-2.5 bg-slate-100 dark:bg-slate-800">
+                              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden mb-2.5 bg-slate-100">
                                 <Image
                                   src={srv.image}
                                   alt={srv.title}
@@ -202,14 +202,14 @@ export function Header() {
                                   sizes="280px"
                                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
-                                <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-[#071527]/85 backdrop-blur-sm border border-cyan-500/30 text-[10px] font-bold text-[#00e5ff] tracking-wide uppercase">
+                                <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-sm border border-cyan-200 text-[10px] font-bold text-[#00A3E0] tracking-wide uppercase shadow-sm">
                                   {srv.badge}
                                 </div>
                               </div>
 
                               {/* Title & Description */}
                               <div className="flex items-center justify-between mb-1">
-                                <h4 className="font-serif font-bold text-[14px] text-[#071527] dark:text-white group-hover:text-[#00A3E0] transition-colors leading-snug">
+                                <h4 className="font-serif font-bold text-[14px] text-[#071527] group-hover:text-[#00A3E0] transition-colors leading-snug">
                                   {srv.title}
                                 </h4>
                                 <ArrowRight
@@ -217,22 +217,22 @@ export function Header() {
                                   className="text-slate-400 group-hover:text-[#00A3E0] group-hover:translate-x-1 transition-all shrink-0 ml-1"
                                 />
                               </div>
-                              <p className="text-[11.5px] text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
+                              <p className="text-[11.5px] text-slate-500 leading-relaxed line-clamp-2">
                                 {srv.subtitle}
                               </p>
                             </Link>
                           ))}
                         </div>
 
-                        {/* Right: Featured Spotlight Showcase Card with Picture */}
+                        {/* Right: Featured Spotlight Showcase Card with Picture (Light Theme) */}
                         <div className="lg:col-span-4 flex flex-col">
                           <Link
                             href="#portfolio-spotlight"
                             onClick={() => setServicesDropdown(false)}
-                            className="group flex-1 flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-b from-[#071527] to-[#050e1b] text-white border border-cyan-500/30 hover:border-cyan-400 hover:shadow-xl hover:shadow-cyan-500/20 transition-all duration-300 relative overflow-hidden"
+                            className="group flex-1 flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-br from-cyan-50/90 via-white to-sky-50/60 text-[#071527] border border-cyan-200/90 shadow-md shadow-cyan-500/5 hover:border-cyan-400 hover:shadow-xl hover:shadow-cyan-500/15 transition-all duration-300 relative overflow-hidden"
                           >
                             {/* Spotlight Image */}
-                            <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden mb-3 bg-slate-900">
+                            <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden mb-3 bg-slate-100 border border-slate-200/60">
                               <Image
                                 src="/images/car_3d.jpg"
                                 alt="Featured 3D Showcase - McLaren Cyber GT"
@@ -240,25 +240,25 @@ export function Header() {
                                 sizes="300px"
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-cyan-500 text-[#050e1b] text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                              <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-[#00A3E0] text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
                                 ⭐ Spotlight Project
                               </div>
                             </div>
 
                             {/* Details */}
                             <div>
-                              <div className="text-[10px] font-bold text-[#00e5ff] uppercase tracking-wider mb-1">
+                              <div className="text-[10px] font-bold text-[#00A3E0] uppercase tracking-wider mb-1">
                                 Automotive CGI & WebGL
                               </div>
-                              <h4 className="font-serif font-bold text-[16px] text-white group-hover:text-[#00e5ff] transition-colors leading-tight mb-1.5">
+                              <h4 className="font-serif font-bold text-[16px] text-[#071527] group-hover:text-[#00A3E0] transition-colors leading-tight mb-1.5">
                                 McLaren Cyber GT Raytraced CGI
                               </h4>
-                              <p className="text-[11.5px] text-slate-300 leading-relaxed mb-3">
+                              <p className="text-[11.5px] text-slate-600 leading-relaxed mb-3">
                                 Explore our photorealistic CGI commercial breakdown and interactive 3D WebGL experience.
                               </p>
                             </div>
 
-                            <div className="pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-[#00e5ff]">
+                            <div className="pt-2.5 border-t border-slate-200/80 flex items-center justify-between text-xs font-bold text-[#00A3E0]">
                               <span>Explore Case Study</span>
                               <ArrowRight size={13} className="group-hover:translate-x-1.5 transition-transform" />
                             </div>
@@ -267,8 +267,8 @@ export function Header() {
                       </div>
 
                       {/* Bottom Bar: Action Links */}
-                      <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
-                        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                      <div className="mt-4 pt-3.5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+                        <div className="flex items-center gap-2 text-slate-500">
                           <Sparkles size={13} className="text-[#00A3E0]" />
                           <span>Ready to elevate your product with cinematic 3D CGI or WebGL?</span>
                         </div>

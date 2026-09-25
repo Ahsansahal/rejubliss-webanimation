@@ -76,8 +76,8 @@ export function Hero() {
                 onClick={() => setShowreelOpen(true)}
                 className="inline-flex items-center gap-3 bg-white text-[#071527] border border-slate-200 px-6 py-3.5 rounded-full text-[15px] font-semibold hover:bg-slate-50 transition-colors shadow-sm"
               >
-                <div className="w-6 h-6 rounded-full bg-[#071527] text-white flex items-center justify-center">
-                  <Play size={11} className="ml-0.5 fill-[#00e5ff] text-[#00e5ff]" />
+                <div className="w-7 h-7 rounded-full bg-cyan-50 border border-cyan-200 text-[#00A3E0] flex items-center justify-center">
+                  <Play size={11} className="ml-0.5 fill-[#00A3E0] text-[#00A3E0]" />
                 </div>
                 <span>Watch 3D Showreel</span>
               </button>
