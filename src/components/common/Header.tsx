@@ -17,11 +17,12 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
     <header className="fixed top-2 sm:top-3.5 left-0 right-0 z-50 w-[97%] max-w-[97%] mx-auto transition-all duration-300">
       {/* Glassmorphic Container with Glowing Beam */}
-      <div className="relative rounded-2xl bg-white/80 sm:bg-[#f8fafc]/85 backdrop-blur-xl border border-slate-200/80 shadow-xl shadow-cyan-950/[0.06] overflow-hidden">
+      <div className="relative rounded-2xl bg-white/80 sm:bg-[#f8fafc]/85 backdrop-blur-xl border border-slate-200/80 shadow-xl shadow-cyan-950/[0.06]">
         {/* ========================================================================= */}
         {/* Animated Light Beam 1: Moving Luminous Bottom Laser Beam Streak */}
         {/* ========================================================================= */}
@@ -104,7 +105,10 @@ export function Header() {
             >
               <button
                 type="button"
-                className="flex items-center gap-1 hover:text-[#00A3E0] transition-colors py-1 group"
+                onClick={() => setServicesDropdown((prev) => !prev)}
+                className="flex items-center gap-1 hover:text-[#00A3E0] transition-colors py-1 group cursor-pointer"
+                aria-expanded={servicesDropdown}
+                aria-haspopup="true"
               >
                 <span>Services</span>
                 <ChevronDown
@@ -122,35 +126,40 @@ export function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-0 top-full pt-2 w-64 z-50"
+                    className="absolute left-0 top-full pt-2 w-64 z-50 pointer-events-auto"
                   >
-                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/90 p-2 py-3">
+                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-cyan-950/20 border border-slate-200/90 p-2 py-3">
                       <Link
                         href="#services"
+                        onClick={() => setServicesDropdown(false)}
                         className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
                       >
                         Website Design & Development
                       </Link>
                       <Link
                         href="#services"
+                        onClick={() => setServicesDropdown(false)}
                         className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
                       >
                         Graphic Design & Branding
                       </Link>
                       <Link
                         href="#services"
+                        onClick={() => setServicesDropdown(false)}
                         className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
                       >
                         2D Animated Explainers
                       </Link>
                       <Link
                         href="#services"
+                        onClick={() => setServicesDropdown(false)}
                         className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
                       >
                         3D Product Animation
                       </Link>
                       <Link
                         href="#services"
+                        onClick={() => setServicesDropdown(false)}
                         className="block px-3 py-2 text-sm rounded-xl hover:bg-cyan-50/70 text-slate-700 hover:text-[#00A3E0] font-medium transition-colors"
                       >
                         Dynamic Motion Design
@@ -261,13 +270,83 @@ export function Header() {
               >
                 Home
               </Link>
-              <Link
-                href="#services"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-slate-700 hover:text-[#00A3E0] transition-colors"
-              >
-                Services
-              </Link>
+              {/* Mobile Services Accordion */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen((prev) => !prev)}
+                  className="w-full flex items-center justify-between text-slate-700 hover:text-[#00A3E0] transition-colors py-1 cursor-pointer font-medium"
+                >
+                  <span>Services</span>
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${
+                      mobileServicesOpen ? "rotate-180 text-[#00A3E0]" : "text-slate-400"
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="pl-3 pt-1 pb-1 flex flex-col gap-2 border-l-2 border-cyan-500/40 ml-1 mt-1 overflow-hidden text-xs"
+                    >
+                      <Link
+                        href="#services"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
+                      >
+                        Website Design & Development
+                      </Link>
+                      <Link
+                        href="#services"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
+                      >
+                        Graphic Design & Branding
+                      </Link>
+                      <Link
+                        href="#services"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
+                      >
+                        2D Animated Explainers
+                      </Link>
+                      <Link
+                        href="#services"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
+                      >
+                        3D Product Animation
+                      </Link>
+                      <Link
+                        href="#services"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileServicesOpen(false);
+                        }}
+                        className="text-slate-600 hover:text-[#00A3E0] py-0.5"
+                      >
+                        Dynamic Motion Design
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               <Link
                 href="#portfolio"
                 onClick={() => setMobileMenuOpen(false)}
