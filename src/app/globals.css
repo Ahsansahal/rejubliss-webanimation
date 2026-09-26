@@ -117,36 +117,30 @@ body {
 /* -------------------------------------------------------------------------- */
 /* Beam Animations for Fixed Glass Header */
 /* -------------------------------------------------------------------------- */
-@keyframes border-beam {
+@keyframes outside-beam-spin {
+  0% {
+    stroke-dasharray: 20 80;
+    stroke-dashoffset: 100;
+  }
   100% {
-    offset-distance: 100%;
+    stroke-dasharray: 20 80;
+    stroke-dashoffset: 0;
   }
 }
 
-.animate-border-beam {
-  animation: border-beam var(--duration, 8s) infinite linear;
+.animate-outside-beam {
+  animation: outside-beam-spin 6.5s linear infinite;
 }
-
-.border-beam-container {
-  border: 1.5px solid transparent;
-  -webkit-mask-clip: padding-box, border-box;
-  mask-clip: padding-box, border-box;
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-}
-
 
 @keyframes beam-slide {
   0% {
     transform: translateX(-100%);
     opacity: 0;
   }
-  30% {
+  20% {
     opacity: 1;
   }
-  70% {
+  80% {
     opacity: 1;
   }
   100% {
@@ -156,6 +150,7 @@ body {
 }
 
 .animate-beam-slide {
-  animation: beam-slide 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: beam-slide var(--duration, 3.5s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
 

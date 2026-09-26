@@ -20,9 +20,23 @@ const DynamicAmbientCanvas = dynamic(
   { ssr: false }
 );
 
+// Dynamic import with SSR disabled for Framer Flowing Cursor fluid simulation
+const DynamicFlowingCursor = dynamic(
+  () =>
+    import("@/components/common/FlowingCursor").then(
+      (mod) => mod.FlowingCursor
+    ),
+  { ssr: false }
+);
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] flex flex-col relative selection:bg-[#00e5ff]/25 selection:text-[#071527]">
+      {/* Framer Real WebGL Fluid Simulation Flowing Cursor */}
+      <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden">
+        <DynamicFlowingCursor />
+      </div>
+
       {/* Background WebGL subtle crystalline cyan & sapphire dust particles */}
       <DynamicAmbientCanvas />
 

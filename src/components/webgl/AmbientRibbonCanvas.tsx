@@ -77,7 +77,7 @@ function FloatingCyanDust() {
 
 export function AmbientRibbonCanvas() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-70">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-70">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ alpha: true, antialias: true }}
