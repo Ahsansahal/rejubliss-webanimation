@@ -74,7 +74,7 @@ export const MEGA_SERVICES = [
   },
 ];
 
-export function Header({ containerMaxWidth = "max-w-[1550px]" }: { containerMaxWidth?: string } = {}) {
+export function Header({ containerMaxWidth = "w-[97%] max-w-[97%]" }: { containerMaxWidth?: string } = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = React.useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = React.useState(false);
@@ -138,11 +138,11 @@ export function Header({ containerMaxWidth = "max-w-[1550px]" }: { containerMaxW
 
   return (
     <>
-      <header className="fixed top-2.5 sm:top-4 left-0 right-0 z-50 pointer-events-none px-2.5 sm:px-5">
-        {/* Constrained Center Header Container */}
+      <header className="fixed top-2.5 sm:top-4 left-0 right-0 z-50 pointer-events-none">
+        {/* Constrained Center Header Container: 97% Max Width */}
         <div
           id="desktop-navbar-container"
-          className={`relative ${containerMaxWidth.startsWith("w-") ? "" : "w-full "}${containerMaxWidth} mx-auto pointer-events-auto overflow-visible`}
+          className={`relative ${containerMaxWidth} mx-auto pointer-events-auto overflow-visible`}
         >
           {/* Animated Rotating Laser Border Shell (Light Luxury) */}
           <div className="absolute inset-0 rounded-2xl p-[1.8px] overflow-hidden pointer-events-none shadow-[0_8px_32px_rgba(7,21,39,0.06),0_0_24px_-4px_rgba(0,163,224,0.22)]">
