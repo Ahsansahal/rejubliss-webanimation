@@ -63,65 +63,68 @@ export function Header() {
         }`}
       >
         {/* ========================================================================= */}
-        {/* OUTSIDE ANIMATED BEAMS (Hugging the outer border perimeter)               */}
+        {/* OUTSIDE ANIMATED BEAMS (Exact radiant system from original header)        */}
         {/* ========================================================================= */}
 
-        {/* 1. Outside SVG Perimeter Border Beam (Strictly on outside contour, fill="none") */}
+        {/* 1. Radiant Perimeter Border Travelling Light Beam */}
         <svg
-          className="pointer-events-none absolute -inset-[2px] w-[calc(100%+4px)] h-[calc(100%+4px)] z-20 overflow-visible"
-          aria-hidden="true"
+          className="pointer-events-none absolute -inset-[2px] w-[calc(100%+4px)] h-[calc(100%+4px)] overflow-visible z-30"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <linearGradient id="outsideBeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.1" />
+            <linearGradient id="header-border-beam" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#00e5ff" stopOpacity="0" />
               <stop offset="25%" stopColor="#00e5ff" stopOpacity="0.85" />
               <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="75%" stopColor="#00A3E0" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#00A3E0" stopOpacity="0.1" />
+              <stop offset="75%" stopColor="#00A3E0" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#0284c7" stopOpacity="0" />
             </linearGradient>
-            <filter id="outsideBeamGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="2.5" result="glow" />
-              <feMerge>
-                <feMergeNode in="glow" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
-          <rect
+          <motion.rect
             x="1.5"
             y="1.5"
-            style={{ width: "calc(100% - 3px)", height: "calc(100% - 3px)" }}
-            rx={mobileMenuOpen ? 30 : 9999}
+            width="calc(100% - 3px)"
+            height="calc(100% - 3px)"
+            rx={mobileMenuOpen ? 29 : 9999}
             fill="none"
-            stroke="url(#outsideBeamGrad)"
+            stroke="url(#header-border-beam)"
             strokeWidth="2.5"
-            strokeLinecap="round"
             pathLength="100"
-            className="animate-outside-beam"
-            filter="url(#outsideBeamGlow)"
-          />
-        </svg>
-
-        {/* 2. Outside Bottom Laser Beam Streak (Glides across bottom outside rim) */}
-        <div className="absolute -bottom-[1px] left-12 right-12 h-[2px] overflow-hidden pointer-events-none z-20">
-          <motion.div
-            className="w-56 h-full bg-gradient-to-r from-transparent via-[#00e5ff] via-white to-transparent"
-            style={{
-              boxShadow: "0 0 14px #00e5ff, 0 0 24px #00A3E0",
-            }}
+            strokeDasharray="20 80"
             animate={{
-              x: ["-100%", "700%"],
+              strokeDashoffset: [0, -100],
             }}
             transition={{
               repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut",
+              duration: 7,
+              ease: "linear",
+            }}
+            style={{
+              filter: "drop-shadow(0 0 6px #00e5ff) drop-shadow(0 0 14px #00A3E0)",
+            }}
+          />
+        </svg>
+
+        {/* 2. Moving Luminous Bottom Laser Beam Streak */}
+        <div className="absolute -bottom-[1px] left-0 right-0 h-[3px] overflow-hidden pointer-events-none z-20 rounded-b-full">
+          <motion.div
+            className="absolute top-0 bottom-0 w-64 sm:w-80 bg-gradient-to-r from-transparent via-[#00e5ff] via-white to-transparent"
+            style={{
+              boxShadow: "0 0 16px #00e5ff, 0 0 28px #00e5ff, 0 0 45px rgba(0, 163, 224, 0.9)",
+            }}
+            animate={{
+              left: ["-350px", "100%"],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 3.6,
+              ease: [0.4, 0, 0.2, 1],
             }}
           />
         </div>
 
-        {/* 3. Outside Top Specular Accent (Gleams across top outside edge) */}
-        <div className="absolute -top-[1px] left-1/4 right-1/4 h-[1.5px] bg-gradient-to-r from-transparent via-[#00e5ff]/50 to-transparent pointer-events-none z-20" />
+        {/* 3. Ambient Top Glare & Specular Accent Line */}
+        <div className="absolute -top-[1px] left-1/6 right-1/6 h-[2px] bg-gradient-to-r from-transparent via-[#00e5ff] via-white/90 to-transparent pointer-events-none z-20 shadow-[0_0_14px_#00e5ff,0_0_24px_#00A3E0]" />
 
         {/* ========================================================================= */}
         {/* Main Navbar Row (Unified and Spacious)                                    */}
