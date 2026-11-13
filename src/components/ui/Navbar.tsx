@@ -66,7 +66,7 @@ export function Navbar({ theme }: NavbarProps) {
           </div>
 
           <div className="status-pill hide-mobile">
-            <Activity size={13} color="#10b981" />
+            <Activity size={13} color={currentTheme.secondaryColor} />
             <span className="fps-counter">{fps} FPS</span>
           </div>
 

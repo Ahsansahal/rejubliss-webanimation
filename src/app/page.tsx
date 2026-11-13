@@ -1,67 +1,186 @@
-"use client";
-
 import React from "react";
-import dynamic from "next/dynamic";
+import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
-import { Hero } from "@/components/home/Hero";
-import { ServicesSection } from "@/components/home/ServicesSection";
-import { FeaturedWork } from "@/components/home/FeaturedWork";
-import { V2ExpandingBookShowcase } from "@/components/home/V2ExpandingBookShowcase";
-import { ProcessSection } from "@/components/home/ProcessSection";
-import { CtaAndTestimonial } from "@/components/home/CtaAndTestimonial";
 import { Footer } from "@/components/common/Footer";
+import { AmbientBackgrounds } from "@/components/common/AmbientBackgrounds";
+import { Hero } from "@/components/home/Hero";
+import { StudioStatsBar } from "@/components/home/StudioStatsBar";
+import { ServicesSection } from "@/components/home/ServicesSection";
+import { BenefitsSection } from "@/components/home/BenefitsSection";
+import { PortfolioSection } from "@/components/home/PortfolioSection";
+import { IndustriesSection } from "@/components/home/IndustriesSection";
+import { ProcessSection } from "@/components/home/ProcessSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { ProjectInquirySection } from "@/components/home/ProjectInquirySection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
+import { STUDIO_SERVICES } from "@/data/services";
+import { STUDIO_FAQS } from "@/data/homepage";
 
-// Dynamic import with SSR disabled for Three.js canvas to avoid hydration mismatches
-const DynamicAmbientCanvas = dynamic(
-  () =>
-    import("@/components/webgl/AmbientRibbonCanvas").then(
-      (mod) => mod.AmbientRibbonCanvas
-    ),
-  { ssr: false }
-);
-
-// Dynamic import with SSR disabled for Framer Flowing Cursor fluid simulation
-const DynamicFlowingCursor = dynamic(
-  () =>
-    import("@/components/common/FlowingCursor").then(
-      (mod) => mod.FlowingCursor
-    ),
-  { ssr: false }
-);
+export const metadata: Metadata = {
+  title: {
+    absolute:
+      "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
+  },
+  description:
+    "Rejubliss is a London creative studio crafting 4K 3D product animation, photorealistic packaging & OOH CGI, explainer videos, motion graphics, and interactive Three.js WebGL websites.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: "https://rejubliss.co.uk",
+    siteName: "Rejubliss 3D Animation Studios",
+    title:
+      "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
+    description:
+      "Commission bespoke 3D product animation, 300 DPI packaging & OOH CGI, explainer videos, motion design, and interactive WebGL experiences from our London studio.",
+  },
+};
 
 export default function HomePage() {
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://rejubliss.co.uk/#organization",
+      name: "Rejubliss 3D Animation Studios",
+      alternateName: "Rejubliss",
+      url: "https://rejubliss.co.uk",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://rejubliss.co.uk/images/logo-emblem.png",
+        width: 512,
+        height: 512,
+      },
+      image:
+        "https://rejubliss.co.uk/images/portfolio/rezilo-recovery/01-paddington-billboard.png",
+      email: "info@rejubliss.co.uk",
+      telephone: "+44-20-8123-4567",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "London",
+        addressCountry: "GB",
+      },
+      areaServed: [
+        { "@type": "Country", name: "United Kingdom" },
+        { "@type": "Place", name: "Worldwide" },
+      ],
+      sameAs: [
+        "https://www.instagram.com/rejubliss/",
+        "https://www.linkedin.com/company/rejubliss/",
+        "https://www.youtube.com/@rejubliss",
+        "https://uk.pinterest.com/rejubliss/",
+      ],
+      knowsAbout: [
+        "3D Animation",
+        "Photorealistic CGI Rendering",
+        "3D Product Visualization",
+        "Motion Graphics",
+        "Explainer Video Production",
+        "Character Animation",
+        "Architectural Visualization",
+        "Website Design",
+        "Interactive WebGL & Three.js Development",
+      ],
+      description:
+        "London creative studio specializing in 3D animation, photorealistic CGI, product visualization, explainer videos, motion graphics, character animation, architectural visualization, website design, and interactive WebGL experiences.",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Creative 3D, CGI, Motion & WebGL Services",
+        itemListElement: STUDIO_SERVICES.map((srv) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: srv.title,
+            description: srv.directDefinition,
+            url: `https://rejubliss.co.uk/services/${srv.slug}`,
+          },
+        })),
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://rejubliss.co.uk/#website",
+      url: "https://rejubliss.co.uk",
+      name: "Rejubliss 3D Animation Studios",
+      inLanguage: "en-GB",
+      publisher: {
+        "@id": "https://rejubliss.co.uk/#organization",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://rejubliss.co.uk/#webpage",
+      url: "https://rejubliss.co.uk",
+      name: "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
+      isPartOf: {
+        "@id": "https://rejubliss.co.uk/#website",
+      },
+      about: {
+        "@id": "https://rejubliss.co.uk/#organization",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: STUDIO_FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ];
+
   return (
-    <main className="min-h-screen bg-[#f8fafc] flex flex-col relative selection:bg-[#00e5ff]/25 selection:text-[#071527]">
-      {/* Framer Real WebGL Fluid Simulation Flowing Cursor */}
-      <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden">
-        <DynamicFlowingCursor />
-      </div>
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col relative selection:bg-accent-interactive/25 selection:text-text-heading transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
 
-      {/* Background WebGL subtle crystalline cyan & sapphire dust particles */}
-      <DynamicAmbientCanvas />
+      {/* Deferred WebGL Fluid Cursor & Subtle Ambient Dust (respects mobile & prefers-reduced-motion) */}
+      <AmbientBackgrounds />
 
-      {/* Header with Topbar & Main Nav */}
+      {/* Fixed Crystalline Header with Mega-Menu, Live Search & Theme Switcher */}
       <Header />
 
-      {/* Hero Section (Section 1) */}
+      {/* 01. Hero / Introduction — Studio Positioning & Featured Showreel */}
       <Hero />
 
-      {/* Services Section (Section 2) */}
+      {/* 02. Studio Statistics / Trust — Verified Figures & Selected Client Commissions */}
+      <StudioStatsBar />
+
+      {/* 03. Creative Services — Six Consolidated Disciplines & Deliverables */}
       <ServicesSection />
 
-      {/* Interactive Accordion Portfolio Showcase (Section 3) */}
-      <V2ExpandingBookShowcase />
+      {/* 04. Beyond Visuals / Business Benefits — Architectural Midnight-Navy Split */}
+      <BenefitsSection />
 
-      {/* Featured Work Showcase with Interactive Filter Pills (Section 4) */}
-      <FeaturedWork />
+      {/* 05. Featured Work / Portfolio — Asymmetrical Bento Showcase + Strategic CTA */}
+      <PortfolioSection />
 
-      {/* Process Section */}
+      {/* 06. Industries We Serve — Sector Applications & Track Record */}
+      <IndustriesSection />
+
+      {/* 07. Six-Stage Production Process — Connected GSAP Timeline */}
       <ProcessSection />
 
-      {/* Dual Banner: CTA & Testimonial */}
-      <CtaAndTestimonial />
+      {/* 08. Why Choose Rejubliss / Client Testimonials — Cohesive Studio Trust */}
+      <TestimonialsSection />
 
-      {/* Rich Footer */}
+      {/* 09. Project Inquiry Form / FAQs — Structured Brief & Essential Answers */}
+      <ProjectInquirySection />
+
+      {/* 10. Final CTA / Footer */}
+      <FinalCtaSection />
       <Footer />
     </main>
   );

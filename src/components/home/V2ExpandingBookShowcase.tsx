@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -14,47 +13,61 @@ import {
   ChevronLeft,
   CheckCircle2,
   TrendingUp,
+  Images,
 } from "lucide-react";
 import portfolioData from "@/data/portfolio.json";
+import {
+  PortfolioGalleryModal,
+  type PortfolioModalProject,
+} from "@/components/common/PortfolioGalleryModal";
 
-export interface SpotlightProject {
-  id: string;
+export type ShowcaseGenreCategory =
+  | "All"
+  | "Brand & Graphic"
+  | "3D & Packaging CGI"
+  | "Web Design"
+  | "Motion Graphics";
+
+export interface SpotlightProject extends PortfolioModalProject {
   num: string;
-  title: string;
   subtitle: string;
-  client: string;
-  genreCategory: "All" | "3D Animation" | "Web Design" | "Motion Graphics" | "Brand & CGI";
-  genre: string;
-  badge: string;
+  genreCategory: Exclude<ShowcaseGenreCategory, "All">;
   badgeColor: string;
-  image: string;
-  rating: number;
-  reviewsCount: number;
-  impactMetric: string;
   tags: string[];
-  synopsis: string;
-  link: string;
-  deliverables: string[];
+  featuredFilter: "web" | "3d" | "2d" | "graphic" | "motion";
 }
 
-function getGenreCategory(genre: string): "3D Animation" | "Web Design" | "Motion Graphics" | "Brand & CGI" {
-  if (genre.includes("3D") || genre.includes("Character") || genre.includes("Automotive")) return "3D Animation";
+function resolveGenreCategory(
+  category: string | undefined,
+  genre: string
+): Exclude<ShowcaseGenreCategory, "All"> {
+  if (
+    category === "Brand & Graphic" ||
+    category === "3D & Packaging CGI" ||
+    category === "Web Design" ||
+    category === "Motion Graphics"
+  ) {
+    return category;
+  }
+  if (genre.includes("3D") || genre.includes("Character") || genre.includes("Automotive")) {
+    return "3D & Packaging CGI";
+  }
   if (genre.includes("Web") || genre.includes("Experience")) return "Web Design";
   if (genre.includes("Motion") || genre.includes("VFX")) return "Motion Graphics";
-  return "Brand & CGI";
+  return "Brand & Graphic";
 }
 
-function getBadgeColor(cat: string): string {
+function getBadgeColor(cat: Exclude<ShowcaseGenreCategory, "All">): string {
   switch (cat) {
-    case "3D Animation":
-      return "bg-cyan-50 text-[#00A3E0] border-cyan-200";
+    case "3D & Packaging CGI":
+      return "bg-bg-accent-soft text-accent-primary border-border-accent";
     case "Web Design":
-      return "bg-sky-50 text-[#0284c7] border-sky-200";
+      return "bg-bg-subtle text-accent-primary border-border-strong";
     case "Motion Graphics":
-      return "bg-cyan-50/70 text-[#0092c7] border-cyan-200";
-    case "Brand & CGI":
+      return "bg-bg-accent-soft text-accent-highlight border-border-accent";
+    case "Brand & Graphic":
     default:
-      return "bg-blue-50/70 text-[#071527] border-cyan-200";
+      return "bg-bg-subtle text-text-heading border-border-subtle";
   }
 }
 
@@ -63,92 +76,113 @@ interface RawProjectItem {
   title: string;
   client: string;
   genre: string;
+  category?: string;
+  featuredFilter?: "web" | "3d" | "2d" | "graphic" | "motion";
   badge?: string;
   rating?: number;
   reviewsCount?: number;
+  impactMetric?: string;
+  tags?: string[];
   image: string;
+  gallery?: string[];
   metaDescription?: string;
   scope?: string[];
 }
 
-export const ALL_SPOTLIGHT_PROJECTS: SpotlightProject[] = (portfolioData as RawProjectItem[]).map((p, idx) => {
-  const genreCategory = getGenreCategory(p.genre);
+export const ALL_SPOTLIGHT_PROJECTS: SpotlightProject[] = (portfolioData as RawProjectItem[]).map(
+  (p, idx) => {
+    const genreCategory = resolveGenreCategory(p.category, p.genre);
 
-  // Extract clean title and subtitle
-  let title = p.title;
-  let subtitle = p.genre;
-  if (p.title.includes(":")) {
-    const parts = p.title.split(":");
-    title = parts[0].trim();
-    subtitle = parts.slice(1).join(":").trim();
-  } else if (p.title.includes(" - ")) {
-    const parts = p.title.split(" - ");
-    title = parts[0].trim();
-    subtitle = parts.slice(1).join(" - ").trim();
+    let title = p.title;
+    let subtitle = p.genre;
+    if (p.title.includes(":")) {
+      const parts = p.title.split(":");
+      title = parts[0].trim();
+      subtitle = parts.slice(1).join(":").trim();
+    } else if (p.title.includes(" - ")) {
+      const parts = p.title.split(" - ");
+      title = parts[0].trim();
+      subtitle = parts.slice(1).join(" - ").trim();
+    }
+
+    const fallbackMetrics = [
+      "+340% Engagement",
+      "2.4M Video Views",
+      "99/100 Performance",
+      "+185% Conversion",
+      "4K HDR Raytraced",
+      "WebGL Interactive",
+    ];
+
+    const gallery = p.gallery && p.gallery.length > 0 ? p.gallery : [p.image];
+
+    return {
+      id: p.slug,
+      num: String(idx + 1).padStart(2, "0"),
+      title,
+      subtitle,
+      client: p.client,
+      genreCategory,
+      featuredFilter: p.featuredFilter || "graphic",
+      genre: p.genre,
+      badge:
+        p.badge ||
+        (p.rating && p.rating >= 4.9 ? "Featured Case Study" : "Production Release"),
+      badgeColor: getBadgeColor(genreCategory),
+      image: p.image,
+      gallery,
+      rating: p.rating || 4.9,
+      reviewsCount: p.reviewsCount || 150,
+      impactMetric: p.impactMetric || fallbackMetrics[idx % fallbackMetrics.length],
+      tags: p.tags || ["4K Render", "Octane / Three.js", "Production Ready"],
+      synopsis: p.metaDescription || p.title,
+      deliverables: p.scope || [
+        "Brand & Asset Pipeline",
+        "Lighting & Art Direction",
+        "Multi-Channel Delivery",
+        "Worldwide Release",
+      ],
+    };
   }
-
-  const metrics = [
-    "+340% Engagement",
-    "2.4M Video Views",
-    "99/100 Performance",
-    "+185% Conversion",
-    "4K HDR Raytraced",
-    "WebGL Interactive",
-  ];
-
-  return {
-    id: p.slug,
-    num: String(idx + 1).padStart(2, "0"),
-    title,
-    subtitle,
-    client: p.client,
-    genreCategory,
-    genre: p.genre,
-    badge: p.badge || (p.rating && p.rating >= 4.9 ? "Featured Case Study" : "Production Release"),
-    badgeColor: getBadgeColor(genreCategory),
-    image: p.image,
-    rating: p.rating || 4.9,
-    reviewsCount: p.reviewsCount || 150,
-    impactMetric: metrics[idx % metrics.length],
-    tags: ["4K Render", "Octane / Three.js", "Production Ready"],
-    synopsis: p.metaDescription || p.title,
-    link: `#portfolio`,
-    deliverables: p.scope || [
-      "3D Asset Pipeline",
-      "Lighting & Shading",
-      "Interactive Delivery",
-      "Worldwide Release",
-    ],
-  };
-});
+);
 
 export function V2ExpandingBookShowcase() {
-  const [selectedGenre, setSelectedGenre] = React.useState<
-    "All" | "3D Animation" | "Web Design" | "Motion Graphics" | "Brand & CGI"
-  >("All");
+  const [selectedGenre, setSelectedGenre] = React.useState<ShowcaseGenreCategory>("All");
   const [page, setPage] = React.useState<number>(0);
+  const [modalState, setModalState] = React.useState<{
+    project: SpotlightProject;
+    initialIndex: number;
+  } | null>(null);
   const PAGE_SIZE = 6;
 
-  // Category counts
   const genreCounts = React.useMemo(() => {
     return {
       All: ALL_SPOTLIGHT_PROJECTS.length,
-      "3D Animation": ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === "3D Animation").length,
-      "Web Design": ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === "Web Design").length,
-      "Motion Graphics": ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === "Motion Graphics").length,
-      "Brand & CGI": ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === "Brand & CGI").length,
+      "Brand & Graphic": ALL_SPOTLIGHT_PROJECTS.filter(
+        (p) => p.genreCategory === "Brand & Graphic"
+      ).length,
+      "3D & Packaging CGI": ALL_SPOTLIGHT_PROJECTS.filter(
+        (p) => p.genreCategory === "3D & Packaging CGI"
+      ).length,
+      "Web Design": ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === "Web Design")
+        .length,
+      "Motion Graphics": ALL_SPOTLIGHT_PROJECTS.filter(
+        (p) => p.genreCategory === "Motion Graphics"
+      ).length,
     };
   }, []);
 
-  const genreCategories = [
-    { id: "All" as const, label: `All Projects (${genreCounts.All})` },
-    { id: "3D Animation" as const, label: `3D Animation (${genreCounts["3D Animation"]})` },
-    { id: "Web Design" as const, label: `Web Design (${genreCounts["Web Design"]})` },
-    { id: "Motion Graphics" as const, label: `Motion Graphics (${genreCounts["Motion Graphics"]})` },
-    { id: "Brand & CGI" as const, label: `Brand & CGI (${genreCounts["Brand & CGI"]})` },
+  const genreCategories: { id: ShowcaseGenreCategory; label: string }[] = [
+    { id: "All", label: `All Projects (${genreCounts.All})` },
+    { id: "Brand & Graphic", label: `Brand & Graphic (${genreCounts["Brand & Graphic"]})` },
+    {
+      id: "3D & Packaging CGI",
+      label: `3D & Packaging CGI (${genreCounts["3D & Packaging CGI"]})`,
+    },
+    { id: "Web Design", label: `Web Design (${genreCounts["Web Design"]})` },
+    { id: "Motion Graphics", label: `Motion Graphics (${genreCounts["Motion Graphics"]})` },
   ];
 
-  // Filtered projects based on genre
   const filteredProjects = React.useMemo(() => {
     if (selectedGenre === "All") return ALL_SPOTLIGHT_PROJECTS;
     return ALL_SPOTLIGHT_PROJECTS.filter((p) => p.genreCategory === selectedGenre);
@@ -156,13 +190,11 @@ export function V2ExpandingBookShowcase() {
 
   const totalPages = Math.ceil(filteredProjects.length / PAGE_SIZE);
 
-  // Paginated projects for current view
   const displayedProjects = React.useMemo(() => {
     const start = page * PAGE_SIZE;
     return filteredProjects.slice(start, start + PAGE_SIZE);
   }, [filteredProjects, page]);
 
-  // Active expanded project ID (derived during render to comply with React 19 rules)
   const [userSelectedId, setUserSelectedId] = React.useState<string | null>(null);
 
   const activeId =
@@ -174,50 +206,62 @@ export function V2ExpandingBookShowcase() {
     setUserSelectedId(id);
   };
 
+  const openGallery = (project: SpotlightProject, initialIndex = 0) => {
+    setModalState({ project, initialIndex });
+  };
+
   return (
-    <section id="portfolio" className="relative py-16 sm:py-24 bg-gradient-to-b from-[#F7FAFD] via-[#FFFFFF] to-[#EFF7FD] border-t border-b border-slate-200/80 overflow-hidden w-full font-sans transition-colors duration-300">
+    <section
+      id="portfolio"
+      className="relative py-16 sm:py-24 bg-[image:var(--bg-showcase-section)] border-b border-border-subtle overflow-hidden w-full font-sans transition-colors duration-300"
+    >
       <div id="portfolio-spotlight" className="absolute -top-20" />
       {/* Background ambient lighting accents */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-cyan-200/35 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-10 w-[500px] h-[450px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-[var(--ambient-orb-1)] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-10 w-[500px] h-[450px] bg-[var(--ambient-orb-2)] rounded-full blur-[120px] pointer-events-none" />
 
       {/* Panoramic Max-Width Container */}
       <div className="relative w-[97%] max-w-[1850px] mx-auto z-10 px-2 sm:px-4 lg:px-6">
-        
         {/* ========================================================= */}
         {/* SECTION HEADER                                            */}
         {/* ========================================================= */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 lg:mb-10 gap-6">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200/80 text-[#00A3E0] text-xs font-bold tracking-wider uppercase mb-3.5 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-[#00A3E0]" />
-              <span>Interactive Showcase • All {ALL_SPOTLIGHT_PROJECTS.length} Featured Case Studies</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bg-accent-soft border border-border-accent text-accent-primary text-xs font-bold tracking-wider uppercase mb-3.5">
+              <Sparkles className="w-3.5 h-3.5 text-accent-interactive" />
+              <span>
+                Interactive Showcase • All {ALL_SPOTLIGHT_PROJECTS.length} Featured Case Studies
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#0B1B36] tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-text-heading tracking-tight leading-tight">
               Flagship Releases.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00A3E0] via-[#0284C7] to-cyan-600 font-serif">
+              <span className="hero-gradient-text font-serif">
                 Proven Impact.
               </span>
             </h2>
-            <p className="mt-3 text-slate-600 text-base sm:text-lg leading-relaxed">
-              Explore our studio&apos;s published projects spanning 3D product CGI, character animations, WebGL experiences, and motion graphics. Hover or tap any title to reveal its full journey, reviews, and client deliverables.
+            <p className="mt-3 text-text-secondary text-base sm:text-lg leading-relaxed">
+              Explore our studio&apos;s published work spanning brand identity, 3D packaging &amp;
+              product CGI, retail social campaigns, WebGL experiences, and motion graphics. Hover
+              any card or open its full visual gallery.
             </p>
           </div>
 
           {/* Stepper / Pagination & Indicator */}
           <div className="flex flex-wrap items-center gap-4">
-            {totalPages > 1 && (
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-full px-3.5 py-1.5 shadow-sm text-xs font-semibold text-slate-700">
+            {totalPages > 1 ? (
+              <div className="flex items-center gap-2 bg-bg-card/90 backdrop-blur-md border border-border-subtle rounded-full px-3.5 py-1.5 shadow-[var(--shadow-card)] text-xs font-semibold text-text-secondary">
                 <span>
-                  Showing {page * PAGE_SIZE + 1}–{Math.min((page + 1) * PAGE_SIZE, filteredProjects.length)} of {filteredProjects.length} Projects
+                  Showing {page * PAGE_SIZE + 1}–
+                  {Math.min((page + 1) * PAGE_SIZE, filteredProjects.length)} of{" "}
+                  {filteredProjects.length} Projects
                 </span>
-                <div className="w-[1px] h-3.5 bg-slate-200 mx-1" />
+                <div className="w-[1px] h-3.5 bg-border-subtle mx-1" />
                 <button
                   type="button"
                   onClick={() => {
                     setPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
                   }}
-                  className="p-1 rounded-full text-[#00A3E0] hover:bg-cyan-50 transition-colors cursor-pointer"
+                  className="p-1 rounded-full text-accent-primary hover:bg-bg-accent-soft transition-colors cursor-pointer"
                   title="Previous Set"
                   aria-label="Previous Page"
                 >
@@ -228,17 +272,17 @@ export function V2ExpandingBookShowcase() {
                   onClick={() => {
                     setPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
                   }}
-                  className="p-1 rounded-full text-[#00A3E0] hover:bg-cyan-50 transition-colors cursor-pointer"
+                  className="p-1 rounded-full text-accent-primary hover:bg-bg-accent-soft transition-colors cursor-pointer"
                   title="Next Set"
                   aria-label="Next Page"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
-            )}
+            ) : null}
 
-            <div className="hidden md:flex items-center gap-2 text-xs text-slate-500 font-medium">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#00A3E0] animate-ping" />
+            <div className="hidden md:flex items-center gap-2 text-xs text-text-muted font-medium">
+              <span className="inline-block w-2 h-2 rounded-full bg-accent-interactive animate-ping" />
               <span>Interactive Accordion</span>
             </div>
           </div>
@@ -260,8 +304,8 @@ export function V2ExpandingBookShowcase() {
                 }}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                   isSelected
-                    ? "bg-[#00A3E0] text-white shadow-md shadow-cyan-500/25"
-                    : "bg-white text-slate-700 hover:bg-slate-50 border border-slate-200/90 shadow-sm"
+                    ? "btn-primary-solid"
+                    : "bg-bg-card text-text-secondary hover:bg-bg-subtle hover:text-accent-primary border border-border-subtle shadow-[var(--shadow-card)]"
                 }`}
               >
                 {cat.label}
@@ -273,7 +317,7 @@ export function V2ExpandingBookShowcase() {
         {/* ========================================================= */}
         {/* HORIZONTAL EXPANDING ACCORDION (DESKTOP / TABLET)         */}
         {/* ========================================================= */}
-        <div className="hidden md:flex flex-row items-stretch gap-3 lg:gap-4 h-[550px] lg:h-[570px] w-full select-none">
+        <div className="hidden md:flex flex-row items-stretch gap-3 lg:gap-4 h-[560px] lg:h-[580px] w-full select-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={`${selectedGenre}-${page}`}
@@ -297,12 +341,12 @@ export function V2ExpandingBookShowcase() {
                     }}
                     className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ${
                       isActive
-                        ? "flex-[4.2] bg-white border-2 border-[#00A3E0] shadow-[0_20px_50px_rgba(0,163,224,0.18)] ring-4 ring-cyan-500/10"
-                        : "flex-1 bg-white border border-slate-200/90 hover:border-cyan-400/50 shadow-md hover:shadow-lg"
+                        ? "flex-[4.2] bg-bg-card border-2 border-border-accent-strong shadow-[var(--shadow-card-hover)]"
+                        : "flex-1 bg-bg-card border border-border-subtle hover:border-border-accent shadow-[var(--shadow-card)]"
                     }`}
                   >
                     {/* Background Cover Artwork for Collapsed Preview */}
-                    {!isActive && (
+                    {!isActive ? (
                       <div className="absolute inset-0 z-0">
                         <Image
                           src={project.image}
@@ -311,31 +355,27 @@ export function V2ExpandingBookShowcase() {
                           sizes="(max-width: 1440px) 25vw, 15vw"
                           className="object-cover object-center filter grayscale-[10%] hover:grayscale-0 transition-all duration-700"
                         />
-                        {/* Frosted dark-tinted scrim to guarantee legible typography on vertical title */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/40 to-slate-900/25" />
+                        <div className="absolute inset-0 bg-[image:var(--photo-scrim-gradient)]" />
                       </div>
-                    )}
+                    ) : null}
 
                     {/* Active Card Interior Gradient */}
-                    {isActive && (
-                      <div className="absolute inset-0 bg-gradient-to-br from-white via-cyan-50/25 to-sky-50/35 pointer-events-none z-0" />
-                    )}
+                    {isActive ? (
+                      <div className="absolute inset-0 bg-[image:var(--bg-active-card)] pointer-events-none z-0" />
+                    ) : null}
 
                     {/* ========================================== */}
                     {/* COLLAPSED STATE (Inactive Card)           */}
-                    {/* Sleek architectural vertical strip        */}
                     {/* ========================================== */}
-                    {!isActive && (
+                    {!isActive ? (
                       <div className="relative z-10 w-full h-full flex flex-col justify-between items-center py-6 px-3">
-                        {/* Top Index Badge */}
-                        <span className="font-mono text-white font-extrabold text-sm px-2.5 py-1 rounded-full bg-[#00A3E0] shadow-md">
+                        <span className="btn-primary-solid font-mono font-extrabold text-sm px-2.5 py-1 rounded-full">
                           {project.num}
                         </span>
 
-                        {/* Rotated Vertical Title */}
                         <div className="my-auto flex items-center justify-center">
                           <p
-                            className="text-white text-sm lg:text-base font-bold tracking-widest uppercase whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                            className="text-pearl-white text-sm lg:text-base font-bold tracking-widest uppercase whitespace-nowrap drop-shadow-[0_2px_4px_rgba(6,27,53,0.85)]"
                             style={{
                               writingMode: "vertical-rl",
                               transform: "rotate(180deg)",
@@ -345,17 +385,16 @@ export function V2ExpandingBookShowcase() {
                           </p>
                         </div>
 
-                        {/* Bottom Indicator */}
-                        <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center border border-white/40 text-[#00A3E0] shadow-md group-hover:bg-[#00A3E0] group-hover:text-white transition-all">
+                        <div className="w-8 h-8 rounded-full bg-bg-card/90 backdrop-blur-md flex items-center justify-center border border-border-subtle text-accent-primary shadow-sm transition-all">
                           <ChevronRight className="w-4 h-4" />
                         </div>
                       </div>
-                    )}
+                    ) : null}
 
                     {/* ========================================== */}
                     {/* EXPANDED STATE (Active Card)              */}
                     {/* ========================================== */}
-                    {isActive && (
+                    {isActive ? (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -364,34 +403,41 @@ export function V2ExpandingBookShowcase() {
                         className="relative z-10 w-full h-full p-6 lg:p-8 flex flex-col justify-between overflow-hidden"
                       >
                         {/* Top Bar: Index + Category Pill + Rating */}
-                        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                        <div className="flex items-center justify-between gap-3 border-b border-border-subtle pb-4">
                           <div className="flex items-center gap-3">
-                            <span className="font-mono text-[#00A3E0] font-black text-2xl">
+                            <span className="font-mono text-accent-primary font-black text-2xl">
                               {project.num}
                             </span>
                             <span
-                              className={`px-3 py-1 rounded-full text-xs font-bold border ${project.badgeColor} shadow-sm flex items-center gap-1.5`}
+                              className={`px-3 py-1 rounded-full text-xs font-bold border ${project.badgeColor} flex items-center gap-1.5`}
                             >
-                              <Award className="w-3.5 h-3.5 text-[#00A3E0]" />
+                              <Award className="w-3.5 h-3.5 text-accent-interactive" />
                               <span>{project.badge}</span>
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200/90 px-3 py-1 rounded-full text-xs font-bold text-[#071527] shadow-sm">
-                            <Star className="w-3.5 h-3.5 fill-[#00A3E0] text-[#00A3E0]" />
+                          <div className="flex items-center gap-1.5 bg-bg-accent-soft border border-border-accent px-3 py-1 rounded-full text-xs font-bold text-text-heading">
+                            <Star className="w-3.5 h-3.5 fill-accent-interactive text-accent-interactive" />
                             <span>{project.rating.toFixed(1)}</span>
-                            <span className="text-slate-500 font-normal">
+                            <span className="text-text-muted font-normal">
                               ({project.reviewsCount}+ client ratings)
                             </span>
                           </div>
                         </div>
 
-                        {/* Center Area: High-Res 3D Cover Mockup + Details */}
+                        {/* Center Area: High-Res Cover Mockup + Thumbnails + Details */}
                         <div className="grid grid-cols-12 gap-6 lg:gap-8 my-auto items-center py-2">
-                          {/* Left: 3D Floating Project Artwork */}
-                          <div className="col-span-5 lg:col-span-5 flex items-center justify-center">
-                            <Link href={project.link} className="block group/coverLink w-full">
-                              <div className="relative group/cover w-full aspect-[16/11] max-w-[280px] lg:max-w-[320px] rounded-2xl overflow-hidden shadow-[0_20px_45px_rgba(11,27,54,0.3)] transition-transform duration-500 group-hover/cover:scale-105 border border-slate-200">
+                          {/* Left: Floating Project Artwork + Gallery Mini Strip */}
+                          <div className="col-span-5 lg:col-span-5 flex flex-col items-center justify-center gap-3">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openGallery(project, 0);
+                              }}
+                              className="block group/coverLink w-full max-w-[280px] lg:max-w-[320px] text-left cursor-pointer"
+                            >
+                              <div className="relative group/cover w-full aspect-[16/11] rounded-2xl overflow-hidden shadow-[var(--shadow-card-hover)] transition-transform duration-500 group-hover/cover:scale-[1.03] border border-border-subtle bg-bg-subtle">
                                 <Image
                                   src={project.image}
                                   alt={project.title}
@@ -400,56 +446,104 @@ export function V2ExpandingBookShowcase() {
                                   className="object-cover z-10"
                                   priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-20 pointer-events-none" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-midnight-navy/55 via-transparent to-transparent z-20 pointer-events-none" />
+                                {project.gallery.length > 1 ? (
+                                  <div className="absolute bottom-2.5 right-2.5 z-30 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-midnight-navy/85 backdrop-blur-md text-pearl-white text-[11px] font-semibold border border-ice-cyan/30">
+                                    <Images className="w-3 h-3 text-ice-cyan" />
+                                    <span>{project.gallery.length} Visuals</span>
+                                  </div>
+                                ) : null}
                               </div>
-                            </Link>
+                            </button>
+
+                            {/* Quick Preview Thumbnail Strip */}
+                            {project.gallery.length > 1 ? (
+                              <div className="flex items-center justify-center gap-1.5 w-full max-w-[320px]">
+                                {project.gallery.slice(0, 4).map((thumb, tIdx) => {
+                                  const remaining = project.gallery.length - 4;
+                                  const showMoreOverlay = tIdx === 3 && remaining > 0;
+                                  return (
+                                    <button
+                                      key={thumb}
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        openGallery(project, tIdx);
+                                      }}
+                                      aria-label={`Open ${project.title} image ${tIdx + 1}`}
+                                      className="relative w-12 h-10 lg:w-14 lg:h-11 rounded-lg overflow-hidden border border-border-subtle hover:border-accent-interactive transition-all cursor-pointer group/thumb"
+                                    >
+                                      <Image
+                                        src={thumb}
+                                        alt=""
+                                        fill
+                                        sizes="56px"
+                                        className="object-cover group-hover/thumb:scale-110 transition-transform"
+                                      />
+                                      {showMoreOverlay ? (
+                                        <div className="absolute inset-0 bg-midnight-navy/80 flex items-center justify-center text-[10px] font-bold text-pearl-white">
+                                          +{remaining}
+                                        </div>
+                                      ) : null}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
                           </div>
 
                           {/* Right: Project Story, Accolades & Impact */}
                           <div className="col-span-7 lg:col-span-7 flex flex-col justify-center space-y-3">
                             <div>
-                              <p className="text-xs uppercase font-bold tracking-wider text-[#00A3E0] mb-1 flex items-center gap-1.5">
+                              <p className="text-xs uppercase font-bold tracking-wider text-accent-primary mb-1 flex items-center gap-1.5">
                                 <span>{project.genre}</span>
-                                <span className="text-slate-300">•</span>
-                                <span className="text-slate-600 font-semibold">
+                                <span className="text-border-strong">•</span>
+                                <span className="text-text-secondary font-semibold">
                                   Client: {project.client}
                                 </span>
                               </p>
-                              <Link href={project.link} className="hover:text-[#00A3E0] transition-colors">
-                                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-[#0B1B36] leading-tight tracking-tight">
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openGallery(project, 0);
+                                }}
+                                className="hover:text-accent-primary transition-colors text-left cursor-pointer"
+                              >
+                                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-text-heading hover:text-accent-primary leading-tight tracking-tight transition-colors">
                                   {project.title}
                                 </h3>
-                              </Link>
-                              <p className="text-sm font-medium text-slate-500 italic">
+                              </button>
+                              <p className="text-sm font-medium text-text-muted italic">
                                 {project.subtitle}
                               </p>
                             </div>
 
-                            <p className="text-slate-600 text-xs lg:text-sm leading-relaxed line-clamp-3 font-normal">
+                            <p className="text-text-secondary text-xs lg:text-sm leading-relaxed line-clamp-3 font-normal">
                               {project.synopsis}
                             </p>
 
                             {/* Deliverables tags */}
                             <div className="flex flex-wrap gap-1.5 pt-1">
-                              {project.deliverables.map((item, idx) => (
+                              {project.deliverables.map((item) => (
                                 <span
-                                  key={idx}
-                                  className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-md bg-slate-100/90 border border-slate-200/80 text-slate-700"
+                                  key={item}
+                                  className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-md bg-bg-subtle border border-border-subtle text-text-secondary"
                                 >
-                                  <CheckCircle2 className="w-3 h-3 text-[#00A3E0]" />
+                                  <CheckCircle2 className="w-3 h-3 text-accent-interactive" />
                                   <span>{item}</span>
                                 </span>
                               ))}
                             </div>
 
                             {/* Impact metric and format highlight */}
-                            <div className="flex items-center gap-4 text-xs font-semibold text-slate-700 pt-1">
-                              <span className="flex items-center gap-1 text-[#00A3E0] font-bold">
+                            <div className="flex items-center gap-4 text-xs font-semibold text-text-secondary pt-1">
+                              <span className="flex items-center gap-1 text-accent-primary font-bold">
                                 <TrendingUp className="w-3.5 h-3.5" />
                                 <span>{project.impactMetric}</span>
                               </span>
-                              <span className="text-slate-300">•</span>
-                              <span className="text-slate-500">
+                              <span className="text-border-strong">•</span>
+                              <span className="text-text-muted">
                                 {project.tags.join(" · ")}
                               </span>
                             </div>
@@ -457,25 +551,33 @@ export function V2ExpandingBookShowcase() {
                         </div>
 
                         {/* Bottom Action Footer */}
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                            <span className="w-2 h-2 rounded-full bg-[#00e5ff] shadow-[0_0_8px_#00e5ff] animate-pulse" />
+                        <div className="flex items-center justify-between pt-4 border-t border-border-subtle">
+                          <div className="flex items-center gap-2 text-xs text-text-muted font-medium">
+                            <span className="w-2 h-2 rounded-full bg-accent-interactive animate-pulse-subtle" />
                             <span>Delivered with Production Excellence</span>
                           </div>
 
                           <div className="flex items-center gap-3">
-                            <Link
-                              href={project.link}
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00A3E0] hover:bg-[#008cc2] text-white text-xs lg:text-sm font-bold shadow-[0_4px_14px_rgba(0,163,224,0.35)] hover:shadow-[0_6px_20px_rgba(0,163,224,0.5)] transition-all"
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openGallery(project, 0);
+                              }}
+                              className="btn-primary-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs lg:text-sm font-bold cursor-pointer"
                             >
                               <ExternalLink className="w-4 h-4" />
-                              <span>Explore Case Study</span>
+                              <span>
+                                {project.gallery.length > 1
+                                  ? `View All ${project.gallery.length} Visuals`
+                                  : "Explore Case Study"}
+                              </span>
                               <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
+                            </button>
                           </div>
                         </div>
                       </motion.div>
-                    )}
+                    ) : null}
                   </motion.div>
                 );
               })}
@@ -484,7 +586,7 @@ export function V2ExpandingBookShowcase() {
         </div>
 
         {/* ========================================================= */}
-        {/* MOBILE / TOUCH ACCORDION (LIGHT THEME) (< 768px)          */}
+        {/* MOBILE / TOUCH ACCORDION (< 768px)                        */}
         {/* ========================================================= */}
         <div className="md:hidden flex flex-col gap-3">
           {displayedProjects.map((project) => {
@@ -496,21 +598,21 @@ export function V2ExpandingBookShowcase() {
                 onClick={() => setActiveId(isActive ? "" : project.id)}
                 className={`rounded-2xl overflow-hidden border transition-all duration-300 ${
                   isActive
-                    ? "border-[#00A3E0] bg-white shadow-lg ring-2 ring-cyan-500/10"
-                    : "border-slate-200/90 bg-white shadow-sm"
+                    ? "border-border-accent-strong bg-bg-card shadow-[var(--shadow-card-hover)]"
+                    : "border-border-subtle bg-bg-card shadow-[var(--shadow-card)]"
                 }`}
               >
                 {/* Collapsed Header Bar */}
                 <div className="p-4 flex items-center justify-between cursor-pointer">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-white font-bold text-xs px-2 py-0.5 rounded-full bg-[#00A3E0]">
+                    <span className="btn-primary-solid font-mono font-bold text-xs px-2 py-0.5 rounded-full">
                       {project.num}
                     </span>
                     <div className="text-left">
-                      <p className="text-[#0B1B36] font-bold text-sm leading-tight">
+                      <p className="text-text-heading font-bold text-sm leading-tight">
                         {project.title}
                       </p>
-                      <p className="text-xs text-slate-500">{project.genre}</p>
+                      <p className="text-xs text-text-muted">{project.genre}</p>
                     </div>
                   </div>
 
@@ -521,7 +623,7 @@ export function V2ExpandingBookShowcase() {
                       {project.badge}
                     </span>
                     <ChevronRight
-                      className={`w-4 h-4 text-[#00A3E0] transition-transform duration-300 ${
+                      className={`w-4 h-4 text-accent-primary transition-transform duration-300 ${
                         isActive ? "rotate-90" : ""
                       }`}
                     />
@@ -530,87 +632,107 @@ export function V2ExpandingBookShowcase() {
 
                 {/* Expanded Content Drawer */}
                 <AnimatePresence>
-                  {isActive && (
+                  {isActive ? (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="px-4 pb-5 pt-2 border-t border-slate-100 bg-slate-50/50"
+                      className="px-4 pb-5 pt-2 border-t border-border-subtle bg-bg-subtle/45"
                     >
                       <div className="flex gap-4 items-center mb-4">
-                        <Link href={project.link} className="shrink-0">
-                          <div className="relative w-24 h-24 rounded-xl overflow-hidden shadow-md">
-                            <Image
-                              src={project.image}
-                              alt={project.title}
-                              fill
-                              sizes="96px"
-                              className="object-cover"
-                            />
-                          </div>
-                        </Link>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openGallery(project, 0);
+                          }}
+                          className="shrink-0 relative w-24 h-24 rounded-xl overflow-hidden shadow-[var(--shadow-card)] border border-border-subtle"
+                        >
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="96px"
+                            className="object-cover"
+                          />
+                        </button>
                         <div className="space-y-1 text-left">
-                          <p className="text-xs font-bold text-[#00A3E0]">
+                          <p className="text-xs font-bold text-accent-primary">
                             Client: {project.client}
                           </p>
-                          <div className="flex items-center gap-1 text-xs text-[#00A3E0] font-bold">
-                            <Star className="w-3.5 h-3.5 fill-[#00A3E0] text-[#00A3E0]" />
+                          <div className="flex items-center gap-1 text-xs text-accent-primary font-bold">
+                            <Star className="w-3.5 h-3.5 fill-accent-interactive text-accent-interactive" />
                             <span>{project.rating.toFixed(1)}</span>
-                            <span className="text-slate-500 font-normal">
+                            <span className="text-text-muted font-normal">
                               ({project.reviewsCount}+)
                             </span>
                           </div>
-                          <p className="text-xs text-[#00A3E0] font-semibold">
+                          <p className="text-xs text-accent-primary font-semibold">
                             {project.impactMetric}
                           </p>
-                          <p className="text-xs text-slate-600 line-clamp-2">
+                          <p className="text-xs text-text-secondary line-clamp-2">
                             {project.synopsis}
                           </p>
                         </div>
                       </div>
 
-                      <Link
-                        href={project.link}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#00A3E0] hover:bg-[#008cc2] text-white text-xs font-bold shadow-md transition-all"
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openGallery(project, 0);
+                        }}
+                        className="btn-primary-cta w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-bold cursor-pointer"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Explore Case Study</span>
+                        <span>
+                          {project.gallery.length > 1
+                            ? `View All ${project.gallery.length} Visuals`
+                            : "Explore Case Study"}
+                        </span>
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                      </button>
                     </motion.div>
-                  )}
+                  ) : null}
                 </AnimatePresence>
               </div>
             );
           })}
 
           {/* Mobile Pagination Controls */}
-          {totalPages > 1 && (
+          {totalPages > 1 ? (
             <div className="flex items-center justify-center gap-3 pt-3">
               <button
                 type="button"
                 onClick={() => setPage((prev) => Math.max(0, prev - 1))}
                 disabled={page === 0}
-                className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 disabled:opacity-40"
+                className="btn-secondary-surface px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 cursor-pointer"
               >
                 Previous
               </button>
-              <span className="text-xs font-semibold text-slate-600">
+              <span className="text-xs font-semibold text-text-secondary">
                 Page {page + 1} of {totalPages}
               </span>
               <button
                 type="button"
                 onClick={() => setPage((prev) => Math.min(totalPages - 1, prev + 1))}
                 disabled={page === totalPages - 1}
-                className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700 disabled:opacity-40"
+                className="btn-secondary-surface px-4 py-2 rounded-xl text-xs font-bold disabled:opacity-40 cursor-pointer"
               >
                 Next
               </button>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
+
+      {/* Case Study Lightbox Gallery Modal */}
+      <PortfolioGalleryModal
+        project={modalState?.project || null}
+        initialIndex={modalState?.initialIndex || 0}
+        onClose={() => setModalState(null)}
+      />
     </section>
   );
 }

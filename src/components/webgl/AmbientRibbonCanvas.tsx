@@ -1,18 +1,42 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useSyncExternalStore } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { useTheme } from "@/components/common/ThemeProvider";
 
-function FloatingCyanDust() {
+function subscribeReducedMotion(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
+function FloatingBrandDust({
+  isDark,
+  reducedMotion,
+}: {
+  isDark: boolean;
+  reducedMotion: boolean;
+}) {
   const pointsRef = useRef<THREE.Points>(null!);
-  const count = 300;
+  const count = 280;
 
   const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    const cyanA = new THREE.Color("#00e5ff");
-    const cyanB = new THREE.Color("#0284c7");
+    const colorA = new THREE.Color(isDark ? "#73C9D0" : "#087F8C");
+    const colorB = new THREE.Color(isDark ? "#16A6B0" : "#063B50");
+    const colorC = new THREE.Color(isDark ? "#D8E8E8" : "#16A6B0");
     const tempColor = new THREE.Color();
 
     for (let i = 0; i < count; i++) {
@@ -30,17 +54,22 @@ function FloatingCyanDust() {
       pos[i * 3 + 1] = (rand2 - 0.5) * 12;
       pos[i * 3 + 2] = (rand3 - 0.5) * 8;
 
-      tempColor.copy(cyanA).lerp(cyanB, rand4);
+      if (rand4 < 0.5) {
+        tempColor.copy(colorA).lerp(colorB, rand4 * 2);
+      } else {
+        tempColor.copy(colorB).lerp(colorC, (rand4 - 0.5) * 2);
+      }
       col[i * 3] = tempColor.r;
       col[i * 3 + 1] = tempColor.g;
       col[i * 3 + 2] = tempColor.b;
     }
 
     return [pos, col];
-  }, []);
+  }, [isDark]);
 
   useFrame((state, delta) => {
-    if (!pointsRef.current) return;
+    if (!pointsRef.current || reducedMotion) return;
+    if (typeof document !== "undefined" && document.hidden) return;
     pointsRef.current.rotation.y += delta * 0.03;
     pointsRef.current.rotation.x += delta * 0.015;
 
@@ -64,11 +93,11 @@ function FloatingCyanDust() {
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
+        size={isDark ? 0.055 : 0.05}
         vertexColors
         transparent
-        opacity={0.65}
-        blending={THREE.AdditiveBlending}
+        opacity={isDark ? 0.45 : 0.32}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
       />
     </points>
@@ -76,14 +105,27 @@ function FloatingCyanDust() {
 }
 
 export function AmbientRibbonCanvas() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const reducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
+
+  if (reducedMotion) {
+    return null;
+  }
+
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-70">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-65">
       <Canvas
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 5], fov: 45 }}
-        gl={{ alpha: true, antialias: true }}
+        gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
       >
         <ambientLight intensity={0.6} />
-        <FloatingCyanDust />
+        <FloatingBrandDust isDark={isDark} reducedMotion={reducedMotion} />
       </Canvas>
     </div>
   );

@@ -41,8 +41,12 @@ export function FlowingCursor({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    // Touch screen / coarse pointer check
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+    // Touch screen / coarse pointer or reduced-motion check
+    if (
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    ) {
       return;
     }
 
@@ -69,7 +73,7 @@ export function FlowingCursor({
         deltaY: 0,
         down: false,
         moved: false,
-        color: { r: 0.1, g: 0.1, b: 0.15 },
+        color: { r: 0.004, g: 0.065, b: 0.072 },
       },
     ];
 
@@ -969,57 +973,28 @@ export function FlowingCursor({
       return delta;
     }
 
-    function generateColor() {
-      // Default Framer Flowing Cursor color generation (subtle, non-flashy colors)
-      const c = HSVtoRGB(Math.random(), 1, 1);
-      c.r *= 0.15;
-      c.g *= 0.15;
-      c.b *= 0.15;
-      return c;
-    }
+    const BRAND_FLUID_PALETTE = [
+      { r: 6 / 255, g: 59 / 255, b: 80 / 255 },    // Ocean Blue #063B50
+      { r: 8 / 255, g: 127 / 255, b: 140 / 255 },  // Deep Teal #087F8C
+      { r: 22 / 255, g: 166 / 255, b: 176 / 255 }, // Electric Turquoise #16A6B0
+      { r: 115 / 255, g: 201 / 255, b: 208 / 255 },// Ice Cyan #73C9D0
+      { r: 216 / 255, g: 232 / 255, b: 232 / 255 },// Metallic Silver #D8E8E8
+    ];
+    let paletteCursor = 0;
 
-    function HSVtoRGB(h: number, s: number, v: number) {
-      let r = 0,
-        g = 0,
-        b = 0;
-      const i = Math.floor(h * 6);
-      const f = h * 6 - i;
-      const p = v * (1 - s);
-      const q = v * (1 - f * s);
-      const t = v * (1 - (1 - f) * s);
-      switch (i % 6) {
-        case 0:
-          r = v;
-          g = t;
-          b = p;
-          break;
-        case 1:
-          r = q;
-          g = v;
-          b = p;
-          break;
-        case 2:
-          r = p;
-          g = v;
-          b = t;
-          break;
-        case 3:
-          r = p;
-          g = q;
-          b = v;
-          break;
-        case 4:
-          r = t;
-          g = p;
-          b = v;
-          break;
-        case 5:
-          r = v;
-          g = p;
-          b = q;
-          break;
-      }
-      return { r, g, b };
+    function generateColor() {
+      // Crystalline Rejubliss brand fluid trail (controlled intensity, zero unrelated hues)
+      const isDark =
+        typeof document !== "undefined" &&
+        document.documentElement.getAttribute("data-theme") === "dark";
+      const base = BRAND_FLUID_PALETTE[paletteCursor % BRAND_FLUID_PALETTE.length];
+      paletteCursor += 1;
+      const intensity = isDark ? 0.14 : 0.11;
+      return {
+        r: base.r * intensity,
+        g: base.g * intensity,
+        b: base.b * intensity,
+      };
     }
 
     function hashCode(s: string) {
