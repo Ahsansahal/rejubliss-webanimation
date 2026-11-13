@@ -25,11 +25,11 @@ export function ServicesSection() {
       {/* Backwards-compatible anchor for merged Creative Solutions */}
       <div id="solutions" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         {/* Editorial Section Header */}
         <div
           data-gsap-reveal
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 sm:mb-14 border-b border-white/10"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 sm:mb-14 border-b border-border-subtle"
         >
           <div className="max-w-2xl">
             <span className="editorial-eyebrow block mb-3">
@@ -68,7 +68,7 @@ export function ServicesSection() {
           {/* Left: 6 Clean Hairline Service Chapters (SSR crawlable across all 6 disciplines) */}
           <div
             data-gsap-reveal
-            className="lg:col-span-6 border-t border-white/10"
+            className="lg:col-span-6 border-t border-border-subtle"
           >
             {HOMEPAGE_CREATIVE_SERVICES.map((service, idx) => {
               const isActive = idx === activeIndex;
@@ -76,8 +76,8 @@ export function ServicesSection() {
                 <div
                   key={service.id}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`border-b border-white/10 transition-colors duration-200 ${
-                    isActive ? "bg-white/[0.025]" : "hover:bg-white/[0.015]"
+                  className={`border-b border-border-subtle transition-colors duration-200 ${
+                    isActive ? "bg-bg-subtle" : "hover:bg-bg-subtle/60"
                   }`}
                 >
                   <button
@@ -130,7 +130,7 @@ export function ServicesSection() {
                   >
                     {/* Mobile/Tablet inline visual preview — mounted only for active item to avoid extra image requests */}
                     {isActive ? (
-                      <div className="lg:hidden relative aspect-[16/10] w-full rounded-[18px] overflow-hidden bg-[#0b0b0f] border border-white/10">
+                      <div className="lg:hidden relative aspect-[16/10] w-full rounded-[18px] overflow-hidden bg-[#050507] border border-border-subtle">
                         <Image
                           src={service.image}
                           alt={`${service.title} — ${service.imageCaption}`}
@@ -151,7 +151,7 @@ export function ServicesSection() {
                       {service.deliverables.map((item) => (
                         <span
                           key={item}
-                          className="px-3 py-1 rounded-full text-xs font-medium bg-[#0b0b0f] border border-white/10 text-text-secondary"
+                          className="px-3 py-1 rounded-full text-xs font-medium bg-bg-card border border-border-subtle text-text-secondary"
                         >
                           {item}
                         </span>
@@ -183,43 +183,72 @@ export function ServicesSection() {
             })}
           </div>
 
-          {/* Right: Desktop Sticky Visual Showcase */}
+          {/* Right: Desktop Sticky Visual Showcase (Unobstructed 16:10 Stage + Structured Metadata Bar) */}
           <div
             data-gsap-reveal
             className="hidden lg:block lg:col-span-6 lg:sticky lg:top-28"
           >
-            <div className="relative rounded-[22px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card-hover)]">
-              <div className="relative aspect-[16/11] w-full">
+            <div className="rounded-[22px] overflow-hidden bg-bg-card border border-border-subtle shadow-[var(--shadow-card-hover)]">
+              {/* Unobstructed Primary 3D Render Canvas */}
+              <Link
+                href={`/services/${activeService.primarySlug}`}
+                aria-label={`Explore ${activeService.title}`}
+                className="group block relative aspect-[16/10] w-full bg-[#050507] overflow-hidden"
+              >
                 <Image
                   src={activeService.image}
                   alt={`${activeService.title} — ${activeService.imageCaption}`}
                   fill
                   loading="lazy"
                   sizes="48vw"
-                  className="object-cover transition-opacity duration-300"
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25 pointer-events-none" />
 
-                {/* Floating Inset Detail Thumbnail */}
-                <div className="absolute bottom-5 right-5 z-30 w-36 aspect-[4/3] rounded-xl overflow-hidden border border-white/20 shadow-2xl bg-[#050507]">
-                  <Image
-                    src={activeService.secondaryImage}
-                    alt={`${activeService.title} detail`}
-                    fill
-                    loading="lazy"
-                    sizes="150px"
-                    className="object-cover"
-                  />
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[#f5f4ef]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e53726]" />
+                    <span>
+                      {activeService.number} · {activeService.eyebrow}
+                    </span>
+                  </span>
+
+                  <span className="w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-[#f5f4ef] group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300">
+                    <ArrowUpRight size={15} />
+                  </span>
                 </div>
+              </Link>
 
-                {/* Bottom Caption */}
-                <div className="absolute bottom-5 left-6 right-44 z-30 text-text-heading">
-                  <span className="editorial-eyebrow text-[11px] block mb-1">
+              {/* Architectural Caption & Secondary Detail Deck */}
+              <div className="p-5 sm:p-6 bg-bg-card border-t border-border-subtle flex items-center justify-between gap-5">
+                <div className="min-w-0 flex-1">
+                  <span className="editorial-eyebrow text-[10.5px] block mb-1">
                     {activeService.number} · {activeService.title}
                   </span>
-                  <p className="text-sm font-medium text-text-secondary truncate">
+                  <p className="text-sm text-text-secondary leading-snug">
                     {activeService.imageCaption}
                   </p>
+                  <div className="mt-2.5 flex items-center gap-3">
+                    <Link
+                      href={`/services/${activeService.primarySlug}`}
+                      className="inline-flex items-center gap-1 font-display text-[10.5px] font-bold uppercase tracking-[0.08em] text-accent-primary hover:text-accent-highlight transition-colors"
+                    >
+                      <span>View Studio Specs</span>
+                      <ArrowUpRight size={12} />
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Clean Framed Look-Dev Inset Detail */}
+                <div className="relative w-28 aspect-[4/3] rounded-xl overflow-hidden border border-border-strong bg-[#050507] shrink-0">
+                  <Image
+                    src={activeService.secondaryImage}
+                    alt={`${activeService.title} production detail`}
+                    fill
+                    loading="lazy"
+                    sizes="120px"
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>

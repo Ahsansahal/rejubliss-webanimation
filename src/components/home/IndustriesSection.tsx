@@ -21,9 +21,9 @@ export function IndustriesSection() {
       id="industries"
       ref={sectionRef}
       aria-labelledby="industries-heading"
-      className="relative py-22 sm:py-26 bg-[#050507] border-t border-b border-white/10"
+      className="relative py-22 sm:py-26 bg-bg-primary border-t border-b border-border-subtle"
     >
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         {/* Header */}
         <div
           data-gsap-reveal
@@ -31,7 +31,7 @@ export function IndustriesSection() {
         >
           <div className="max-w-2xl">
             <span className="editorial-eyebrow block mb-3">
-              04 · Sector Applications
+              05 · Sector Applications
             </span>
             <h2
               id="industries-heading"
@@ -54,7 +54,7 @@ export function IndustriesSection() {
           data-gsap-reveal
           role="tablist"
           aria-label="Industries served"
-          className="flex items-center gap-2 overflow-x-auto pb-5 mb-9 border-b border-white/10"
+          className="flex items-center gap-2 overflow-x-auto pb-5 mb-9 border-b border-border-subtle"
         >
           {INDUSTRY_SECTORS.map((sector) => {
             const isSelected = sector.id === activeSector.id;
@@ -70,7 +70,7 @@ export function IndustriesSection() {
                 className={`shrink-0 px-4 py-2 rounded-full text-[11.5px] font-semibold transition-all cursor-pointer ${
                   isSelected
                     ? "btn-primary-solid"
-                    : "bg-[#0b0b0f] text-text-secondary hover:text-text-heading border border-white/10 hover:border-accent-primary/50"
+                    : "bg-bg-card text-text-secondary hover:text-text-heading border border-border-subtle hover:border-accent-primary/50"
                 }`}
               >
                 {sector.title}
@@ -101,7 +101,7 @@ export function IndustriesSection() {
             >
               {/* Visual Frame — image mounted only on active tab to preserve bandwidth */}
               {isSelected ? (
-                <div className="lg:col-span-6 relative aspect-[16/10] rounded-[20px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card)]">
+                <div className="lg:col-span-6 relative aspect-[16/10] rounded-[20px] overflow-hidden bg-[#050507] border border-border-subtle shadow-[var(--shadow-card)]">
                   <Image
                     src={sector.image}
                     alt={sector.imageAlt}
@@ -118,7 +118,7 @@ export function IndustriesSection() {
                         <span>{sector.experienceLabel}</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-accent-primary text-[11px] font-semibold uppercase tracking-[0.12em] border border-white/15">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-[#ff6252] text-[11px] font-semibold uppercase tracking-[0.12em] border border-white/15">
                         <Sparkles size={12} />
                         <span>{sector.experienceLabel}</span>
                       </span>
@@ -151,10 +151,10 @@ export function IndustriesSection() {
                         <Link
                           key={proj.slug}
                           href={`/work/${proj.slug}`}
-                          className="inline-flex items-center gap-3 pr-4 p-1.5 rounded-full bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 transition-colors group"
+                          className="inline-flex items-center gap-3 pr-4 p-1.5 rounded-full bg-bg-card border border-border-subtle hover:border-accent-primary/50 transition-colors group"
                         >
                           {isSelected ? (
-                            <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-[#050507] border border-white/10">
+                            <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-[#050507] border border-border-subtle">
                               <Image
                                 src={proj.image}
                                 alt=""

@@ -6,7 +6,6 @@ import {
   AlertCircle,
   ArrowUpRight,
   CheckCircle2,
-  ChevronDown,
   Clock,
   FileUp,
   Loader2,
@@ -17,13 +16,24 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { STUDIO_FAQS } from "@/data/homepage";
 import {
   INQUIRY_SELECT_EVENT,
   type InquirySelectDetail,
 } from "@/lib/inquiry-events";
 import { trackStudioEvent } from "@/lib/analytics";
 import { useGsapSectionReveal } from "@/lib/use-gsap-reveal";
+
+const QUICK_SCOPE_PILLS = [
+  { label: "3D Animation & CGI", value: "3D Animation & CGI" },
+  { label: "Product Visualization", value: "Product Visualization" },
+  { label: "Explainer Film", value: "Explainer Video Production" },
+  { label: "Motion Graphics", value: "Motion Graphics & Animation" },
+  { label: "WebGL & Website", value: "Website Design & Interactive WebGL" },
+  {
+    label: "Full Campaign Launch",
+    value: "Multiple Services / Full Launch Scope",
+  },
+] as const;
 
 const SERVICE_OPTIONS = [
   "3D Animation & CGI",
@@ -88,7 +98,6 @@ export function ProjectInquirySection() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [receipt, setReceipt] = useState<SubmissionReceipt | null>(null);
-  const [openFaqId, setOpenFaqId] = useState<string | null>(STUDIO_FAQS[0].id);
 
   const renderedAtRef = useRef<number>(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -287,86 +296,83 @@ export function ProjectInquirySection() {
   };
 
   const inputBaseClass =
-    "w-full px-4 py-3.5 rounded-xl bg-[#050507] border border-white/12 focus:border-accent-primary text-sm text-text-heading placeholder:text-text-muted/70 outline-none transition-colors";
+    "w-full px-4 py-3.5 rounded-xl bg-bg-input border border-border-subtle focus:border-accent-primary text-sm text-text-heading placeholder:text-text-muted/75 outline-none transition-colors";
 
   return (
     <section
       id="contact"
       ref={sectionRef}
       aria-labelledby="inquiry-heading"
-      className="relative py-22 sm:py-28 bg-bg-primary overflow-hidden"
+      className="relative pt-10 sm:pt-14 pb-24 sm:pb-30 bg-bg-primary overflow-hidden"
     >
       <div id="quote" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
-        {/* Monumental Editorial Contact Header */}
-        <div data-gsap-reveal className="pb-8 sm:pb-10 mb-10 sm:mb-12 border-b border-white/10">
-          <span className="editorial-eyebrow block mb-3">
-            07 · Project Inquiry
-          </span>
-          <h2
-            id="inquiry-heading"
-            className="font-display text-[clamp(2rem,5.2vw,4.5rem)] font-extrabold uppercase text-text-heading leading-[0.98] tracking-[-0.04em]"
-          >
-            Let&apos;s Work Together
-          </h2>
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
+        {/* Editorial Commission Header */}
+        <div
+          data-gsap-reveal
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-10 sm:mb-12 border-b border-border-subtle"
+        >
+          <div>
+            <span className="editorial-eyebrow block mb-3">
+              09 · Commission Brief — Start Your Project
+            </span>
+            <h2
+              id="inquiry-heading"
+              className="font-display text-3xl sm:text-5xl lg:text-[56px] font-extrabold uppercase text-text-heading leading-[0.98] tracking-[-0.035em]"
+            >
+              Let&apos;s Scope{" "}
+              <span className="text-accent-primary">Your Production</span>
+            </h2>
+          </div>
+
+          <p className="text-sm sm:text-base text-text-secondary max-w-md leading-relaxed">
+            Share your goals, target channels, and timeline below—receive a
+            structured production proposal from our London directors within 1
+            business day.
+          </p>
         </div>
 
-        {/* Part A: Project Inquiry & Brief Sheet */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Concise Studio Brief Guidance & Direct Channels */}
-          <div data-gsap-reveal className="lg:col-span-5 space-y-8">
-            <div>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.03em] leading-[1.1] text-text-heading">
-                Have a Brief in Mind?{" "}
-                <span className="text-accent-primary block mt-1">
-                  Let&apos;s Scope It Together.
-                </span>
-              </h3>
-              <p className="mt-4 text-sm sm:text-base text-text-secondary leading-relaxed">
-                Tell us what you are launching, visualizing, or building. A
-                creative director will review your brief and reply with a clear
-                production approach, timeline, and custom proposal.
-              </p>
-            </div>
-
-            {/* Clean Unboxed Commitments */}
-            <ul className="border-t border-white/10 divide-y divide-white/10 text-xs sm:text-sm text-text-secondary">
-              <li className="py-4 flex items-start gap-3.5">
+        {/* Split Layout: Studio Guidance (4 cols) + Prominent Project Brief Sheet (8 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Left Column: Concise Studio Commitments & Direct Desk */}
+          <div data-gsap-reveal className="lg:col-span-4 space-y-7 lg:sticky lg:top-28">
+            <ul className="border-t border-border-subtle divide-y divide-border-subtle text-xs sm:text-sm text-text-secondary">
+              <li className="py-4.5 flex items-start gap-3.5">
                 <Clock
                   size={17}
                   className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
-                  <strong className="text-text-heading">
-                    1-Business-Day Director Review:
-                  </strong>{" "}
+                  <strong className="text-text-heading block mb-0.5">
+                    1-Business-Day Director Review
+                  </strong>
                   Direct reply from our London production leads—never automated
                   sales scripts.
                 </span>
               </li>
-              <li className="py-4 flex items-start gap-3.5">
+              <li className="py-4.5 flex items-start gap-3.5">
                 <Sparkles
                   size={17}
                   className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
-                  <strong className="text-text-heading">
-                    Itemised Scope &amp; Deliverables:
-                  </strong>{" "}
-                  Clear visual direction, milestone checkpoints, and aspect-ratio
-                  specifications.
+                  <strong className="text-text-heading block mb-0.5">
+                    Itemised Scope &amp; Deliverables
+                  </strong>
+                  Clear visual direction, milestone checkpoints, and
+                  aspect-ratio specifications.
                 </span>
               </li>
-              <li className="py-4 flex items-start gap-3.5">
+              <li className="py-4.5 flex items-start gap-3.5">
                 <ShieldCheck
                   size={17}
                   className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
-                  <strong className="text-text-heading">
-                    Confidential &amp; NDA Ready:
-                  </strong>{" "}
+                  <strong className="text-text-heading block mb-0.5">
+                    Confidential &amp; NDA Ready
+                  </strong>
                   Unreleased hardware, CAD assemblies, and campaign decks remain
                   strictly protected.
                 </span>
@@ -374,21 +380,21 @@ export function ProjectInquirySection() {
             </ul>
 
             {/* Direct Studio Contact Card */}
-            <div className="p-5 sm:p-6 rounded-[20px] bg-[#0b0b0f] text-text-heading border border-white/10 space-y-3">
+            <div className="p-5 sm:p-6 rounded-[22px] bg-bg-card text-text-heading border border-border-subtle shadow-[var(--shadow-card)] space-y-3">
               <span className="editorial-eyebrow text-[11px] block">
                 Direct Studio Desk · London, UK
               </span>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5 pt-0.5">
+              <div className="flex flex-col gap-2.5 pt-0.5">
                 <a
                   href="mailto:info@rejubliss.co.uk"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
+                  className="inline-flex items-center gap-2.5 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
                 >
                   <Mail size={15} className="text-accent-primary shrink-0" />
                   <span>info@rejubliss.co.uk</span>
                 </a>
                 <a
                   href="tel:+442081234567"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
+                  className="inline-flex items-center gap-2.5 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
                 >
                   <Phone size={15} className="text-accent-primary shrink-0" />
                   <span>+44 20 8123 4567</span>
@@ -397,513 +403,469 @@ export function ProjectInquirySection() {
             </div>
           </div>
 
-          {/* Right Column: Structured 3-Group Project Brief Form */}
-          <div data-gsap-reveal className="lg:col-span-7">
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 shadow-[var(--shadow-card-hover)] p-6 sm:p-8 lg:p-10">
-              {receipt ? (
-                <div
-                  role="status"
-                  aria-live="polite"
-                  className="py-6 space-y-6"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-accent-primary/14 border border-accent-primary/40 text-accent-primary flex items-center justify-center">
-                    <CheckCircle2 size={28} />
-                  </div>
-                  <div>
-                    <span className="editorial-eyebrow block mb-1.5">
-                      Inquiry Received · Reference {receipt.inquiryId}
-                    </span>
-                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.02em] text-text-heading mb-2">
-                      Thank you, {receipt.fullName}. Your brief is with our
-                      studio team.
-                    </h3>
-                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-                      We have logged your{" "}
-                      <strong className="text-text-heading">
-                        {receipt.service}
-                      </strong>{" "}
-                      inquiry (target timeline:{" "}
-                      <strong className="text-text-heading">
-                        {receipt.timeline}
-                      </strong>
-                      ) and will reply to{" "}
-                      <strong className="text-text-heading">
-                        {receipt.email}
-                      </strong>{" "}
-                      within one business day.
-                    </p>
-                  </div>
+          {/* Right Column: Prominent 3-Group Project Brief Sheet */}
+          <div data-gsap-reveal className="lg:col-span-8">
+            <div className="relative bg-bg-card rounded-[26px] border border-accent-primary/35 shadow-[var(--shadow-card-hover)] overflow-hidden">
+              {/* Prominent Top Vermilion Studio Bar */}
+              <div className="h-1.5 w-full bg-accent-primary" />
 
-                  <div className="p-4 rounded-xl bg-[#050507] border border-white/10 text-xs text-text-secondary flex flex-wrap items-center justify-between gap-2">
-                    <span>
-                      Reference Code:{" "}
-                      <strong className="font-mono text-text-heading">
-                        {receipt.inquiryId}
-                      </strong>
-                    </span>
-                    <span>London Studio Queue · Confidential</span>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => setReceipt(null)}
-                    className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs cursor-pointer"
-                  >
-                    <span>Submit Another Project Brief</span>
-                    <ArrowUpRight size={14} className="text-accent-primary" />
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-7">
-                  {/* Honeypot field for automated bot protection */}
+              <div className="p-6 sm:p-8 lg:p-10">
+                {receipt ? (
                   <div
-                    aria-hidden="true"
-                    className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden"
+                    role="status"
+                    aria-live="polite"
+                    className="py-6 space-y-6"
                   >
-                    <label htmlFor="inquiry-website-trap">Website</label>
-                    <input
-                      id="inquiry-website-trap"
-                      type="text"
-                      name="website_url"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={honeypot}
-                      onChange={(e) => setHoneypot(e.target.value)}
-                    />
-                  </div>
-
-                  {submitError ? (
-                    <div
-                      role="alert"
-                      className="p-4 rounded-xl bg-red-500/12 border border-red-500/35 text-sm text-red-300 flex items-start gap-3"
-                    >
-                      <AlertCircle size={18} className="shrink-0 mt-0.5" />
-                      <span>{submitError}</span>
+                    <div className="w-14 h-14 rounded-2xl bg-accent-primary/14 border border-accent-primary/40 text-accent-primary flex items-center justify-center">
+                      <CheckCircle2 size={28} />
                     </div>
-                  ) : null}
-
-                  {/* Group 01: Contact Details */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
-                      <span className="editorial-index text-xs">01</span>
-                      <span>·</span>
-                      <span>Your Details</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <label
-                          htmlFor="inquiry-fullName"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Full Name{" "}
-                          <span className="text-accent-primary">*</span>
-                        </label>
-                        <input
-                          id="inquiry-fullName"
-                          name="fullName"
-                          type="text"
-                          required
-                          autoComplete="name"
-                          placeholder="Alex Morgan"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                          aria-invalid={Boolean(fieldErrors.fullName)}
-                          aria-describedby={
-                            fieldErrors.fullName ? "err-fullName" : undefined
-                          }
-                          className={inputBaseClass}
-                        />
-                        {fieldErrors.fullName ? (
-                          <p
-                            id="err-fullName"
-                            className="mt-1 text-xs font-medium text-red-400"
-                          >
-                            {fieldErrors.fullName}
-                          </p>
-                        ) : null}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="inquiry-email"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Business Email{" "}
-                          <span className="text-accent-primary">*</span>
-                        </label>
-                        <input
-                          id="inquiry-email"
-                          name="email"
-                          type="email"
-                          required
-                          autoComplete="email"
-                          placeholder="alex@company.co.uk"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          aria-invalid={Boolean(fieldErrors.email)}
-                          aria-describedby={
-                            fieldErrors.email ? "err-email" : undefined
-                          }
-                          className={inputBaseClass}
-                        />
-                        {fieldErrors.email ? (
-                          <p
-                            id="err-email"
-                            className="mt-1 text-xs font-medium text-red-400"
-                          >
-                            {fieldErrors.email}
-                          </p>
-                        ) : null}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="inquiry-company"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Company / Brand
-                        </label>
-                        <input
-                          id="inquiry-company"
-                          name="company"
-                          type="text"
-                          autoComplete="organization"
-                          placeholder="Brand or agency"
-                          value={company}
-                          onChange={(e) => setCompany(e.target.value)}
-                          className={inputBaseClass}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Group 02: Scope & Timing */}
-                  <div className="pt-5 border-t border-white/10 space-y-4">
-                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
-                      <span className="editorial-index text-xs">02</span>
-                      <span>·</span>
-                      <span>Scope &amp; Timing</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div>
-                        <label
-                          htmlFor="inquiry-service"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Primary Capability{" "}
-                          <span className="text-accent-primary">*</span>
-                        </label>
-                        <select
-                          id="inquiry-service"
-                          name="service"
-                          required
-                          value={service}
-                          onChange={(e) => setService(e.target.value)}
-                          aria-invalid={Boolean(fieldErrors.service)}
-                          className={inputBaseClass}
-                        >
-                          {SERVICE_OPTIONS.map((opt) => (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          ))}
-                        </select>
-                        {fieldErrors.service ? (
-                          <p className="mt-1 text-xs font-medium text-red-400">
-                            {fieldErrors.service}
-                          </p>
-                        ) : null}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="inquiry-budget"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Estimated Budget{" "}
-                          <span className="text-accent-primary">*</span>
-                        </label>
-                        <select
-                          id="inquiry-budget"
-                          name="budget"
-                          required
-                          value={budget}
-                          onChange={(e) => setBudget(e.target.value)}
-                          className={inputBaseClass}
-                        >
-                          {BUDGET_OPTIONS.map((opt) => (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="inquiry-timeline"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Target Timeline{" "}
-                          <span className="text-accent-primary">*</span>
-                        </label>
-                        <select
-                          id="inquiry-timeline"
-                          name="timeline"
-                          required
-                          value={timeline}
-                          onChange={(e) => setTimeline(e.target.value)}
-                          className={inputBaseClass}
-                        >
-                          {TIMELINE_OPTIONS.map((opt) => (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Group 03: Project Brief & Optional Reference */}
-                  <div className="pt-5 border-t border-white/10 space-y-4">
-                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
-                      <span className="editorial-index text-xs">03</span>
-                      <span>·</span>
-                      <span>Project Brief &amp; Optional Assets</span>
-                    </div>
-
                     <div>
-                      <label
-                        htmlFor="inquiry-description"
-                        className="block text-xs font-semibold text-text-heading mb-1.5"
-                      >
-                        Project Summary{" "}
-                        <span className="text-accent-primary">*</span>
-                      </label>
-                      <textarea
-                        id="inquiry-description"
-                        name="description"
-                        rows={4}
-                        required
-                        placeholder="Describe your product or concept, target channels (web, social, OOH, broadcast), approximate asset count, and any existing CAD/brand files..."
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        aria-invalid={Boolean(fieldErrors.description)}
-                        aria-describedby={
-                          fieldErrors.description
-                            ? "err-description"
-                            : undefined
-                        }
-                        className={`${inputBaseClass} resize-y`}
-                      />
-                      {fieldErrors.description ? (
-                        <p
-                          id="err-description"
-                          className="mt-1 text-xs font-medium text-red-400"
-                        >
-                          {fieldErrors.description}
-                        </p>
-                      ) : null}
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label
-                          htmlFor="inquiry-referenceUrl"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Reference Link{" "}
-                          <span className="text-text-muted font-normal">
-                            (optional)
-                          </span>
-                        </label>
-                        <input
-                          id="inquiry-referenceUrl"
-                          name="referenceUrl"
-                          type="url"
-                          placeholder="https://figma.com/... or moodboard"
-                          value={referenceUrl}
-                          onChange={(e) => setReferenceUrl(e.target.value)}
-                          aria-invalid={Boolean(fieldErrors.referenceUrl)}
-                          className={inputBaseClass}
-                        />
-                        {fieldErrors.referenceUrl ? (
-                          <p className="mt-1 text-xs font-medium text-red-400">
-                            {fieldErrors.referenceUrl}
-                          </p>
-                        ) : null}
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="inquiry-attachment"
-                          className="block text-xs font-semibold text-text-heading mb-1.5"
-                        >
-                          Brief / CAD Attachment{" "}
-                          <span className="text-text-muted font-normal">
-                            (optional, ≤10MB)
-                          </span>
-                        </label>
-                        <input
-                          ref={fileInputRef}
-                          id="inquiry-attachment"
-                          name="attachment"
-                          type="file"
-                          accept=".pdf,.png,.jpg,.jpeg,.webp,.zip,.mp4,.doc,.docx,.pptx"
-                          onChange={handleFileChange}
-                          className="sr-only"
-                        />
-                        {attachment ? (
-                          <div className="flex items-center justify-between gap-2 px-4 py-3.5 rounded-xl bg-accent-primary/14 border border-accent-primary/40 text-xs font-semibold text-text-heading">
-                            <span className="truncate">{attachment.name}</span>
-                            <button
-                              type="button"
-                              onClick={clearAttachment}
-                              aria-label="Remove attached file"
-                              className="p-0.5 rounded-full hover:bg-white/10 text-text-muted hover:text-text-heading cursor-pointer shrink-0"
-                            >
-                              <X size={14} />
-                            </button>
-                          </div>
-                        ) : (
-                          <label
-                            htmlFor="inquiry-attachment"
-                            className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-[#050507] hover:bg-white/[0.04] border border-dashed border-white/20 hover:border-accent-primary text-xs font-semibold text-text-secondary cursor-pointer transition-colors"
-                          >
-                            <FileUp size={15} className="text-accent-primary" />
-                            <span>Attach PDF, Deck, Image or ZIP</span>
-                          </label>
-                        )}
-                        {fieldErrors.attachment ? (
-                          <p className="mt-1 text-xs font-medium text-red-400">
-                            {fieldErrors.attachment}
-                          </p>
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Inquiry Submit Bar */}
-                  <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <p className="text-xs text-text-muted leading-relaxed flex items-start gap-1.5 max-w-sm">
-                      <Lock
-                        size={13}
-                        className="text-accent-primary shrink-0 mt-0.5"
-                      />
-                      <span>
-                        Used solely to respond to your brief. View our{" "}
-                        <Link
-                          href="/privacy"
-                          className="text-accent-primary font-semibold hover:underline"
-                        >
-                          Privacy Policy
-                        </Link>
-                        .
+                      <span className="editorial-eyebrow block mb-1.5">
+                        Inquiry Received · Reference {receipt.inquiryId}
                       </span>
-                    </p>
+                      <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.02em] text-text-heading mb-2">
+                        Thank you, {receipt.fullName}. Your brief is with our
+                        studio team.
+                      </h3>
+                      <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+                        We have logged your{" "}
+                        <strong className="text-text-heading">
+                          {receipt.service}
+                        </strong>{" "}
+                        inquiry (target timeline:{" "}
+                        <strong className="text-text-heading">
+                          {receipt.timeline}
+                        </strong>
+                        ) and will reply to{" "}
+                        <strong className="text-text-heading">
+                          {receipt.email}
+                        </strong>{" "}
+                        within one business day.
+                      </p>
+                    </div>
 
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="btn-primary-cta inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs disabled:opacity-65 cursor-pointer shrink-0 group"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 size={15} className="animate-spin" />
-                          <span>Sending Brief...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Start Your Project</span>
-                          <ArrowUpRight
-                            size={15}
-                            className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                          />
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
+                    <div className="p-4 rounded-xl bg-bg-input border border-border-subtle text-xs text-text-secondary flex flex-wrap items-center justify-between gap-2">
+                      <span>
+                        Reference Code:{" "}
+                        <strong className="font-mono text-text-heading">
+                          {receipt.inquiryId}
+                        </strong>
+                      </span>
+                      <span>London Studio Queue · Confidential</span>
+                    </div>
 
-        {/* Part B: Concise Essential FAQs (Integrated Cleanly Below Inquiry) */}
-        <div
-          id="faq"
-          data-gsap-reveal
-          className="mt-20 sm:mt-24 pt-16 sm:pt-20 border-t border-white/10 scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
-        >
-          <div className="lg:col-span-4 space-y-3">
-            <span className="editorial-eyebrow block">
-              08 · Common Questions
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-[36px] font-bold text-text-heading leading-[1.08] tracking-[-0.03em]">
-              Clear Answers{" "}
-              <span className="text-accent-primary">Before We Begin</span>
-            </h2>
-            <p className="text-sm text-text-secondary leading-relaxed">
-              Practical guidance on project scoping, production timelines, CAD
-              file compatibility, revisions, and commercial rights.
-            </p>
-          </div>
-
-          <div className="lg:col-span-8 border-t border-white/10 divide-y divide-white/10">
-            {STUDIO_FAQS.map((faq, idx) => {
-              const isOpen = openFaqId === faq.id;
-              const triggerId = `faq-trigger-${faq.id}`;
-              const panelId = `faq-panel-${faq.id}`;
-
-              return (
-                <div key={faq.id} className="py-1">
-                  <h3>
                     <button
                       type="button"
-                      id={triggerId}
-                      aria-expanded={isOpen}
-                      aria-controls={panelId}
-                      onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
-                      className="w-full py-4.5 text-left flex items-center justify-between gap-4 cursor-pointer group"
+                      onClick={() => setReceipt(null)}
+                      className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs cursor-pointer"
                     >
-                      <span className="flex items-baseline gap-4">
-                        <span className="editorial-index shrink-0">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <span className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-text-heading group-hover:text-accent-primary transition-colors">
-                          {faq.question}
-                        </span>
-                      </span>
-
-                      <ChevronDown
-                        size={18}
-                        className={`shrink-0 text-text-muted transition-transform duration-200 ${
-                          isOpen
-                            ? "rotate-180 text-accent-primary"
-                            : "group-hover:text-accent-primary"
-                        }`}
-                      />
+                      <span>Submit Another Project Brief</span>
+                      <ArrowUpRight size={14} className="text-accent-primary" />
                     </button>
-                  </h3>
-
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={triggerId}
-                    className={
-                      isOpen ? "pb-5 pl-8 sm:pl-9 pr-4" : "sr-only"
-                    }
-                  >
-                    <p className="text-sm sm:text-[15px] text-text-secondary leading-relaxed">
-                      {faq.answer}
-                    </p>
                   </div>
-                </div>
-              );
-            })}
+                ) : (
+                  <form onSubmit={handleSubmit} noValidate className="space-y-7">
+                    {/* Honeypot field for automated bot protection */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden"
+                    >
+                      <label htmlFor="inquiry-website-trap">Website</label>
+                      <input
+                        id="inquiry-website-trap"
+                        type="text"
+                        name="website_url"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
+                    {submitError ? (
+                      <div
+                        role="alert"
+                        className="p-4 rounded-xl bg-red-500/12 border border-red-500/35 text-sm text-red-500 flex items-start gap-3"
+                      >
+                        <AlertCircle size={18} className="shrink-0 mt-0.5" />
+                        <span>{submitError}</span>
+                      </div>
+                    ) : null}
+
+                    {/* Quick-Select Capability Chips */}
+                    <div className="space-y-2.5">
+                      <span className="editorial-eyebrow text-[10.5px] block">
+                        Quick-Select Primary Scope
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {QUICK_SCOPE_PILLS.map((pill) => {
+                          const isSelected = service === pill.value;
+                          return (
+                            <button
+                              key={pill.label}
+                              type="button"
+                              onClick={() => setService(pill.value)}
+                              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                                isSelected
+                                  ? "btn-primary-solid"
+                                  : "bg-bg-subtle hover:bg-bg-subtle-hover border border-border-subtle text-text-secondary hover:text-text-heading"
+                              }`}
+                            >
+                              {pill.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Group 01: Contact Details */}
+                    <div className="pt-5 border-t border-border-subtle space-y-4">
+                      <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                        <span className="editorial-index text-xs">01</span>
+                        <span>·</span>
+                        <span>Your Details</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                          <label
+                            htmlFor="inquiry-fullName"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Full Name{" "}
+                            <span className="text-accent-primary">*</span>
+                          </label>
+                          <input
+                            id="inquiry-fullName"
+                            name="fullName"
+                            type="text"
+                            required
+                            autoComplete="name"
+                            placeholder="Alex Morgan"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            aria-invalid={Boolean(fieldErrors.fullName)}
+                            aria-describedby={
+                              fieldErrors.fullName ? "err-fullName" : undefined
+                            }
+                            className={inputBaseClass}
+                          />
+                          {fieldErrors.fullName ? (
+                            <p
+                              id="err-fullName"
+                              className="mt-1 text-xs font-medium text-red-500"
+                            >
+                              {fieldErrors.fullName}
+                            </p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="inquiry-email"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Business Email{" "}
+                            <span className="text-accent-primary">*</span>
+                          </label>
+                          <input
+                            id="inquiry-email"
+                            name="email"
+                            type="email"
+                            required
+                            autoComplete="email"
+                            placeholder="alex@company.co.uk"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            aria-invalid={Boolean(fieldErrors.email)}
+                            aria-describedby={
+                              fieldErrors.email ? "err-email" : undefined
+                            }
+                            className={inputBaseClass}
+                          />
+                          {fieldErrors.email ? (
+                            <p
+                              id="err-email"
+                              className="mt-1 text-xs font-medium text-red-500"
+                            >
+                              {fieldErrors.email}
+                            </p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="inquiry-company"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Company / Brand
+                          </label>
+                          <input
+                            id="inquiry-company"
+                            name="company"
+                            type="text"
+                            autoComplete="organization"
+                            placeholder="Brand or agency"
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                            className={inputBaseClass}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Group 02: Scope & Timing */}
+                    <div className="pt-5 border-t border-border-subtle space-y-4">
+                      <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                        <span className="editorial-index text-xs">02</span>
+                        <span>·</span>
+                        <span>Scope &amp; Timing</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                          <label
+                            htmlFor="inquiry-service"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Primary Capability{" "}
+                            <span className="text-accent-primary">*</span>
+                          </label>
+                          <select
+                            id="inquiry-service"
+                            name="service"
+                            required
+                            value={service}
+                            onChange={(e) => setService(e.target.value)}
+                            aria-invalid={Boolean(fieldErrors.service)}
+                            className={inputBaseClass}
+                          >
+                            {SERVICE_OPTIONS.map((opt) => (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            ))}
+                          </select>
+                          {fieldErrors.service ? (
+                            <p className="mt-1 text-xs font-medium text-red-500">
+                              {fieldErrors.service}
+                            </p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="inquiry-budget"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Estimated Budget{" "}
+                            <span className="text-accent-primary">*</span>
+                          </label>
+                          <select
+                            id="inquiry-budget"
+                            name="budget"
+                            required
+                            value={budget}
+                            onChange={(e) => setBudget(e.target.value)}
+                            className={inputBaseClass}
+                          >
+                            {BUDGET_OPTIONS.map((opt) => (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="inquiry-timeline"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Target Timeline{" "}
+                            <span className="text-accent-primary">*</span>
+                          </label>
+                          <select
+                            id="inquiry-timeline"
+                            name="timeline"
+                            required
+                            value={timeline}
+                            onChange={(e) => setTimeline(e.target.value)}
+                            className={inputBaseClass}
+                          >
+                            {TIMELINE_OPTIONS.map((opt) => (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Group 03: Project Brief & Optional Reference */}
+                    <div className="pt-5 border-t border-border-subtle space-y-4">
+                      <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                        <span className="editorial-index text-xs">03</span>
+                        <span>·</span>
+                        <span>Project Brief &amp; Optional Assets</span>
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="inquiry-description"
+                          className="block text-xs font-semibold text-text-heading mb-1.5"
+                        >
+                          Project Summary{" "}
+                          <span className="text-accent-primary">*</span>
+                        </label>
+                        <textarea
+                          id="inquiry-description"
+                          name="description"
+                          rows={4}
+                          required
+                          placeholder="Describe your product or concept, target channels (web, social, OOH, broadcast), approximate asset count, and any existing CAD/brand files..."
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                          aria-invalid={Boolean(fieldErrors.description)}
+                          aria-describedby={
+                            fieldErrors.description
+                              ? "err-description"
+                              : undefined
+                          }
+                          className={`${inputBaseClass} resize-y`}
+                        />
+                        {fieldErrors.description ? (
+                          <p
+                            id="err-description"
+                            className="mt-1 text-xs font-medium text-red-500"
+                          >
+                            {fieldErrors.description}
+                          </p>
+                        ) : null}
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="inquiry-referenceUrl"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Reference Link{" "}
+                            <span className="text-text-muted font-normal">
+                              (optional)
+                            </span>
+                          </label>
+                          <input
+                            id="inquiry-referenceUrl"
+                            name="referenceUrl"
+                            type="url"
+                            placeholder="https://figma.com/... or moodboard"
+                            value={referenceUrl}
+                            onChange={(e) => setReferenceUrl(e.target.value)}
+                            aria-invalid={Boolean(fieldErrors.referenceUrl)}
+                            className={inputBaseClass}
+                          />
+                          {fieldErrors.referenceUrl ? (
+                            <p className="mt-1 text-xs font-medium text-red-500">
+                              {fieldErrors.referenceUrl}
+                            </p>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <label
+                            htmlFor="inquiry-attachment"
+                            className="block text-xs font-semibold text-text-heading mb-1.5"
+                          >
+                            Brief / CAD Attachment{" "}
+                            <span className="text-text-muted font-normal">
+                              (optional, ≤10MB)
+                            </span>
+                          </label>
+                          <input
+                            ref={fileInputRef}
+                            id="inquiry-attachment"
+                            name="attachment"
+                            type="file"
+                            accept=".pdf,.png,.jpg,.jpeg,.webp,.zip,.mp4,.doc,.docx,.pptx"
+                            onChange={handleFileChange}
+                            className="sr-only"
+                          />
+                          {attachment ? (
+                            <div className="flex items-center justify-between gap-2 px-4 py-3.5 rounded-xl bg-accent-primary/14 border border-accent-primary/40 text-xs font-semibold text-text-heading">
+                              <span className="truncate">{attachment.name}</span>
+                              <button
+                                type="button"
+                                onClick={clearAttachment}
+                                aria-label="Remove attached file"
+                                className="p-0.5 rounded-full hover:bg-bg-subtle text-text-muted hover:text-text-heading cursor-pointer shrink-0"
+                              >
+                                <X size={14} />
+                              </button>
+                            </div>
+                          ) : (
+                            <label
+                              htmlFor="inquiry-attachment"
+                              className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-bg-input hover:bg-bg-subtle border border-dashed border-border-strong hover:border-accent-primary text-xs font-semibold text-text-secondary cursor-pointer transition-colors"
+                            >
+                              <FileUp size={15} className="text-accent-primary" />
+                              <span>Attach PDF, Deck, Image or ZIP</span>
+                            </label>
+                          )}
+                          {fieldErrors.attachment ? (
+                            <p className="mt-1 text-xs font-medium text-red-500">
+                              {fieldErrors.attachment}
+                            </p>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Prominent Inquiry Submit Bar */}
+                    <div className="pt-6 border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <p className="text-xs text-text-muted leading-relaxed flex items-start gap-1.5 max-w-sm">
+                        <Lock
+                          size={13}
+                          className="text-accent-primary shrink-0 mt-0.5"
+                        />
+                        <span>
+                          Used solely to respond to your brief. View our{" "}
+                          <Link
+                            href="/privacy"
+                            className="text-accent-primary font-semibold hover:underline"
+                          >
+                            Privacy Policy
+                          </Link>
+                          .
+                        </span>
+                      </p>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn-primary-cta inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs disabled:opacity-65 cursor-pointer shrink-0 group"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 size={15} className="animate-spin" />
+                            <span>Sending Brief...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Submit Project Brief</span>
+                            <ArrowUpRight
+                              size={16}
+                              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                            />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

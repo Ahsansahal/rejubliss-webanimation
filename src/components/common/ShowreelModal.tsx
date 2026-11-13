@@ -120,10 +120,10 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Rejubliss Studio Showreel"
-            className="relative w-full max-w-5xl max-h-[92dvh] bg-[#0b0b0f] rounded-[24px] overflow-hidden shadow-[var(--shadow-card-hover)] border border-white/12 flex flex-col text-text-primary"
+            className="relative w-[95vw] max-w-[95vw] lg:max-w-[88vw] max-h-[92dvh] bg-bg-card rounded-[24px] overflow-hidden shadow-[var(--shadow-card-hover)] border border-border-strong flex flex-col text-text-primary"
           >
             {/* Top Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-white/10 bg-[#07070a]">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-4 border-b border-border-subtle bg-bg-secondary">
               <div className="flex items-center gap-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-accent-primary animate-pulse-subtle" />
                 <div>
@@ -137,7 +137,7 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="inline-flex rounded-full p-1 bg-white/[0.04] border border-white/10">
+                <div className="inline-flex rounded-full p-1 bg-bg-subtle border border-border-subtle">
                   <button
                     type="button"
                     onClick={() => setActiveMode("video")}
@@ -168,7 +168,7 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
                   type="button"
                   onClick={onClose}
                   aria-label="Close showreel"
-                  className="w-9 h-9 rounded-full bg-white/[0.05] text-text-secondary flex items-center justify-center hover:bg-accent-primary hover:text-black hover:border-accent-primary transition-colors border border-white/14 cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-bg-subtle text-text-secondary flex items-center justify-center hover:bg-accent-primary hover:text-black hover:border-accent-primary transition-colors border border-border-strong cursor-pointer"
                 >
                   <X size={17} />
                 </button>
@@ -189,8 +189,8 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-12">
-                  {/* Left: Visual Chapter Preview */}
-                  <div className="lg:col-span-7 relative min-h-[260px] sm:min-h-[360px] bg-[#050507] overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10">
+                  {/* Left: Visual Chapter Preview (Always Dark Cinema Stage) */}
+                  <div className="lg:col-span-7 relative min-h-[260px] sm:min-h-[360px] bg-[#050507] overflow-hidden border-b lg:border-b-0 lg:border-r border-border-subtle">
                     <Image
                       src={activeChapter.image}
                       alt={activeChapter.title}
@@ -199,25 +199,25 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/35 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-text-heading">
+                    <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-[#f5f4ef]">
                       <div>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-semibold uppercase tracking-[0.14em] bg-black/80 border border-accent-primary/45 text-accent-primary mb-2">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10.5px] font-semibold uppercase tracking-[0.14em] bg-black/80 border border-[#e53726]/45 text-[#ff5a49] mb-2">
                           <Sparkles size={11} />
                           <span>
                             {activeChapter.timecode} · {activeChapter.discipline}
                           </span>
                         </span>
-                        <h4 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] leading-snug">
+                        <h4 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] leading-snug text-[#f5f4ef]">
                           {activeChapter.title}
                         </h4>
-                        <p className="text-xs text-text-secondary mt-1 max-w-md">
+                        <p className="text-xs text-[#f5f4ef]/75 mt-1 max-w-md">
                           {activeChapter.summary}
                         </p>
                       </div>
                       <Link
                         href={`/work/${activeChapter.projectSlug}`}
                         onClick={onClose}
-                        className="btn-secondary-surface inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] shrink-0 bg-black/60 backdrop-blur-md"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-display font-semibold uppercase tracking-[0.08em] shrink-0 bg-black/75 hover:bg-accent-primary text-[#f5f4ef] hover:text-black border border-white/20 hover:border-accent-primary backdrop-blur-md transition-colors"
                       >
                         <span>Case Study</span>
                         <ExternalLink size={12} />
@@ -226,7 +226,7 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
                   </div>
 
                   {/* Right: Chapter Selector */}
-                  <div className="lg:col-span-5 p-4 sm:p-5 bg-[#0b0b0f] flex flex-col justify-between gap-2">
+                  <div className="lg:col-span-5 p-4 sm:p-5 bg-bg-card flex flex-col justify-between gap-2">
                     <div className="space-y-2">
                       <p className="editorial-eyebrow text-[10.5px] px-1 mb-1">
                         Select Discipline Highlight
@@ -241,7 +241,7 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
                             className={`w-full text-left p-3 rounded-xl border transition-all flex items-start gap-3 cursor-pointer ${
                               isSelected
                                 ? "bg-accent-primary/12 border-accent-primary/50"
-                                : "bg-white/[0.02] border-white/8 hover:border-white/20"
+                                : "bg-bg-subtle border-border-subtle hover:border-border-strong"
                             }`}
                           >
                             <span className="editorial-index text-[11px] pt-0.5">
@@ -273,7 +273,7 @@ export function ShowreelModal({ isOpen, onClose }: ShowreelModalProps) {
             </div>
 
             {/* Footer CTA Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-5 sm:px-6 py-4 border-t border-white/10 bg-[#07070a]">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-5 sm:px-6 py-4 border-t border-border-subtle bg-bg-secondary">
               <p className="text-xs text-text-secondary text-center sm:text-left">
                 Planning a 3D product film, CGI campaign, or interactive WebGL build?
               </p>

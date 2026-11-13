@@ -114,17 +114,17 @@ export function ProcessSection() {
       id="process"
       ref={sectionRef}
       aria-labelledby="process-heading"
-      className="relative py-22 sm:py-28 bg-bg-primary"
+      className="relative py-22 sm:py-28 bg-bg-secondary border-b border-border-subtle"
     >
       {/* Backwards-compatible #about hash */}
       <div id="about" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         {/* Header + Active Milestone Visual Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-10 mb-14 border-b border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-10 mb-14 border-b border-border-subtle">
           <div className="lg:col-span-7">
             <span className="editorial-eyebrow block mb-3">
-              05 · Production Workflow
+              06 · Production Workflow
             </span>
             <h2
               id="process-heading"
@@ -141,26 +141,26 @@ export function ProcessSection() {
           </div>
 
           {/* Contextual Milestone Preview Card */}
-          <div className="lg:col-span-5 flex items-center gap-4 p-3.5 rounded-[20px] bg-[#0b0b0f] border border-white/10">
-            <div className="relative w-24 h-16 sm:w-28 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-[#050507] border border-white/10">
+          <div className="lg:col-span-5 flex items-center gap-4 p-4 rounded-[22px] bg-bg-card border border-border-subtle shadow-[var(--shadow-card)]">
+            <div className="relative w-32 sm:w-36 aspect-[16/10] rounded-xl overflow-hidden shrink-0 bg-[#050507] border border-border-subtle">
               <Image
                 src={activeStep.image}
                 alt={activeStep.title}
                 fill
-                sizes="112px"
+                sizes="150px"
                 className="object-cover transition-all duration-300"
               />
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <span className="inline-flex items-center gap-1.5 editorial-eyebrow text-[10.5px]">
                 <ShieldCheck size={13} className="text-accent-primary" />
-                <span>Stage {activeStep.number} Checkpoint</span>
+                <span>Stage {activeStep.number} Gate</span>
               </span>
               <p className="font-display text-sm sm:text-base font-bold tracking-[-0.02em] text-text-heading truncate mt-1">
                 {activeStep.gate}
               </p>
-              <p className="text-xs text-text-muted mt-0.5">
-                Hover or tap any milestone below to inspect
+              <p className="text-xs text-text-muted mt-0.5 leading-snug">
+                {activeStep.title} · Tap any step below
               </p>
             </div>
           </div>
@@ -171,7 +171,7 @@ export function ProcessSection() {
           {/* Desktop Continuous Connector Track */}
           <div
             aria-hidden="true"
-            className="hidden lg:block absolute top-[22px] left-0 right-0 h-[1.5px] bg-white/10"
+            className="hidden lg:block absolute top-[22px] left-0 right-0 h-[1.5px] bg-border-subtle"
           >
             <div
               ref={lineFillRef}
@@ -193,7 +193,7 @@ export function ProcessSection() {
                   {idx < CONCISE_STEPS.length - 1 ? (
                     <span
                       aria-hidden="true"
-                      className="sm:hidden absolute left-[18px] top-10 -bottom-8 w-[1.5px] bg-white/12"
+                      className="sm:hidden absolute left-[18px] top-10 -bottom-8 w-[1.5px] bg-border-strong"
                     />
                   ) : null}
 
@@ -205,10 +205,10 @@ export function ProcessSection() {
                     {/* Connected Step Circle Node */}
                     <div className="absolute left-0 top-0 sm:static sm:mb-5 flex items-center">
                       <span
-                        className={`w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center font-display text-xs font-bold border transition-all duration-300 ${
+                        className={`relative z-10 w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center font-display text-xs font-bold border transition-all duration-300 ${
                           isCurrent
-                            ? "bg-accent-primary text-black border-accent-primary scale-105 shadow-[0_0_24px_rgba(229,55,38,0.4)]"
-                            : "bg-[#0b0b0f] text-text-heading border-white/20 group-hover:border-accent-primary group-hover:text-accent-primary"
+                            ? "bg-accent-primary text-black border-accent-primary scale-105 shadow-[0_0_24px_rgba(229,55,38,0.38)]"
+                            : "bg-bg-card text-text-heading border-border-strong group-hover:border-accent-primary group-hover:text-accent-primary"
                         }`}
                       >
                         {step.number}

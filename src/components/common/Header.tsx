@@ -16,12 +16,15 @@ import {
   HelpCircle,
   Briefcase,
   Layers,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { STUDIO_SERVICES } from "@/data/services";
 import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
 import { STUDIO_FAQS } from "@/data/homepage";
+import { useTheme } from "@/components/common/ThemeProvider";
 
 const drawerNavContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -44,17 +47,18 @@ const drawerNavItemVariants: Variants = {
 };
 
 const PRIMARY_NAV_ITEMS = [
+  { label: "Flagship", href: "/#portfolio-spotlight" },
   { label: "Work", href: "/#portfolio" },
-  { label: "Industries", href: "/#industries" },
   { label: "Process", href: "/#process" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
 export function Header({
-  containerMaxWidth = "max-w-[1480px] w-full px-4 sm:px-6 md:px-12",
+  containerMaxWidth = "w-[97%] max-w-[97%] px-2 sm:px-4 lg:px-6",
 }: { containerMaxWidth?: string } = {}) {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = React.useState(true);
   const [servicesMenuOpen, setServicesMenuOpen] = React.useState(false);
@@ -172,51 +176,45 @@ export function Header({
     };
   }, []);
 
-  const normalizedContainer = containerMaxWidth.includes("px-")
-    ? containerMaxWidth
-    : "max-w-[1480px] w-full px-4 sm:px-6 md:px-12";
+  const normalizedContainer =
+    containerMaxWidth || "w-[97%] max-w-[97%] px-2 sm:px-4 lg:px-6";
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/[0.08] transition-colors duration-300">
+      <header className="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-border-subtle transition-colors duration-300">
         <div
           id="desktop-navbar-container"
           className={`relative ${normalizedContainer} mx-auto overflow-visible`}
         >
           {/* Main Full-Width Header Bar */}
-          <div className="relative z-20 w-full h-[72px] sm:h-[84px] flex items-center justify-between gap-4">
+          <div className="relative z-20 w-full h-[72px] sm:h-[82px] flex items-center justify-between gap-3 sm:gap-4">
             {/* 1. Left: Rejubliss Studio Brand Identity */}
             <Link
               href="/"
               onClick={() => setActiveTab("Home")}
-              className="flex items-center gap-3 select-none group shrink-0"
+              aria-label="Rejubliss 3D Animation Studios — Home"
+              className="flex items-center select-none group shrink-0 py-1"
             >
-              <div className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/12 bg-white/[0.03] group-hover:border-accent-primary/60 transition-all duration-300 shrink-0">
-                <Image
-                  src="/images/logo-emblem.png"
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-display text-base sm:text-lg font-bold tracking-[-0.03em] text-text-heading leading-none">
-                    Rejubliss
-                  </span>
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-primary" />
-                </div>
-                <span className="text-[9px] sm:text-[9.5px] uppercase tracking-[0.22em] font-semibold text-text-muted group-hover:text-accent-primary transition-colors mt-1">
-                  3D Animation Studios
-                </span>
-              </div>
+              <Image
+                src={
+                  theme === "light"
+                    ? "/images/logo-light.png"
+                    : "/images/logo.png"
+                }
+                alt="Rejubliss 3D Animation Studios"
+                width={933}
+                height={247}
+                preload
+                quality={82}
+                sizes="(max-width: 640px) 156px, 190px"
+                className="h-10 sm:h-11 xl:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              />
             </Link>
 
             {/* 2. Center: Minimal Display Navigation Links */}
             <nav
               aria-label="Primary navigation"
-              className="hidden lg:flex items-center justify-center gap-x-3.5 xl:gap-x-7 font-display text-[10.5px] xl:text-[11.5px] font-semibold uppercase tracking-[0.08em]"
+              className="hidden lg:flex items-center justify-center gap-x-4 xl:gap-x-6.5 font-display text-[10.5px] xl:text-[11px] font-semibold uppercase tracking-[0.09em]"
             >
               <Link
                 href="/"
@@ -242,7 +240,7 @@ export function Header({
                 <button
                   type="button"
                   onClick={toggleServices}
-                  className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase tracking-[0.08em] ${
+                  className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase tracking-[0.09em] ${
                     servicesMenuOpen || activeTab === "Services"
                       ? "text-text-heading"
                       : "text-text-muted hover:text-text-heading"
@@ -272,9 +270,9 @@ export function Header({
                       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                       onMouseEnter={handleServicesEnter}
                       onMouseLeave={handleServicesLeave}
-                      className="absolute top-[calc(100%+16px)] left-1/2 -translate-x-1/2 w-[800px] xl:w-[900px] max-w-[92vw] rounded-[24px] bg-[#0b0b0f]/98 border border-white/12 backdrop-blur-2xl p-6 shadow-[var(--shadow-card-hover)] z-50 text-left font-sans normal-case tracking-normal before:absolute before:-top-5 before:left-0 before:right-0 before:h-6 before:content-['']"
+                      className="absolute top-[calc(100%+16px)] left-1/2 -translate-x-1/2 w-[840px] xl:w-[1040px] 2xl:w-[1160px] max-w-[95vw] rounded-[24px] bg-bg-elevated border border-border-strong backdrop-blur-2xl p-6 shadow-[var(--shadow-card-hover)] z-50 text-left font-sans normal-case tracking-normal before:absolute before:-top-5 before:left-0 before:right-0 before:h-6 before:content-['']"
                     >
-                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/10">
+                      <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-border-subtle">
                         <div className="flex items-center gap-2.5">
                           <span className="w-2 h-2 rounded-full bg-accent-primary animate-pulse-subtle" />
                           <span className="editorial-eyebrow">
@@ -308,9 +306,9 @@ export function Header({
                                 setServicesMenuOpen(false);
                                 setActiveTab("Services");
                               }}
-                              className="group flex flex-col p-3 rounded-[18px] border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-accent-primary/50 transition-all duration-200"
+                              className="group flex flex-col p-3 rounded-[18px] border border-border-subtle bg-bg-subtle hover:bg-bg-subtle-hover hover:border-accent-primary/50 transition-all duration-200"
                             >
-                              <div className="relative aspect-[16/9] w-full h-[90px] rounded-xl overflow-hidden mb-2.5 bg-[#050507] border border-white/8">
+                              <div className="relative aspect-[16/9] w-full h-[90px] rounded-xl overflow-hidden mb-2.5 bg-[#050507] border border-white/10">
                                 <Image
                                   src={srv.heroImage}
                                   alt={srv.title}
@@ -318,7 +316,7 @@ export function Header({
                                   sizes="240px"
                                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
-                                <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[9.5px] font-semibold text-text-heading tracking-[0.14em] uppercase">
+                                <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[9.5px] font-semibold text-[#f5f4ef] tracking-[0.14em] uppercase">
                                   {srv.badge}
                                 </div>
                               </div>
@@ -337,7 +335,7 @@ export function Header({
                         </div>
 
                         {/* Right: Remaining 5 Specialist Services + Quote CTA (4 cols) */}
-                        <div className="lg:col-span-4 rounded-[18px] bg-[#060609] border border-white/10 p-4 text-text-primary flex flex-col justify-between">
+                        <div className="lg:col-span-4 rounded-[18px] bg-bg-secondary border border-border-subtle p-4 text-text-primary flex flex-col justify-between">
                           <div>
                             <div className="flex items-center gap-1.5 mb-3">
                               <Sparkles
@@ -358,7 +356,7 @@ export function Header({
                                     setServicesMenuOpen(false);
                                     setActiveTab("Services");
                                   }}
-                                  className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/[0.03] border border-white/8 hover:border-accent-primary/50 text-xs font-semibold text-text-heading hover:text-accent-primary transition-colors group"
+                                  className="flex items-center justify-between px-3 py-2 rounded-xl bg-bg-card border border-border-subtle hover:border-accent-primary/50 text-xs font-semibold text-text-heading hover:text-accent-primary transition-colors group"
                                 >
                                   <span className="truncate">{srv.title}</span>
                                   <ArrowRight
@@ -370,13 +368,13 @@ export function Header({
                             </div>
                           </div>
 
-                          <div className="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+                          <div className="pt-3 border-t border-border-subtle flex items-center justify-between gap-2">
                             <Link
-                              href="/services"
+                              href="/#industries"
                               onClick={() => setServicesMenuOpen(false)}
                               className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-muted hover:text-text-heading transition-colors"
                             >
-                              Deliverables
+                              Industries
                             </Link>
                             <Link
                               href="/#contact"
@@ -390,7 +388,7 @@ export function Header({
                         </div>
                       </div>
 
-                      <div className="border-t border-white/10 mt-4 pt-3 px-1 flex flex-wrap items-center justify-between text-xs text-text-muted">
+                      <div className="border-t border-border-subtle mt-4 pt-3 px-1 flex flex-wrap items-center justify-between text-xs text-text-muted">
                         <div className="flex items-center gap-5 text-[11.5px]">
                           <span className="flex items-center gap-1.5 text-text-secondary">
                             <CheckCircle2
@@ -442,7 +440,7 @@ export function Header({
               ))}
             </nav>
 
-            {/* 3. Right: Search, Phone, Primary Pill CTA & Mobile Trigger */}
+            {/* 3. Right: Search, Theme Switcher, Phone, Primary Pill CTA & Mobile Trigger */}
             <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
               <button
                 type="button"
@@ -452,16 +450,38 @@ export function Header({
                 className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all shrink-0 cursor-pointer ${
                   searchOpen
                     ? "btn-primary-solid"
-                    : "bg-white/[0.04] hover:bg-white/[0.08] border border-white/12 text-text-secondary hover:text-text-heading hover:border-accent-primary/60"
+                    : "bg-bg-subtle hover:bg-bg-subtle-hover border border-border-subtle text-text-secondary hover:text-text-heading hover:border-accent-primary/60"
                 }`}
               >
                 <Search className="w-4 h-4" />
               </button>
 
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={
+                  theme === "dark"
+                    ? "Switch to editorial light theme"
+                    : "Switch to cinema dark theme"
+                }
+                title={
+                  theme === "dark"
+                    ? "Switch to Warm Paper mode"
+                    : "Switch to Cinema Ink mode"
+                }
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-bg-subtle hover:bg-bg-subtle-hover border border-border-subtle text-text-secondary hover:text-text-heading hover:border-accent-primary/60 flex items-center justify-center transition-all shrink-0 cursor-pointer"
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+              </button>
+
               <a
                 href="tel:+442081234567"
                 aria-label="Call +44 20 8123 4567"
-                className="hidden sm:inline-flex h-10 px-3.5 rounded-full border border-white/14 bg-white/[0.03] hover:border-accent-primary hover:text-accent-primary items-center justify-center gap-2 text-xs font-semibold text-text-heading transition-all shrink-0"
+                className="hidden sm:inline-flex lg:hidden xl:inline-flex h-10 px-3.5 rounded-full border border-border-strong bg-bg-subtle hover:border-accent-primary hover:text-accent-primary items-center justify-center gap-2 text-xs font-semibold text-text-heading transition-all shrink-0"
               >
                 <Phone className="w-3.5 h-3.5 text-accent-primary shrink-0" />
                 <span className="hidden 2xl:inline whitespace-nowrap tracking-wide">
@@ -471,7 +491,7 @@ export function Header({
 
               <Link
                 href="/#contact"
-                className="btn-primary-cta hidden lg:inline-flex items-center gap-1.5 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full text-[10px] xl:text-[11px] shrink-0"
+                className="btn-primary-cta hidden lg:inline-flex items-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-full text-[10.5px] xl:text-[11px] shrink-0"
               >
                 <span>Start Project</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -480,7 +500,7 @@ export function Header({
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="lg:hidden relative w-10 h-10 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/14 text-text-heading flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                className="lg:hidden relative w-10 h-10 rounded-full bg-bg-subtle hover:bg-bg-subtle-hover border border-border-strong text-text-heading flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                 aria-label={
                   mobileMenuOpen
                     ? "Close Navigation Menu"
@@ -507,7 +527,7 @@ export function Header({
                 className="pb-5 pt-1 overflow-hidden relative z-20"
               >
                 <div className="relative max-w-2xl mx-auto">
-                  <div className="relative flex items-center p-1.5 rounded-full bg-[#0b0b0f] border border-white/14 shadow-[var(--shadow-card)] focus-within:border-accent-primary transition-all">
+                  <div className="relative flex items-center p-1.5 rounded-full bg-bg-card border border-border-strong shadow-[var(--shadow-card)] focus-within:border-accent-primary transition-all">
                     <Search
                       size={15}
                       className="absolute left-4 text-accent-primary"
@@ -533,14 +553,14 @@ export function Header({
                     <button
                       type="button"
                       onClick={() => setSearchOpen(false)}
-                      className="text-[10.5px] font-display font-bold uppercase tracking-[0.08em] text-text-muted hover:text-text-heading px-3 py-1 rounded-full hover:bg-white/[0.06] transition-colors cursor-pointer"
+                      className="text-[10.5px] font-display font-bold uppercase tracking-[0.08em] text-text-muted hover:text-text-heading px-3 py-1 rounded-full hover:bg-bg-subtle-hover transition-colors cursor-pointer"
                     >
                       ESC
                     </button>
                   </div>
 
                   {/* Instant Results Panel */}
-                  <div className="mt-2.5 rounded-[20px] bg-[#0b0b0f] border border-white/12 shadow-[var(--shadow-card-hover)] p-4 max-h-[60dvh] overflow-y-auto">
+                  <div className="mt-2.5 rounded-[20px] bg-bg-card border border-border-subtle shadow-[var(--shadow-card-hover)] p-4 max-h-[60dvh] overflow-y-auto">
                     {!searchResults ? (
                       <div className="flex flex-wrap items-center gap-2 text-xs">
                         <span className="editorial-eyebrow text-[10.5px] mr-1">
@@ -568,7 +588,7 @@ export function Header({
                             key={chip.label}
                             href={chip.href}
                             onClick={() => setSearchOpen(false)}
-                            className="px-3 py-1 rounded-full bg-white/[0.04] hover:bg-accent-primary/15 border border-white/10 hover:border-accent-primary/50 text-text-secondary hover:text-text-heading font-medium transition-colors"
+                            className="px-3 py-1 rounded-full bg-bg-subtle hover:bg-accent-primary/15 border border-border-subtle hover:border-accent-primary/50 text-text-secondary hover:text-text-heading font-medium transition-colors"
                           >
                             {chip.label}
                           </Link>
@@ -611,7 +631,7 @@ export function Header({
                                     setSearchOpen(false);
                                     setSearchQuery("");
                                   }}
-                                  className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-accent-primary/12 border border-white/10 hover:border-accent-primary/50 transition-colors"
+                                  className="flex items-center justify-between p-2.5 rounded-xl bg-bg-subtle hover:bg-accent-primary/12 border border-border-subtle hover:border-accent-primary/50 transition-colors"
                                 >
                                   <div className="min-w-0 pr-2">
                                     <div className="font-display text-xs font-bold text-text-heading truncate">
@@ -646,7 +666,7 @@ export function Header({
                                     setSearchOpen(false);
                                     setSearchQuery("");
                                   }}
-                                  className="flex items-center gap-2.5 p-2 rounded-xl bg-white/[0.03] hover:bg-accent-primary/12 border border-white/10 hover:border-accent-primary/50 transition-colors"
+                                  className="flex items-center gap-2.5 p-2 rounded-xl bg-bg-subtle hover:bg-accent-primary/12 border border-border-subtle hover:border-accent-primary/50 transition-colors"
                                 >
                                   <div className="relative w-11 h-8 rounded-lg overflow-hidden shrink-0 bg-[#050507] border border-white/10">
                                     <Image
@@ -686,7 +706,7 @@ export function Header({
                                     setSearchOpen(false);
                                     setSearchQuery("");
                                   }}
-                                  className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-accent-primary/12 border border-white/10 text-xs font-semibold text-text-heading"
+                                  className="flex items-center justify-between p-2.5 rounded-xl bg-bg-subtle hover:bg-accent-primary/12 border border-border-subtle text-xs font-semibold text-text-heading"
                                 >
                                   <span className="truncate pr-2">
                                     {faq.question}
@@ -710,7 +730,7 @@ export function Header({
         </div>
       </header>
 
-      {/* Fullscreen Editorial Dark Glass Mobile Navigation Overlay */}
+      {/* Fullscreen Editorial Mobile Navigation Overlay */}
       <AnimatePresence>
         {mobileMenuOpen ? (
           <motion.div
@@ -719,42 +739,57 @@ export function Header({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[100] bg-black/96 backdrop-blur-2xl flex flex-col justify-between text-text-primary overflow-hidden"
+            className="fixed inset-0 z-[100] bg-bg-primary/98 backdrop-blur-2xl flex flex-col justify-between text-text-primary overflow-hidden"
           >
             {/* Top Bar */}
-            <div className="flex items-center justify-between px-4 sm:px-6 h-[72px] sm:h-[84px] border-b border-white/10 shrink-0">
+            <div className="flex items-center justify-between px-4 sm:px-6 h-[72px] sm:h-[82px] border-b border-border-subtle shrink-0">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 select-none"
+                aria-label="Rejubliss 3D Animation Studios — Home"
+                className="flex items-center select-none shrink-0"
               >
-                <div className="relative flex items-center justify-center w-9 h-9 rounded-full border border-white/15 bg-white/[0.04]">
-                  <Image
-                    src="/images/logo-emblem.png"
-                    alt="Rejubliss 3D Animation Studios Logo"
-                    width={26}
-                    height={26}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-display text-base font-bold tracking-[-0.03em] text-text-heading leading-none">
-                    Rejubliss
-                  </span>
-                  <span className="text-[9px] uppercase tracking-[0.22em] text-accent-primary font-semibold mt-1">
-                    3D Animation Studios
-                  </span>
-                </div>
+                <Image
+                  src={
+                    theme === "light"
+                      ? "/images/logo-light.png"
+                      : "/images/logo.png"
+                  }
+                  alt="Rejubliss 3D Animation Studios"
+                  width={933}
+                  height={247}
+                  quality={82}
+                  sizes="160px"
+                  className="h-10 sm:h-11 w-auto object-contain"
+                />
               </Link>
 
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-text-heading flex items-center justify-center transition-colors cursor-pointer"
-                aria-label="Close menu"
-              >
-                <X className="w-4.5 h-4.5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={
+                    theme === "dark"
+                      ? "Switch to editorial light theme"
+                      : "Switch to cinema dark theme"
+                  }
+                  className="w-10 h-10 rounded-full bg-bg-subtle hover:bg-bg-subtle-hover border border-border-subtle text-text-heading flex items-center justify-center transition-colors cursor-pointer"
+                >
+                  {theme === "dark" ? (
+                    <Sun className="w-4 h-4" />
+                  ) : (
+                    <Moon className="w-4 h-4" />
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-10 h-10 rounded-full bg-bg-subtle hover:bg-bg-subtle-hover border border-border-strong text-text-heading flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4.5 h-4.5" />
+                </button>
+              </div>
             </div>
 
             {/* Center Editorial Hairline Rows + Sub-Capability Pills */}
@@ -771,7 +806,7 @@ export function Header({
                     setMobileMenuOpen(false);
                     setActiveTab("Home");
                   }}
-                  className="flex items-center justify-between py-4 border-b border-white/10 font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading hover:text-accent-primary transition-colors"
+                  className="flex items-center justify-between py-4 border-b border-border-subtle font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading hover:text-accent-primary transition-colors"
                 >
                   <span>Home</span>
                   <ArrowRight className="w-4.5 h-4.5 text-text-muted" />
@@ -781,7 +816,7 @@ export function Header({
               {/* Expandable Services Row with Pill Sub-Chips */}
               <motion.div
                 variants={drawerNavItemVariants}
-                className="border-b border-white/10 py-4"
+                className="border-b border-border-subtle py-4"
               >
                 <button
                   type="button"
@@ -822,7 +857,7 @@ export function Header({
                               setMobileMenuOpen(false);
                               setActiveTab("Services");
                             }}
-                            className="px-3.5 py-1.5 rounded-full border border-white/12 bg-white/[0.04] hover:border-accent-primary hover:text-accent-primary text-xs font-medium text-text-secondary transition-colors"
+                            className="px-3.5 py-1.5 rounded-full border border-border-subtle bg-bg-subtle hover:border-accent-primary hover:text-accent-primary text-xs font-medium text-text-secondary transition-colors"
                           >
                             {srv.title}
                           </Link>
@@ -844,7 +879,10 @@ export function Header({
                 </AnimatePresence>
               </motion.div>
 
-              {PRIMARY_NAV_ITEMS.map((item) => (
+              {[
+                ...PRIMARY_NAV_ITEMS,
+                { label: "Industries", href: "/#industries" },
+              ].map((item) => (
                 <motion.div key={item.label} variants={drawerNavItemVariants}>
                   <Link
                     href={item.href}
@@ -852,7 +890,7 @@ export function Header({
                       setMobileMenuOpen(false);
                       setActiveTab(item.label);
                     }}
-                    className="flex items-center justify-between py-4 border-b border-white/10 font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading hover:text-accent-primary transition-colors"
+                    className="flex items-center justify-between py-4 border-b border-border-subtle font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading hover:text-accent-primary transition-colors"
                   >
                     <span>{item.label}</span>
                     <ArrowRight className="w-4.5 h-4.5 text-text-muted" />
@@ -862,7 +900,7 @@ export function Header({
             </motion.div>
 
             {/* Bottom Pinned Studio Actions */}
-            <div className="px-4 sm:px-6 py-5 border-t border-white/10 bg-black/90 shrink-0 space-y-2.5">
+            <div className="px-4 sm:px-6 py-5 border-t border-border-subtle bg-bg-secondary shrink-0 space-y-2.5">
               <Link
                 href="/#contact"
                 onClick={() => setMobileMenuOpen(false)}

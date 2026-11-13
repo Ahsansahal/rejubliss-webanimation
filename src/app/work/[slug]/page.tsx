@@ -6,13 +6,13 @@ import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ArrowUpRight,
-  Award,
   CheckCircle2,
   Layers,
   Sparkles,
 } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { CaseStudyGalleryClient } from "@/components/work/CaseStudyGalleryClient";
 import { CaseStudyShareBar } from "@/components/work/CaseStudyShareBar";
 import {
@@ -136,7 +136,7 @@ export default async function CaseStudyPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -153,11 +153,11 @@ export default async function CaseStudyPage({ params }: Props) {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 50% 45% at 85% 16%, rgba(229, 55, 38, 0.14), transparent 70%)",
+              "radial-gradient(ellipse 50% 45% at 85% 16%, rgba(229, 55, 38, 0.12), transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
+        <div className="relative z-10 w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-border-subtle">
             <nav
               aria-label="Breadcrumb"
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted"
@@ -185,8 +185,8 @@ export default async function CaseStudyPage({ params }: Props) {
               <span className="px-3 py-1 rounded-full bg-accent-primary/14 border border-accent-primary/40 text-accent-primary text-[11px] font-semibold uppercase tracking-[0.12em]">
                 {project.caseStudy.projectTypeLabel}
               </span>
-              <span className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/12 text-text-secondary text-[11px] font-semibold uppercase tracking-[0.12em] inline-flex items-center gap-1.5">
-                <Award size={12} className="text-accent-primary" />
+              <span className="px-3 py-1 rounded-full bg-bg-subtle border border-border-subtle text-text-secondary text-[11px] font-semibold uppercase tracking-[0.12em] inline-flex items-center gap-1.5">
+                <Layers size={12} className="text-accent-primary" />
                 <span>{project.badge}</span>
               </span>
             </div>
@@ -214,30 +214,30 @@ export default async function CaseStudyPage({ params }: Props) {
               />
             </div>
 
-            <div className="lg:col-span-4 bg-[#0b0b0f] rounded-[20px] border border-white/10 p-5 sm:p-6 space-y-3 text-xs sm:text-sm">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+            <div className="lg:col-span-4 bg-bg-card rounded-[20px] border border-border-subtle p-5 sm:p-6 space-y-3 text-xs sm:text-sm shadow-[var(--shadow-card)]">
+              <div className="flex items-center justify-between border-b border-border-subtle pb-2.5 gap-3">
                 <span className="text-text-muted uppercase tracking-[0.14em] text-[11px] font-semibold">
                   {project.caseStudy.projectTypeLabel === "Client Case Study"
                     ? "Client"
                     : "Attribution"}
                 </span>
-                <span className="font-display font-bold text-text-heading text-xs sm:text-sm">
+                <span className="font-display font-bold text-text-heading text-xs sm:text-sm text-right">
                   {project.client}
                 </span>
               </div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+              <div className="flex items-center justify-between border-b border-border-subtle pb-2.5 gap-3">
                 <span className="text-text-muted uppercase tracking-[0.14em] text-[11px] font-semibold">
                   Sector
                 </span>
-                <span className="font-semibold text-text-heading">
+                <span className="font-semibold text-text-heading text-right">
                   {project.caseStudy.industry}
                 </span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <span className="text-text-muted uppercase tracking-[0.14em] text-[11px] font-semibold">
                   Scope Highlight
                 </span>
-                <span className="font-semibold text-accent-primary">
+                <span className="font-semibold text-accent-primary text-right">
                   {project.impactMetric}
                 </span>
               </div>
@@ -253,11 +253,11 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Structured Case Study Narrative */}
-      <section className="py-16 sm:py-22 bg-[#050507] border-t border-b border-white/10">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+      <section className="py-16 sm:py-22 bg-bg-secondary border-t border-b border-border-subtle">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Left 8 Cols: Challenge -> Direction -> Approach -> Final Output */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-6 sm:p-8">
+            <div className="bg-bg-card rounded-[22px] border border-border-subtle p-6 sm:p-8 shadow-[var(--shadow-card)]">
               <span className="editorial-eyebrow text-[11px] block mb-2">
                 01 · Project Challenge
               </span>
@@ -269,7 +269,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-6 sm:p-8">
+            <div className="bg-bg-card rounded-[22px] border border-border-subtle p-6 sm:p-8 shadow-[var(--shadow-card)]">
               <span className="editorial-eyebrow text-[11px] block mb-2">
                 02 · Creative Direction
               </span>
@@ -281,7 +281,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-6 sm:p-8">
+            <div className="bg-bg-card rounded-[22px] border border-border-subtle p-6 sm:p-8 shadow-[var(--shadow-card)]">
               <span className="editorial-eyebrow text-[11px] block mb-2">
                 03 · Production Approach
               </span>
@@ -293,7 +293,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-6 sm:p-8">
+            <div className="bg-bg-card rounded-[22px] border border-border-subtle p-6 sm:p-8 shadow-[var(--shadow-card)]">
               <span className="editorial-eyebrow text-[11px] block mb-2">
                 04 · Final Output
               </span>
@@ -314,7 +314,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
           {/* Right 4 Cols: Deliverables, Capabilities & Commission CTA */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-6 sm:p-7">
+            <div className="bg-bg-card rounded-[22px] border border-border-subtle p-6 sm:p-7 shadow-[var(--shadow-card)]">
               <h2 className="editorial-eyebrow text-[11px] mb-4">
                 Deliverables &amp; Scope
               </h2>
@@ -322,7 +322,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 {project.deliverables.map((item) => (
                   <li
                     key={item}
-                    className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-text-heading bg-[#050507] border border-white/10 rounded-xl px-3.5 py-2.5"
+                    className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-text-heading bg-bg-subtle border border-border-subtle rounded-xl px-3.5 py-2.5"
                   >
                     <CheckCircle2
                       size={15}
@@ -333,7 +333,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 ))}
               </ul>
 
-              <div className="mt-5 pt-5 border-t border-white/10">
+              <div className="mt-5 pt-5 border-t border-border-subtle">
                 <h3 className="editorial-eyebrow text-[10.5px] mb-2.5">
                   Technologies &amp; Craft
                 </h3>
@@ -341,7 +341,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium px-3 py-1 rounded-full bg-white/[0.04] text-text-secondary border border-white/10"
+                      className="text-xs font-medium px-3 py-1 rounded-full bg-bg-subtle text-text-secondary border border-border-subtle"
                     >
                       {tag}
                     </span>
@@ -350,7 +350,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </div>
 
               {relatedServices.length > 0 ? (
-                <div className="mt-5 pt-5 border-t border-white/10">
+                <div className="mt-5 pt-5 border-t border-border-subtle">
                   <h3 className="editorial-eyebrow text-[10.5px] mb-2.5">
                     Related Capabilities
                   </h3>
@@ -371,7 +371,7 @@ export default async function CaseStudyPage({ params }: Props) {
             </div>
 
             {/* Commission Similar Project Card */}
-            <div className="bg-[#0b0b0f] text-text-heading rounded-[22px] p-6 sm:p-7 border border-accent-primary/35 space-y-4">
+            <div className="bg-bg-card text-text-heading rounded-[22px] p-6 sm:p-7 border border-accent-primary/35 space-y-4 shadow-[var(--shadow-card)]">
               <div className="inline-flex items-center gap-1.5 editorial-eyebrow text-[11px]">
                 <Sparkles size={13} />
                 <span>Start a Similar Brief</span>
@@ -400,7 +400,7 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* Related Case Studies */}
       {otherProjects.length > 0 ? (
         <section className="py-18 bg-bg-primary">
-          <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+          <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-9">
               <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-text-heading">
                 More in{" "}
@@ -431,9 +431,9 @@ export default async function CaseStudyPage({ params }: Props) {
                 <Link
                   key={item.slug}
                   href={`/work/${item.slug}`}
-                  className="group bg-[#0b0b0f] rounded-[20px] border border-white/10 hover:border-accent-primary/50 overflow-hidden transition-all"
+                  className="group bg-bg-card rounded-[20px] border border-border-subtle hover:border-accent-primary/50 overflow-hidden transition-all shadow-[var(--shadow-card)]"
                 >
-                  <div className="relative aspect-[16/10] w-full bg-[#050507] overflow-hidden border-b border-white/10">
+                  <div className="relative aspect-[16/10] w-full bg-[#050507] overflow-hidden border-b border-border-subtle">
                     <Image
                       src={item.image}
                       alt={`${item.fullTitle} — ${item.client}`}
@@ -457,6 +457,7 @@ export default async function CaseStudyPage({ params }: Props) {
         </section>
       ) : null}
 
+      <FinalCtaSection />
       <Footer />
     </main>
   );

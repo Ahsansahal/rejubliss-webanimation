@@ -38,7 +38,7 @@ export function CaseStudyShareBar({
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-white/10">
+    <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-border-subtle">
       <span className="inline-flex items-center gap-1.5 editorial-eyebrow text-[10.5px] mr-1">
         <Share2 size={12} className="text-accent-primary" />
         <span>Share Case Study</span>
@@ -47,7 +47,7 @@ export function CaseStudyShareBar({
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0b0b0f] hover:bg-accent-primary/14 border border-white/12 hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors cursor-pointer"
+        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-bg-card hover:bg-accent-primary/14 border border-border-subtle hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors cursor-pointer"
       >
         {copied ? (
           <>
@@ -69,7 +69,7 @@ export function CaseStudyShareBar({
         onClick={() =>
           trackStudioEvent("case_study_shared", { slug, channel: "linkedin" })
         }
-        className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#0b0b0f] hover:bg-accent-primary/14 border border-white/12 hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors"
+        className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-bg-card hover:bg-accent-primary/14 border border-border-subtle hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors"
       >
         LinkedIn
       </a>
@@ -81,7 +81,7 @@ export function CaseStudyShareBar({
         onClick={() =>
           trackStudioEvent("case_study_shared", { slug, channel: "pinterest" })
         }
-        className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-[#0b0b0f] hover:bg-accent-primary/14 border border-white/12 hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors"
+        className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-bg-card hover:bg-accent-primary/14 border border-border-subtle hover:border-accent-primary/50 text-xs font-semibold text-text-secondary hover:text-text-heading transition-colors"
       >
         Pin Visual
       </a>

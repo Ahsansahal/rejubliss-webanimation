@@ -7,12 +7,14 @@ import { Hero } from "@/components/home/Hero";
 import { StudioStatsBar } from "@/components/home/StudioStatsBar";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { BenefitsSection } from "@/components/home/BenefitsSection";
+import { FlagshipReleasesSection } from "@/components/home/FlagshipReleasesSection";
 import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { IndustriesSection } from "@/components/home/IndustriesSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
+import { FaqSection } from "@/components/home/FaqSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
-import { ProjectInquirySection } from "@/components/home/ProjectInquirySection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
+import { ProjectInquirySection } from "@/components/home/ProjectInquirySection";
 import { STUDIO_SERVICES } from "@/data/services";
 import { STUDIO_FAQS } from "@/data/homepage";
 
@@ -49,9 +51,9 @@ export default function HomePage() {
       url: "https://rejubliss.co.uk",
       logo: {
         "@type": "ImageObject",
-        url: "https://rejubliss.co.uk/images/logo-emblem.png",
-        width: 512,
-        height: 512,
+        url: "https://rejubliss.co.uk/images/logo.png",
+        width: 933,
+        height: 247,
       },
       image:
         "https://rejubliss.co.uk/images/portfolio/rezilo-recovery/01-paddington-billboard.png",
@@ -152,35 +154,40 @@ export default function HomePage() {
       {/* Fixed Crystalline Header with Mega-Menu, Live Search & Theme Switcher */}
       <Header />
 
-      {/* 01. Hero / Introduction — Studio Positioning & Featured Showreel */}
+      {/* Hero — Cinematic 5:7 Split Layout with Unobstructed 3D Focal Stage */}
       <Hero />
 
-      {/* 02. Studio Statistics / Trust — Verified Figures & Selected Client Commissions */}
+      {/* Studio Foundation Strip — Verified Pipeline Figures & Client Commissions */}
       <StudioStatsBar />
 
-      {/* 03. Creative Services — Six Consolidated Disciplines & Deliverables */}
+      {/* 01. Creative Capabilities — Six Consolidated Disciplines & Sticky Showcase */}
       <ServicesSection />
 
-      {/* 04. Beyond Visuals / Business Benefits — Architectural Midnight-Navy Split */}
+      {/* 02. Commercial Advantage — Beyond Visuals Split */}
       <BenefitsSection />
 
-      {/* 05. Featured Work / Portfolio — Asymmetrical Bento Showcase + Strategic CTA */}
+      {/* 03. Flagship Releases — Interactive Multi-Asset Campaign Case Study Deck */}
+      <FlagshipReleasesSection />
+
+      {/* 04. Featured Work — Non-Overlapping Cross-Discipline Bento Showcase */}
       <PortfolioSection />
 
-      {/* 06. Industries We Serve — Sector Applications & Track Record */}
+      {/* 05. Sector Applications — Industries We Serve */}
       <IndustriesSection />
 
-      {/* 07. Six-Stage Production Process — Connected GSAP Timeline */}
+      {/* 06. Production Workflow — Six Connected Stages With Sign-Off Gates */}
       <ProcessSection />
 
-      {/* 08. Why Choose Rejubliss / Client Testimonials — Cohesive Studio Trust */}
+      {/* 07. Common Questions — Essential Production & Rights Answers */}
+      <FaqSection />
+
+      {/* 08. Client Endorsements & Studio Standards — Positioned Directly Before Final CTA */}
       <TestimonialsSection />
 
-      {/* 09. Project Inquiry Form / FAQs — Structured Brief & Essential Answers */}
+      {/* 09. Final CTA & Prominent Commission Brief Zone */}
+      <FinalCtaSection aboveBriefForm />
       <ProjectInquirySection />
 
-      {/* 10. Final CTA / Footer */}
-      <FinalCtaSection />
       <Footer />
     </main>
   );

@@ -8,10 +8,9 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Award,
-  Star,
+  Layers,
   CheckCircle2,
-  TrendingUp,
+  Sparkles,
   ArrowUpRight,
   Images,
   FileText,
@@ -107,30 +106,30 @@ function ModalGalleryContent({
       role="dialog"
       aria-modal="true"
       aria-label={`${project.title} case study gallery`}
-      className="relative w-full max-w-6xl max-h-[92dvh] bg-[#0b0b0f] rounded-[24px] overflow-hidden shadow-[var(--shadow-card-hover)] border border-white/12 grid grid-cols-1 lg:grid-cols-12 text-text-primary"
+      className="relative w-[96vw] max-w-[96vw] max-h-[92dvh] bg-bg-card rounded-[24px] overflow-hidden shadow-[var(--shadow-card-hover)] border border-border-strong grid grid-cols-1 lg:grid-cols-12 text-text-primary"
     >
       {/* Close Button */}
       <button
         type="button"
         onClick={onClose}
         aria-label="Close gallery"
-        className="absolute top-3.5 right-3.5 z-30 w-10 h-10 rounded-full bg-black/80 backdrop-blur-md text-text-secondary flex items-center justify-center hover:bg-accent-primary hover:text-black hover:border-accent-primary transition-all border border-white/15 cursor-pointer"
+        className="absolute top-3.5 right-3.5 z-30 w-10 h-10 rounded-full bg-black/80 backdrop-blur-md text-[#f5f4ef] flex items-center justify-center hover:bg-accent-primary hover:text-black hover:border-accent-primary transition-all border border-white/15 cursor-pointer"
       >
         <X size={18} />
       </button>
 
-      {/* Left Column: Main High-Res Lightbox Viewer + Thumbnail Filmstrip */}
-      <div className="lg:col-span-7 xl:col-span-8 bg-[#050507] relative flex flex-col justify-between min-h-[320px] sm:min-h-[440px] lg:min-h-[600px] max-h-[52dvh] lg:max-h-[92dvh] border-b lg:border-b-0 lg:border-r border-white/10">
+      {/* Left Column: True Cinema Lightbox Stage + Thumbnail Filmstrip */}
+      <div className="lg:col-span-7 xl:col-span-8 bg-[#050507] relative flex flex-col justify-between min-h-[320px] sm:min-h-[440px] lg:min-h-[600px] max-h-[52dvh] lg:max-h-[92dvh] border-b lg:border-b-0 lg:border-r border-border-subtle">
         {/* Top Counter Pill */}
         <div className="absolute top-4 left-4 z-20 flex flex-wrap items-center gap-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/14 text-text-heading text-[11px] font-semibold uppercase tracking-[0.12em]">
-            <Images size={12} className="text-accent-primary" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/14 text-[#f5f4ef] text-[11px] font-semibold uppercase tracking-[0.12em]">
+            <Images size={12} className="text-[#e53726]" />
             <span>
               {currentIndex + 1} / {total} {total === 1 ? "Visual" : "Visuals"}
             </span>
           </div>
           {project.caseStudy ? (
-            <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-accent-primary/40 text-accent-primary text-[11px] font-semibold uppercase tracking-[0.12em]">
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-[#e53726]/45 text-[#ff5a49] text-[11px] font-semibold uppercase tracking-[0.12em]">
               {project.caseStudy.projectTypeLabel}
             </span>
           ) : null}
@@ -165,7 +164,7 @@ function ModalGalleryContent({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous image"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-text-heading flex items-center justify-center transition-all cursor-pointer"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-[#f5f4ef] flex items-center justify-center transition-all cursor-pointer"
               >
                 <ChevronLeft size={20} />
               </button>
@@ -173,7 +172,7 @@ function ModalGalleryContent({
                 type="button"
                 onClick={handleNext}
                 aria-label="Next image"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-text-heading flex items-center justify-center transition-all cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-[#f5f4ef] flex items-center justify-center transition-all cursor-pointer"
               >
                 <ChevronRight size={20} />
               </button>
@@ -215,20 +214,18 @@ function ModalGalleryContent({
       </div>
 
       {/* Right Column: Case Study Details & CTA */}
-      <div className="lg:col-span-5 xl:col-span-4 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto max-h-[40dvh] lg:max-h-[92dvh] bg-[#0b0b0f]">
+      <div className="lg:col-span-5 xl:col-span-4 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto max-h-[40dvh] lg:max-h-[92dvh] bg-bg-card">
         <div className="space-y-4 pr-2">
-          {/* Badge & Rating */}
+          {/* Verified Discipline Badge & Asset Count */}
           <div className="flex flex-wrap items-center gap-2 pr-9">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-[0.12em] bg-accent-primary/14 text-accent-primary border border-accent-primary/35">
-              <Award size={12} />
+              <Layers size={12} />
               <span>{project.badge}</span>
             </span>
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/[0.04] text-text-heading border border-white/10">
-              <Star
-                size={11}
-                className="fill-accent-primary text-accent-primary"
-              />
-              <span>{project.rating.toFixed(1)}</span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-bg-subtle text-text-secondary border border-border-subtle">
+              <span>
+                {total} {total === 1 ? "Master Frame" : "Master Visuals"}
+              </span>
             </span>
           </div>
 
@@ -249,7 +246,7 @@ function ModalGalleryContent({
 
           {/* Tab Switcher when structured case study exists */}
           {project.caseStudy ? (
-            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-full bg-white/[0.04] border border-white/10">
+            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-full bg-bg-subtle border border-border-subtle">
               <button
                 type="button"
                 onClick={() => setDetailTab("overview")}
@@ -278,9 +275,9 @@ function ModalGalleryContent({
 
           {detailTab === "overview" || !project.caseStudy ? (
             <>
-              {/* Impact / Scope Summary */}
+              {/* Verified Production Scope Summary */}
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-primary/12 border border-accent-primary/35 text-xs font-semibold text-accent-primary">
-                <TrendingUp size={13} />
+                <Sparkles size={13} className="shrink-0" />
                 <span>
                   {project.caseStudy?.verifiedOutcome || project.impactMetric}
                 </span>
@@ -300,7 +297,7 @@ function ModalGalleryContent({
                   {project.deliverables.map((item) => (
                     <div
                       key={item}
-                      className="flex items-center gap-2 text-xs font-medium text-text-secondary bg-white/[0.03] border border-white/8 rounded-xl px-3 py-2"
+                      className="flex items-center gap-2 text-xs font-medium text-text-secondary bg-bg-subtle border border-border-subtle rounded-xl px-3 py-2"
                     >
                       <CheckCircle2
                         size={13}
@@ -314,7 +311,7 @@ function ModalGalleryContent({
             </>
           ) : (
             <div className="space-y-2.5 text-xs leading-relaxed">
-              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="p-3 rounded-xl bg-bg-subtle border border-border-subtle">
                 <span className="block editorial-eyebrow text-[10px] mb-1">
                   The Challenge
                 </span>
@@ -322,7 +319,7 @@ function ModalGalleryContent({
                   {project.caseStudy.challenge}
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="p-3 rounded-xl bg-bg-subtle border border-border-subtle">
                 <span className="block editorial-eyebrow text-[10px] mb-1">
                   Creative Direction
                 </span>
@@ -330,7 +327,7 @@ function ModalGalleryContent({
                   {project.caseStudy.creativeDirection}
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+              <div className="p-3 rounded-xl bg-bg-subtle border border-border-subtle">
                 <span className="block editorial-eyebrow text-[10px] mb-1">
                   Production Approach
                 </span>
@@ -351,7 +348,7 @@ function ModalGalleryContent({
         </div>
 
         {/* Bottom Actions */}
-        <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
+        <div className="pt-4 mt-4 border-t border-border-subtle space-y-2">
           <Link
             href={`/work/${slug}`}
             onClick={onClose}

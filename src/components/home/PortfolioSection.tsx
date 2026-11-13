@@ -29,16 +29,17 @@ const CATEGORIES: PortfolioCategory[] = [
   "Motion & Character",
 ];
 
-// Curated 7-project flagship showcase for the default homepage view:
-// Sums to 3 balanced asymmetrical Bento rows (7+5, 5+7, 4+4+4) with zero duplicates.
-const CURATED_FLAGSHIP_SLUGS = [
-  "desi-chai-london",
+// Act II of Portfolio: Cross-discipline Bento showcase featuring 7 distinct
+// works that do NOT duplicate the 4 Flagship Release campaigns above, while
+// expanding to all 18 productions on filter or "Show All 18 Productions".
+const CURATED_FEATURED_SLUGS = [
   "velox-automotive-commercial",
   "nexora-kinetic-web",
-  "scoopy-ice-cream",
-  "rezilo-recovery",
+  "lure-luxury-jewellery",
+  "strata-ecommerce-3d",
   "lumina-character-3d",
-  "g-natural-botanicals",
+  "gul-ahmed-campaigns",
+  "vortex-fluid-motion",
 ];
 
 const ANIMATION_SLUGS = new Set([
@@ -51,7 +52,7 @@ const ANIMATION_SLUGS = new Set([
 
 function getBentoSpanClass(index: number, isCuratedAll: boolean): {
   colSpan: string;
-  aspect: string;
+  frameHeight: string;
   sizes: string;
 } {
   if (isCuratedAll) {
@@ -59,54 +60,54 @@ function getBentoSpanClass(index: number, isCuratedAll: boolean): {
       case 0:
         return {
           colSpan: "lg:col-span-7",
-          aspect: "aspect-[16/10]",
+          frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
           sizes: "(max-width: 1024px) 96vw, 58vw",
         };
       case 1:
         return {
           colSpan: "lg:col-span-5",
-          aspect: "aspect-[16/10] lg:aspect-[16/12.8]",
+          frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
           sizes: "(max-width: 1024px) 96vw, 42vw",
         };
       case 2:
         return {
           colSpan: "lg:col-span-5",
-          aspect: "aspect-[16/10] lg:aspect-[16/12.8]",
+          frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
           sizes: "(max-width: 1024px) 96vw, 42vw",
         };
       case 3:
         return {
           colSpan: "lg:col-span-7",
-          aspect: "aspect-[16/10]",
+          frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
           sizes: "(max-width: 1024px) 96vw, 58vw",
         };
       default:
         return {
           colSpan: "lg:col-span-4",
-          aspect: "aspect-[4/3]",
+          frameHeight: "aspect-[4/3]",
           sizes: "(max-width: 768px) 96vw, (max-width: 1024px) 48vw, 32vw",
         };
     }
   }
 
-  // Filtered or expanded view: lead with a 7+5 pair when >=2 items, then 3-up
+  // Filtered or expanded view: lead with an aligned 7+5 pair, then clean 3-up rows
   if (index === 0) {
     return {
       colSpan: "lg:col-span-7",
-      aspect: "aspect-[16/10]",
+      frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
       sizes: "(max-width: 1024px) 96vw, 58vw",
     };
   }
   if (index === 1) {
     return {
       colSpan: "lg:col-span-5",
-      aspect: "aspect-[16/10] lg:aspect-[16/12.8]",
+      frameHeight: "aspect-[16/10] lg:aspect-auto lg:h-[420px] xl:h-[480px] 2xl:h-[540px]",
       sizes: "(max-width: 1024px) 96vw, 42vw",
     };
   }
   return {
     colSpan: "lg:col-span-4",
-    aspect: "aspect-[4/3]",
+    frameHeight: "aspect-[4/3]",
     sizes: "(max-width: 768px) 96vw, (max-width: 1024px) 48vw, 32vw",
   };
 }
@@ -117,7 +118,7 @@ function PortfolioBentoCard({
   onQuickView,
 }: {
   project: EnrichedProject;
-  span: { colSpan: string; aspect: string; sizes: string };
+  span: { colSpan: string; frameHeight: string; sizes: string };
   onQuickView: (project: EnrichedProject) => void;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -163,7 +164,7 @@ function PortfolioBentoCard({
     >
       {/* Dominant Visual Canvas */}
       <div
-        className={`relative w-full ${span.aspect} rounded-[20px] overflow-hidden bg-[#0b0b0f] border border-white/10 group-hover:border-accent-primary/50 shadow-[var(--shadow-card)] group-hover:shadow-[var(--shadow-card-hover)] transition-all duration-500`}
+        className={`relative w-full ${span.frameHeight} rounded-[20px] overflow-hidden bg-[#050507] border border-border-subtle group-hover:border-accent-primary/55 shadow-[var(--shadow-card)] group-hover:shadow-[var(--shadow-card-hover)] transition-all duration-500`}
       >
         <Link
           href={`/work/${project.slug}`}
@@ -180,16 +181,16 @@ function PortfolioBentoCard({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
         </Link>
 
-        {/* Top-Left & Top-Right Editorial Indicators */}
+        {/* Top-Left & Top-Right Editorial Indicators (Always dark glass over imagery) */}
         <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-none">
           {isMotionProject ? (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
-              <Play size={10} className="fill-accent-primary text-accent-primary" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#f5f4ef]">
+              <Play size={10} className="fill-[#e53726] text-[#e53726]" />
               <span>Motion / 3D</span>
             </span>
           ) : hasReelFrames ? (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
-              <Images size={11} className="text-accent-primary" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#f5f4ef]">
+              <Images size={11} className="text-[#e53726]" />
               <span>
                 {hovered
                   ? `${frameIdx + 1} / ${previewFrames.length}`
@@ -197,7 +198,7 @@ function PortfolioBentoCard({
               </span>
             </span>
           ) : (
-            <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
+            <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#f5f4ef]">
               {project.portfolioCategory}
             </span>
           )}
@@ -210,7 +211,7 @@ function PortfolioBentoCard({
               onQuickView(project);
             }}
             aria-label={`Quick gallery preview for ${project.title}`}
-            className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-text-heading transition-all cursor-pointer"
+            className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#f5f4ef] transition-all cursor-pointer"
           >
             <Expand size={11} />
             <span>Preview</span>
@@ -221,7 +222,7 @@ function PortfolioBentoCard({
         <Link
           href={`/work/${project.slug}`}
           aria-label={`Open ${project.title} case study`}
-          className="absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-text-heading group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300"
+          className="absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-[#f5f4ef] group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300"
         >
           <ArrowUpRight size={15} />
         </Link>
@@ -275,7 +276,7 @@ export function PortfolioSection({
 
   const curatedProjects = useMemo(() => {
     const bySlug = new Map(ALL_PORTFOLIO_PROJECTS.map((p) => [p.slug, p]));
-    return CURATED_FLAGSHIP_SLUGS.map((slug) => bySlug.get(slug)).filter(
+    return CURATED_FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(
       (p): p is EnrichedProject => Boolean(p)
     );
   }, []);
@@ -296,25 +297,33 @@ export function PortfolioSection({
       id="portfolio"
       ref={sectionRef}
       aria-labelledby="portfolio-heading"
-      className="relative py-22 sm:py-28 bg-bg-primary"
+      className={`relative py-22 sm:py-28 ${
+        showAllByDefault
+          ? "bg-bg-primary"
+          : "bg-bg-secondary border-b border-border-subtle"
+      }`}
     >
       {/* Legacy hash compatibility */}
-      <div
-        id="portfolio-spotlight"
-        className="absolute -top-24"
-        aria-hidden="true"
-      />
       <div id="featured-work" className="absolute -top-24" aria-hidden="true" />
+      {showAllByDefault ? (
+        <div
+          id="portfolio-spotlight"
+          className="absolute -top-24"
+          aria-hidden="true"
+        />
+      ) : null}
 
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         {/* Header + Discipline Filter Bar */}
         <div
           data-gsap-reveal
-          className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 pb-8 mb-10 sm:mb-12 border-b border-white/10"
+          className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 pb-8 mb-10 sm:mb-12 border-b border-border-subtle"
         >
           <div className="max-w-2xl">
             <span className="editorial-eyebrow block mb-3">
-              03 · Selected Work &amp; Case Studies
+              {showAllByDefault
+                ? "Complete Archive · All 18 Studio Productions"
+                : "04 · Featured Work — Cross-Discipline Showcase"}
             </span>
             <h2
               id="portfolio-heading"
@@ -333,7 +342,12 @@ export function PortfolioSection({
           >
             {CATEGORIES.map((cat) => {
               const isSelected = selectedCategory === cat;
-              const label = cat === "All" ? "Featured Work" : cat;
+              const label =
+                cat === "All"
+                  ? expandedAll
+                    ? `All ${ALL_PORTFOLIO_PROJECTS.length} Works`
+                    : "Selected Showcase"
+                  : cat;
               return (
                 <button
                   key={cat}
@@ -344,7 +358,7 @@ export function PortfolioSection({
                   className={`px-4 py-2 rounded-full text-[11.5px] font-semibold transition-all duration-200 cursor-pointer ${
                     isSelected
                       ? "btn-primary-solid"
-                      : "bg-[#0b0b0f] text-text-secondary hover:text-text-heading border border-white/10 hover:border-accent-primary/50"
+                      : "bg-bg-card text-text-secondary hover:text-text-heading border border-border-subtle hover:border-accent-primary/50"
                   }`}
                 >
                   {label}
@@ -354,7 +368,7 @@ export function PortfolioSection({
           </div>
         </div>
 
-        {/* Asymmetrical Bento Visual Grid (Zero Duplicate Projects) */}
+        {/* Asymmetrical Bento Visual Grid (Aligned Row Heights & Zero Overlap) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-11">
           {visibleProjects.map((project, index) => (
             <PortfolioBentoCard
@@ -369,7 +383,7 @@ export function PortfolioSection({
         {/* Post-Portfolio Conversion Strip */}
         <div
           data-gsap-reveal
-          className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-5"
+          className="mt-14 pt-8 border-t border-border-subtle flex flex-col md:flex-row md:items-center justify-between gap-5"
         >
           <div className="flex flex-wrap items-center gap-4">
             {isCuratedAll ? (
@@ -379,7 +393,7 @@ export function PortfolioSection({
                 className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs cursor-pointer"
               >
                 <span>
-                  Show All {ALL_PORTFOLIO_PROJECTS.length} Productions
+                  Explore All {ALL_PORTFOLIO_PROJECTS.length} Productions
                 </span>
               </button>
             ) : !showAllByDefault && selectedCategory === "All" ? (
@@ -392,24 +406,31 @@ export function PortfolioSection({
               </button>
             ) : null}
 
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.08em] font-bold text-text-secondary hover:text-accent-primary transition-colors"
-            >
-              <span>Full Case Study Index</span>
-              <ArrowUpRight size={14} className="text-accent-primary" />
-            </Link>
+            {!showAllByDefault ? (
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.08em] font-bold text-text-secondary hover:text-accent-primary transition-colors"
+              >
+                <span>Full Case Study Index</span>
+                <ArrowUpRight size={14} className="text-accent-primary" />
+              </Link>
+            ) : null}
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
             <span className="text-xs sm:text-sm text-text-muted hidden sm:inline">
               Planning a product reveal, CGI campaign, or interactive web build?
             </span>
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               onClick={(e) => {
-                e.preventDefault();
-                triggerProjectInquiry();
+                if (
+                  typeof window !== "undefined" &&
+                  window.location.pathname === "/"
+                ) {
+                  e.preventDefault();
+                  triggerProjectInquiry();
+                }
               }}
               className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs group"
             >
@@ -418,7 +439,7 @@ export function PortfolioSection({
                 size={15}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -160,7 +160,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -177,11 +177,11 @@ export default async function ServiceDetailPage({ params }: Props) {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 50% 45% at 85% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
+              "radial-gradient(ellipse 50% 45% at 85% 18%, rgba(229, 55, 38, 0.12), transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-white/10">
+        <div className="relative z-10 w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-border-subtle">
             <nav
               aria-label="Breadcrumb"
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted"
@@ -214,7 +214,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/12 text-accent-primary text-[11px] font-semibold uppercase tracking-[0.18em]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bg-subtle border border-border-subtle text-accent-primary text-[11px] font-semibold uppercase tracking-[0.18em]">
                 <Sparkles size={12} />
                 <span>{service.badge} · London &amp; Worldwide</span>
               </div>
@@ -229,7 +229,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
               {/* Strategic Fit Cards */}
               <div className="grid grid-cols-1 gap-3 pt-1">
-                <div className="p-4 sm:p-5 rounded-[18px] bg-[#0b0b0f] border border-white/10">
+                <div className="p-4 sm:p-5 rounded-[18px] bg-bg-card border border-border-subtle">
                   <span className="editorial-eyebrow text-[10.5px] block mb-1.5">
                     What We Create
                   </span>
@@ -237,7 +237,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     {service.whatWeCreate}
                   </p>
                 </div>
-                <div className="p-4 sm:p-5 rounded-[18px] bg-[#0b0b0f] border border-white/10">
+                <div className="p-4 sm:p-5 rounded-[18px] bg-bg-card border border-border-subtle">
                   <span className="editorial-eyebrow text-[10.5px] block mb-1.5">
                     Ideal Client Fit
                   </span>
@@ -271,7 +271,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
             {/* Visual Composition */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="relative aspect-[16/10] w-full rounded-[22px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card-hover)]">
+              <div className="relative aspect-[16/10] w-full rounded-[22px] overflow-hidden bg-[#050507] border border-border-subtle shadow-[var(--shadow-card-hover)]">
                 <Image
                   src={service.heroImage}
                   alt={`${service.title} production frame by Rejubliss London`}
@@ -283,7 +283,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative aspect-[16/10] rounded-[18px] overflow-hidden bg-[#0b0b0f] border border-white/10">
+                <div className="relative aspect-[16/10] rounded-[18px] overflow-hidden bg-[#050507] border border-border-subtle">
                   <Image
                     src={service.secondaryImage}
                     alt={`${service.title} secondary studio visual`}
@@ -292,7 +292,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     className="object-cover"
                   />
                 </div>
-                <div className="rounded-[18px] bg-[#0b0b0f] text-text-heading p-5 border border-white/10 flex flex-col justify-between">
+                <div className="rounded-[18px] bg-bg-card text-text-heading p-5 border border-border-subtle flex flex-col justify-between">
                   <div className="flex items-center gap-2 editorial-eyebrow text-[10.5px]">
                     <Wrench size={13} className="text-accent-primary" />
                     <span>Studio Pipeline</span>
@@ -301,7 +301,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     {service.toolsAndPipeline.map((tool) => (
                       <span
                         key={tool}
-                        className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-text-secondary"
+                        className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-bg-subtle border border-border-subtle text-text-secondary"
                       >
                         {tool}
                       </span>
@@ -318,9 +318,9 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 02. Business Problems Solved & What Is Included */}
-      <section className="py-18 bg-[#050507] border-t border-b border-white/10">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+      <section className="py-18 bg-bg-secondary border-t border-b border-border-subtle">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-bg-card rounded-[22px] border border-border-subtle p-7 sm:p-8 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
               <Target size={14} />
               <span>Commercial Challenges Solved</span>
@@ -344,7 +344,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+          <div className="bg-bg-card rounded-[22px] border border-border-subtle p-7 sm:p-8 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
               <Layers size={14} />
               <span>End-to-End Scope</span>
@@ -371,9 +371,9 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 03. Deliverables & Commercial Applications */}
-      <section className="py-18 bg-bg-primary border-b border-white/10">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+      <section className="py-18 bg-bg-primary border-b border-border-subtle">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-bg-card rounded-[22px] border border-border-subtle p-7 sm:p-8 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
               <FileCheck2 size={14} />
               <span>Expected Deliverables</span>
@@ -397,7 +397,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+          <div className="bg-bg-card rounded-[22px] border border-border-subtle p-7 sm:p-8 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
               <Sparkles size={14} />
               <span>Benefits &amp; Channels</span>
@@ -424,8 +424,8 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 04. Service Production Process & Industries Served */}
-      <section className="py-18 sm:py-22 bg-[#050507] border-b border-white/10">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 space-y-16">
+      <section className="py-18 sm:py-22 bg-bg-secondary border-b border-border-subtle">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 space-y-16">
           {/* Production Workflow */}
           <div>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
@@ -450,7 +450,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {service.processHighlights.map((item, idx) => (
                 <div
                   key={item.step}
-                  className="p-6 rounded-[20px] bg-[#0b0b0f] border border-white/10"
+                  className="p-6 rounded-[20px] bg-bg-card border border-border-subtle shadow-[var(--shadow-card)]"
                 >
                   <span className="editorial-index block mb-2">
                     0{idx + 1}
@@ -468,7 +468,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
           {/* Industries Served + Why Choose Rejubliss */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-7 bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+            <div className="lg:col-span-7 bg-bg-card rounded-[22px] border border-border-subtle p-7 sm:p-8 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
                 <Building2 size={14} />
                 <span>Industries Served</span>
@@ -480,7 +480,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 {service.industriesServed.map((ind) => (
                   <div
                     key={ind.sector}
-                    className="p-4 rounded-[18px] bg-[#050507] border border-white/10"
+                    className="p-4 rounded-[18px] bg-bg-subtle border border-border-subtle"
                   >
                     <h3 className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-text-heading mb-1.5">
                       {ind.sector}
@@ -493,7 +493,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-[#0b0b0f] text-text-heading rounded-[22px] border border-white/10 p-7 sm:p-8 space-y-5">
+            <div className="lg:col-span-5 bg-bg-card text-text-heading rounded-[22px] border border-border-subtle p-7 sm:p-8 space-y-5 shadow-[var(--shadow-card)]">
               <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
                 <ShieldCheck size={14} />
                 <span>Why Choose Rejubliss</span>
@@ -501,7 +501,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading">
                 What Sets Our London Studio Apart
               </h2>
-              <div className="divide-y divide-white/10">
+              <div className="divide-y divide-border-subtle">
                 {service.whyChoosePoints.map((pt) => (
                   <div key={pt.title} className="py-4 first:pt-0 last:pb-0">
                     <h3 className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-accent-primary mb-1">
@@ -520,8 +520,8 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {/* 05. Related Portfolio Case Studies */}
       {relatedProjects.length > 0 ? (
-        <section className="py-18 sm:py-22 bg-bg-primary border-b border-white/10">
-          <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        <section className="py-18 sm:py-22 bg-bg-primary border-b border-border-subtle">
+          <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
             <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
               <div>
                 <span className="editorial-eyebrow block mb-2">
@@ -545,10 +545,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <Link
                   key={proj.slug}
                   href={`/work/${proj.slug}`}
-                  className="group bg-[#0b0b0f] rounded-[20px] border border-white/10 hover:border-accent-primary/50 overflow-hidden flex flex-col justify-between transition-all"
+                  className="group bg-bg-card rounded-[20px] border border-border-subtle hover:border-accent-primary/50 overflow-hidden flex flex-col justify-between transition-all shadow-[var(--shadow-card)]"
                 >
                   <div>
-                    <div className="relative aspect-[16/10] w-full bg-[#050507] overflow-hidden border-b border-white/10">
+                    <div className="relative aspect-[16/10] w-full bg-[#050507] overflow-hidden border-b border-border-subtle">
                       <Image
                         src={proj.image}
                         alt={`${proj.fullTitle} — ${proj.client}`}
@@ -583,9 +583,9 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* 06. Service-Specific FAQs */}
       <section
         aria-labelledby="service-faq-heading"
-        className="py-18 sm:py-22 bg-[#050507] border-b border-white/10"
+        className="py-18 sm:py-22 bg-bg-secondary border-b border-border-subtle"
       >
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4 space-y-3">
             <div className="inline-flex items-center gap-2 editorial-eyebrow text-[11px]">
               <HelpCircle size={14} />
@@ -614,7 +614,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             {service.faqs.map((faq, idx) => (
               <div
                 key={faq.question}
-                className="p-6 rounded-[20px] bg-[#0b0b0f] border border-white/10 space-y-2.5"
+                className="p-6 rounded-[20px] bg-bg-card border border-border-subtle space-y-2.5 shadow-[var(--shadow-card)]"
               >
                 <span className="editorial-index text-xs block">
                   0{idx + 1}
@@ -633,7 +633,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {/* 07. Complementary Studio Services */}
       <section className="py-16 bg-bg-primary">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-7">
             <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading">
               Explore Complementary Studio Services
@@ -651,7 +651,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Link
                 key={item.slug}
                 href={`/services/${item.slug}`}
-                className="p-5 rounded-[20px] bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 transition-all group"
+                className="p-5 rounded-[20px] bg-bg-card border border-border-subtle hover:border-accent-primary/50 transition-all group shadow-[var(--shadow-card)]"
               >
                 <span className="editorial-eyebrow text-[10px] block mb-1.5">
                   {item.badge}

@@ -59,7 +59,7 @@ export default function TermsPage() {
       />
       <Header />
 
-      <article className="pt-30 pb-22 sm:pt-36 max-w-4xl w-full mx-auto px-4 sm:px-6 md:px-12">
+      <article className="pt-30 pb-22 sm:pt-36 w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         <nav
           aria-label="Breadcrumb"
           className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-5"
@@ -77,12 +77,12 @@ export default function TermsPage() {
         <h1 className="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-[-0.035em] text-text-heading mb-3">
           Terms &amp; Conditions
         </h1>
-        <p className="text-xs sm:text-sm uppercase tracking-[0.14em] text-text-muted pb-8 mb-8 border-b border-white/10">
+        <p className="text-xs sm:text-sm uppercase tracking-[0.14em] text-text-muted pb-8 mb-8 border-b border-border-subtle">
           Last updated: 2026 · Rejubliss 3D Animation Studios, London, United
           Kingdom
         </p>
 
-        <div className="space-y-8 text-sm sm:text-base text-text-secondary leading-relaxed bg-[#0b0b0f] border border-white/10 rounded-[22px] p-6 sm:p-10 shadow-[var(--shadow-card)]">
+        <div className="space-y-8 text-sm sm:text-base text-text-secondary leading-relaxed bg-bg-card border border-border-subtle rounded-[22px] p-6 sm:p-10 shadow-[var(--shadow-card)]">
           <section className="space-y-2.5">
             <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
               <span className="text-accent-primary mr-2">01.</span>
@@ -98,7 +98,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-2.5 pt-6 border-t border-white/10">
+          <section className="space-y-2.5 pt-6 border-t border-border-subtle">
             <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
               <span className="text-accent-primary mr-2">02.</span>
               Milestone Approvals &amp; Revisions
@@ -112,7 +112,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-2.5 pt-6 border-t border-white/10">
+          <section className="space-y-2.5 pt-6 border-t border-border-subtle">
             <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
               <span className="text-accent-primary mr-2">03.</span>
               Intellectual Property &amp; Portfolio Display
@@ -127,7 +127,7 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="space-y-2.5 pt-6 border-t border-white/10">
+          <section className="space-y-2.5 pt-6 border-t border-border-subtle">
             <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
               <span className="text-accent-primary mr-2">04.</span>
               Studio Enquiries

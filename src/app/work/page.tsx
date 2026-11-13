@@ -74,7 +74,7 @@ export default function WorkIndexPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -83,7 +83,7 @@ export default function WorkIndexPage() {
       />
       <Header />
 
-      <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16 bg-bg-primary border-b border-white/10 overflow-hidden">
+      <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16 bg-bg-primary border-b border-border-subtle overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
@@ -92,7 +92,7 @@ export default function WorkIndexPage() {
               "radial-gradient(ellipse 50% 45% at 84% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        <div className="relative z-10 w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-6"

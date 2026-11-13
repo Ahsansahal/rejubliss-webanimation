@@ -80,7 +80,7 @@ export default function ServicesIndexPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -90,16 +90,16 @@ export default function ServicesIndexPage() {
       <Header />
 
       {/* Editorial Hero Header */}
-      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-18 bg-bg-primary border-b border-white/10 overflow-hidden">
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-18 bg-bg-primary border-b border-border-subtle overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 50% 45% at 84% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
+              "radial-gradient(ellipse 50% 45% at 84% 18%, rgba(229, 55, 38, 0.12), transparent 70%)",
           }}
         />
-        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        <div className="relative z-10 w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-6"
@@ -149,16 +149,16 @@ export default function ServicesIndexPage() {
 
       {/* All 9 Service Cards */}
       <section className="py-18 sm:py-24 bg-bg-primary">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {STUDIO_SERVICES.map((srv, idx) => (
               <article
                 key={srv.slug}
-                className="group rounded-[22px] bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all overflow-hidden grid grid-cols-1 sm:grid-cols-12"
+                className="group rounded-[22px] bg-bg-card border border-border-subtle hover:border-accent-primary/50 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all overflow-hidden grid grid-cols-1 sm:grid-cols-12"
               >
                 <Link
                   href={`/services/${srv.slug}`}
-                  className="sm:col-span-5 relative min-h-[230px] bg-[#050507] block overflow-hidden border-b sm:border-b-0 sm:border-r border-white/10"
+                  className="sm:col-span-5 relative min-h-[230px] bg-[#050507] block overflow-hidden border-b sm:border-b-0 sm:border-r border-border-subtle"
                 >
                   <Image
                     src={srv.heroImage}
@@ -168,7 +168,7 @@ export default function ServicesIndexPage() {
                     sizes="(max-width: 640px) 95vw, 35vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-semibold uppercase tracking-[0.14em] text-text-heading">
+                  <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#f5f4ef]">
                     {srv.badge}
                   </span>
                 </Link>
@@ -207,7 +207,7 @@ export default function ServicesIndexPage() {
                     </ul>
                   </div>
 
-                  <div className="pt-3.5 border-t border-white/10 flex items-center justify-between gap-3">
+                  <div className="pt-3.5 border-t border-border-subtle flex items-center justify-between gap-3">
                     <Link
                       href={`/services/${srv.slug}`}
                       className="inline-flex items-center gap-1.5 font-display text-[11px] uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight transition-colors"
@@ -230,8 +230,8 @@ export default function ServicesIndexPage() {
       </section>
 
       {/* Commissionable Solutions Summary */}
-      <section className="py-18 sm:py-22 bg-[#050507] border-t border-b border-white/10">
-        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <section className="py-18 sm:py-22 bg-bg-secondary border-t border-b border-border-subtle">
+        <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
           <div className="mb-10">
             <span className="editorial-eyebrow block mb-2.5">
               02 · Production Suites
@@ -246,7 +246,7 @@ export default function ServicesIndexPage() {
             {SOLUTION_GROUPS.map((group, idx) => (
               <div
                 key={group.id}
-                className="rounded-[22px] bg-[#0b0b0f] border border-white/10 p-6 sm:p-7 shadow-[var(--shadow-card)]"
+                className="rounded-[22px] bg-bg-card border border-border-subtle p-6 sm:p-7 shadow-[var(--shadow-card)]"
               >
                 <span className="editorial-eyebrow text-[11px]">
                   0{idx + 1} · {group.eyebrow}
@@ -261,7 +261,7 @@ export default function ServicesIndexPage() {
                   {group.solutions.map((sol) => (
                     <li
                       key={sol.id}
-                      className="flex items-center justify-between gap-2 text-xs font-semibold text-text-heading py-2 border-t border-white/10"
+                      className="flex items-center justify-between gap-2 text-xs font-semibold text-text-heading py-2 border-t border-border-subtle"
                     >
                       <span>{sol.title}</span>
                       <Link

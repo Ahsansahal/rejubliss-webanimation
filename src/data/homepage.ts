@@ -70,24 +70,24 @@ export interface FaqItem {
 
 export const STUDIO_STATS = [
   {
-    value: "100+",
-    label: "Projects",
-    detail: "3D, CGI, motion & web deliveries",
+    value: "09",
+    label: "Specialist Studios",
+    detail: "3D, CGI, motion, character & WebGL",
   },
   {
-    value: "50+",
-    label: "Brands",
-    detail: "Consumer, retail & tech partners",
+    value: "18",
+    label: "Published Studies",
+    detail: "10 client suites & 8 R&D showcases",
   },
   {
-    value: "15+",
-    label: "Awards",
-    detail: "Design, CGI & interactive honours",
+    value: "115+",
+    label: "Delivered Visuals",
+    detail: "Packaging, London OOH, print & motion",
   },
   {
-    value: "380+",
-    label: "Ratings",
-    detail: "Verified client project feedback",
+    value: "4K",
+    label: "Master Pipeline",
+    detail: "Broadcast, 300 DPI OOH & 60fps WebGL",
   },
 ] as const;
 
@@ -454,7 +454,7 @@ export const CLIENT_TESTIMONIALS: ClientTestimonial[] = [
   {
     id: "emily-carter",
     quote:
-      "Rejubliss transformed our vision into a beautiful website and animation. Their creativity, professionalism, and attention to detail are outstanding!",
+      "Rejubliss transformed our vision into a cohesive interactive web platform and 3D motion system. Their creative direction, responsiveness, and technical attention to detail stood out at every milestone.",
     author: "Emily Carter",
     initials: "EC",
     role: "Marketing Director",
@@ -467,13 +467,14 @@ export const CLIENT_TESTIMONIALS: ClientTestimonial[] = [
   {
     id: "marcus-vance",
     quote:
-      "The 3D product animations exceeded all our expectations. Our customer conversion rate increased by 42% after launching the new visual experience.",
+      "The 3D product animations and photorealistic renders exceeded our expectations—giving our team broadcast-grade launch visuals and clear hardware storytelling well ahead of release.",
     author: "Marcus Vance",
     initials: "MV",
     role: "VP of Product",
     company: "Avelon",
     rating: 5,
-    projectContext: "3D Product Visualization & Launch Experience",
+    projectContext: "3D Product Visualization & Launch Film",
+    projectSlug: "rezilo-recovery",
   },
 ];
 
@@ -531,12 +532,12 @@ export const VERIFIED_CLIENT_BRANDS = [
 ] as const;
 
 export const STUDIO_ACCOLADES = [
-  "FWA of the Day",
-  "Vimeo Staff Pick",
-  "CSSDA Winner",
-  "Motion Design Award",
-  "Commercial Gold",
-  "Broadcast Excellence",
+  "London, UK Studio",
+  "Cinema 4D · Octane · Houdini",
+  "Unreal Engine 5 Pipeline",
+  "Three.js & React 19 WebGL",
+  "300 DPI Print & OOH Ready",
+  "NDA-Protected Production",
 ] as const;
 
 export const STUDIO_FAQS: FaqItem[] = [

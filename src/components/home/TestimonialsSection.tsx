@@ -3,7 +3,12 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Award, Quote, ShieldCheck, Star } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Quote,
+  ShieldCheck,
+} from "lucide-react";
 import { CLIENT_TESTIMONIALS, STUDIO_ACCOLADES } from "@/data/homepage";
 import { useGsapSectionReveal } from "@/lib/use-gsap-reveal";
 
@@ -43,18 +48,18 @@ export function TestimonialsSection() {
       id="testimonials"
       ref={sectionRef}
       aria-labelledby="testimonials-heading"
-      className="relative py-22 sm:py-28 bg-[#050507] border-t border-b border-white/10"
+      className="relative py-22 sm:py-28 bg-bg-secondary border-b border-border-subtle"
     >
       {/* Backwards-compatible anchor for merged Why Choose Rejubliss */}
       <div id="why-rejubliss" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-start">
-          {/* Left Column: Why Choose Rejubliss (Unboxed Studio Pillars + Accolades) */}
+          {/* Left Column: Why Choose Rejubliss + Verified Pipeline Standards */}
           <div data-gsap-reveal className="lg:col-span-5 space-y-8">
             <div>
               <span className="editorial-eyebrow block mb-3">
-                06 · Why Choose Rejubliss
+                08 · Client Endorsements &amp; Studio Standards
               </span>
               <h2
                 id="testimonials-heading"
@@ -73,7 +78,7 @@ export function TestimonialsSection() {
             </div>
 
             {/* 4 Unboxed Hairline Studio Pillars */}
-            <div className="border-t border-white/10 divide-y divide-white/10">
+            <div className="border-t border-border-subtle divide-y divide-border-subtle">
               {STUDIO_PILLARS.map((pillar) => (
                 <div key={pillar.number} className="py-5 flex gap-4">
                   <span className="editorial-index pt-0.5 shrink-0">
@@ -91,20 +96,20 @@ export function TestimonialsSection() {
               ))}
             </div>
 
-            {/* Compact Studio Recognition Badges */}
+            {/* Verified Technical Pipeline & Delivery Standards */}
             <div className="pt-1 space-y-3">
               <div className="flex items-center gap-2 editorial-eyebrow text-[10.5px]">
                 <ShieldCheck size={14} className="text-accent-primary" />
-                <span>London Studio · Worldwide Delivery · Industry Honours</span>
+                <span>Technical Pipeline &amp; Delivery Standards</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {STUDIO_ACCOLADES.map((accolade) => (
+                {STUDIO_ACCOLADES.map((credential) => (
                   <span
-                    key={accolade}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0b0b0f] border border-white/10 text-xs font-medium text-text-secondary"
+                    key={credential}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bg-card border border-border-subtle text-xs font-medium text-text-secondary"
                   >
-                    <Award size={12} className="text-accent-primary" />
-                    <span>{accolade}</span>
+                    <CheckCircle2 size={12} className="text-accent-primary" />
+                    <span>{credential}</span>
                   </span>
                 ))}
               </div>
@@ -116,39 +121,32 @@ export function TestimonialsSection() {
             data-gsap-reveal
             className="lg:col-span-7 flex flex-col justify-between gap-6 lg:pt-2"
           >
-            {CLIENT_TESTIMONIALS.map((item) => (
+            {CLIENT_TESTIMONIALS.map((item, idx) => (
               <blockquote
                 key={item.id}
-                className="relative bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-10 shadow-[var(--shadow-card)]"
+                className="relative bg-bg-card rounded-[24px] border border-border-subtle p-7 sm:p-10 shadow-[var(--shadow-card)]"
               >
-                <div className="flex items-center justify-between gap-4 mb-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                   <span className="inline-flex items-center gap-2 editorial-eyebrow text-[11px]">
                     <Quote size={15} className="text-accent-primary" />
-                    <span>Verified Client Voice</span>
+                    <span>
+                      0{idx + 1} · Client Endorsement
+                    </span>
                   </span>
-                  <div
-                    role="img"
-                    className="flex items-center gap-1 text-accent-primary"
-                    aria-label={`${item.rating} out of 5 stars`}
-                  >
-                    {[...Array(item.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={13}
-                        className="fill-current text-accent-primary"
-                      />
-                    ))}
-                  </div>
+
+                  <span className="px-3 py-1 rounded-full text-[10.5px] font-semibold uppercase tracking-[0.14em] bg-bg-subtle border border-border-subtle text-text-muted">
+                    {item.company}
+                  </span>
                 </div>
 
-                <p className="font-sans text-lg sm:text-2xl text-text-heading leading-relaxed font-medium mb-8">
+                <p className="font-sans text-lg sm:text-[22px] text-text-heading leading-[1.5] font-medium mb-8">
                   &ldquo;{item.quote}&rdquo;
                 </p>
 
-                <footer className="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <footer className="pt-5 border-t border-border-subtle flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-3.5">
                     {item.avatar ? (
-                      <div className="relative w-11 h-11 rounded-full overflow-hidden border border-white/15 shrink-0">
+                      <div className="relative w-11 h-11 rounded-full overflow-hidden border border-border-strong shrink-0">
                         <Image
                           src={item.avatar}
                           alt={item.author}

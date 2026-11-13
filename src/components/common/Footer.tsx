@@ -3,10 +3,19 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  Mail,
+} from "lucide-react";
 import { trackStudioEvent } from "@/lib/analytics";
+import { useTheme } from "@/components/common/ThemeProvider";
 
 export function Footer() {
+  const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<
@@ -86,27 +95,39 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative w-full bg-bg-primary border-t border-white/10 overflow-hidden">
-      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 pb-12 sm:pb-16">
-        {/* Main Top Row */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16 pb-14">
-          {/* Left: Studio Identity & Dispatches Form */}
-          <div className="flex flex-col items-start gap-5 max-w-md w-full">
-            <span className="editorial-eyebrow">
-              London, United Kingdom · 3D, CGI &amp; WebGL Studio
-            </span>
+    <footer className="relative w-full bg-bg-primary border-t border-border-subtle overflow-hidden">
+      <div className="w-[97%] max-w-[97%] mx-auto px-2 sm:px-4 lg:px-6 pt-16 sm:pt-20 pb-12 sm:pb-16">
+        {/* Top Row: Studio Dispatches Card + Structured Editorial Navigation */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 items-start">
+          {/* Left (5 cols): Studio Identity & Framed Newsletter Card */}
+          <div className="lg:col-span-5 flex flex-col items-start gap-6">
+            <div>
+              <span className="editorial-eyebrow block mb-2.5">
+                London, United Kingdom · 3D, CGI &amp; WebGL Studio
+              </span>
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-md">
+                Cinematic 3D animation, photorealistic CGI product
+                visualization, motion storytelling, and interactive WebGL web
+                experiences engineered for ambitious brands.
+              </p>
+            </div>
 
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-              Cinematic 3D animation, photorealistic CGI product visualization,
-              motion storytelling, and interactive WebGL web experiences
-              engineered for ambitious brands.
-            </p>
+            {/* Framed Studio Dispatches / Newsletter Module */}
+            <div className="w-full rounded-[22px] bg-bg-card border border-border-subtle p-5 sm:p-6 shadow-[var(--shadow-card)]">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Mail size={14} className="text-accent-primary shrink-0" />
+                <span className="font-display text-xs sm:text-sm font-bold tracking-[-0.02em] text-text-heading">
+                  Studio Dispatches &amp; 4K Reel Drops
+                </span>
+              </div>
+              <p className="text-xs text-text-muted leading-relaxed mb-4">
+                Quarterly case-study breakdowns, CGI look-development notes, and
+                new showreel releases. Zero spam.
+              </p>
 
-            {/* Newsletter Form */}
-            <div className="w-full pt-1">
               <form
                 onSubmit={handleSubscribe}
-                className="flex items-center gap-2 p-1.5 rounded-full bg-[#0b0b0f] border border-white/12 focus-within:border-accent-primary transition-all"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:p-1.5 sm:rounded-full sm:bg-bg-input sm:border sm:border-border-subtle focus-within:border-accent-primary transition-all"
               >
                 {/* Honeypot field */}
                 <input
@@ -121,18 +142,18 @@ export function Footer() {
                 />
                 <input
                   type="email"
-                  placeholder="Business email for reel & CGI updates"
+                  placeholder="Enter your business email"
                   aria-label="Email address for studio newsletter"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-transparent px-4 py-2 text-xs sm:text-sm text-text-primary placeholder:text-text-muted outline-none flex-1 font-medium min-w-0"
+                  className="rounded-full sm:rounded-none bg-bg-input sm:bg-transparent border border-border-subtle sm:border-0 px-4 py-2.5 sm:py-2 text-xs sm:text-sm text-text-primary placeholder:text-text-muted outline-none flex-1 font-medium min-w-0"
                 />
                 <button
                   type="submit"
                   disabled={status === "submitting"}
                   aria-label="Subscribe"
-                  className="btn-primary-cta shrink-0 px-5 py-2.5 rounded-full text-[11px] flex items-center gap-1.5 cursor-pointer disabled:opacity-70"
+                  className="btn-primary-cta shrink-0 px-5 py-2.5 rounded-full text-[11px] flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-70"
                 >
                   {status === "submitting" ? (
                     <>
@@ -149,7 +170,7 @@ export function Footer() {
               </form>
 
               {status === "success" ? (
-                <div className="flex items-center gap-1.5 text-xs text-accent-primary font-semibold mt-2.5 pl-2">
+                <div className="flex items-center gap-1.5 text-xs text-accent-primary font-semibold mt-3">
                   <CheckCircle2
                     size={13}
                     className="text-accent-primary shrink-0"
@@ -159,7 +180,7 @@ export function Footer() {
               ) : null}
 
               {status === "error" ? (
-                <div className="flex items-center gap-1.5 text-xs text-red-400 font-semibold mt-2.5 pl-2">
+                <div className="flex items-center gap-1.5 text-xs text-red-500 font-semibold mt-3">
                   <AlertCircle size={13} className="shrink-0" />
                   <span>{feedbackMessage}</span>
                 </div>
@@ -167,8 +188,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right: 3 Structured Editorial Link Columns */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 w-full lg:w-auto">
+          {/* Right (7 cols): 3 Structured Editorial Link Columns */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10 lg:pl-8">
             {/* Column 1: Capabilities */}
             <div className="flex flex-col gap-3.5">
               <span className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-text-muted select-none">
@@ -231,9 +252,10 @@ export function Footer() {
                 </Link>
                 <Link
                   href="/services"
-                  className="text-accent-primary hover:text-accent-highlight font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1"
                 >
-                  All Capabilities →
+                  <span>All 9 Studios</span>
+                  <ArrowUpRight size={13} />
                 </Link>
               </div>
             </div>
@@ -245,10 +267,16 @@ export function Footer() {
               </span>
               <div className="flex flex-col gap-2.5 text-sm">
                 <Link
+                  href="/#portfolio-spotlight"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Flagship Releases
+                </Link>
+                <Link
                   href="/work"
                   className="text-text-secondary hover:text-accent-primary transition-colors"
                 >
-                  Case Studies &amp; Portfolio
+                  All 18 Case Studies
                 </Link>
                 <Link
                   href="/services"
@@ -275,10 +303,17 @@ export function Footer() {
                   Client FAQs
                 </Link>
                 <Link
-                  href="/#contact"
-                  className="text-accent-primary hover:text-accent-highlight font-semibold transition-colors"
+                  href="/#testimonials"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
                 >
-                  Start Your Project →
+                  Client Endorsements
+                </Link>
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1"
+                >
+                  <span>Start Your Project</span>
+                  <ArrowUpRight size={13} />
                 </Link>
               </div>
             </div>
@@ -294,7 +329,7 @@ export function Footer() {
                 </span>
                 <a
                   href="mailto:info@rejubliss.co.uk"
-                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                  className="text-text-secondary hover:text-accent-primary transition-colors break-all"
                 >
                   info@rejubliss.co.uk
                 </a>
@@ -304,25 +339,27 @@ export function Footer() {
                 >
                   +44 20 8123 4567
                 </a>
-                <Link
-                  href="/privacy"
-                  className="text-text-secondary hover:text-accent-primary transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-                <Link
-                  href="/terms"
-                  className="text-text-secondary hover:text-accent-primary transition-colors"
-                >
-                  Terms &amp; Conditions
-                </Link>
+                <div className="pt-2 flex flex-col gap-2 border-t border-border-subtle mt-1">
+                  <Link
+                    href="/privacy"
+                    className="text-text-muted hover:text-text-heading transition-colors text-xs"
+                  >
+                    Privacy Policy
+                  </Link>
+                  <Link
+                    href="/terms"
+                    className="text-text-muted hover:text-text-heading transition-colors text-xs"
+                  >
+                    Terms &amp; Conditions
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Hairline Divider & Monumental Signature Row */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+        <div className="border-t border-border-subtle pt-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">
               {socialLinks.map((item) => (
@@ -332,7 +369,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="w-10 h-10 rounded-full bg-[#0b0b0f] border border-white/12 hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-secondary flex items-center justify-center transition-all duration-300 cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-bg-card border border-border-subtle hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-secondary flex items-center justify-center transition-all duration-300 cursor-pointer"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     {item.icon}
@@ -348,21 +385,22 @@ export function Footer() {
 
           <Link
             href="/"
-            className="flex items-center gap-3.5 sm:gap-4 group select-none"
+            aria-label="Rejubliss 3D Animation Studios — Home"
+            className="inline-flex items-center group select-none shrink-0"
           >
-            <div className="relative flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/12 bg-[#0b0b0f] group-hover:border-accent-primary/60 transition-colors shrink-0">
-              <Image
-                src="/images/logo-emblem.png"
-                alt="Rejubliss 3D Animation Studios"
-                width={36}
-                height={36}
-                className="object-contain"
-              />
-            </div>
-            <span className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.04em] text-text-heading leading-none">
-              Rejubliss
-            </span>
-            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-accent-primary mb-1" />
+            <Image
+              src={
+                theme === "light"
+                  ? "/images/logo-light.png"
+                  : "/images/logo.png"
+              }
+              alt="Rejubliss 3D Animation Studios"
+              width={933}
+              height={247}
+              quality={82}
+              sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 340px"
+              className="h-14 sm:h-18 lg:h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+            />
           </Link>
         </div>
       </div>
