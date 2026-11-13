@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -59,10 +59,10 @@ export default function PrivacyPolicyPage() {
       />
       <Header />
 
-      <article className="pt-32 pb-20 sm:pt-36 w-[97%] max-w-4xl mx-auto px-4 sm:px-6">
+      <article className="pt-30 pb-22 sm:pt-36 max-w-4xl w-full mx-auto px-4 sm:px-6 md:px-12">
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-xs font-semibold text-text-muted mb-4"
+          className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-5"
         >
           <Link href="/" className="hover:text-accent-primary transition-colors">
             Home
@@ -71,21 +71,22 @@ export default function PrivacyPolicyPage() {
           <span className="text-accent-primary">Privacy Policy</span>
         </nav>
 
-        <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+        <span className="editorial-eyebrow block mb-2.5">
           Legal &amp; Data Protection
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-text-heading mt-2 mb-3">
+        <h1 className="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-[-0.035em] text-text-heading mb-3">
           Privacy Policy
         </h1>
-        <p className="text-sm text-text-muted mb-10">
-          Last updated: 2026 • Rejubliss 3D Animation Studios, London, United
+        <p className="text-xs sm:text-sm uppercase tracking-[0.14em] text-text-muted pb-8 mb-8 border-b border-white/10">
+          Last updated: 2026 · Rejubliss 3D Animation Studios, London, United
           Kingdom
         </p>
 
-        <div className="space-y-8 text-sm sm:text-base text-text-secondary leading-relaxed bg-bg-card border border-border-subtle rounded-3xl p-6 sm:p-10 shadow-[var(--shadow-card)]">
-          <section className="space-y-2">
-            <h2 className="font-serif text-xl font-bold text-text-heading">
-              1. Information We Collect
+        <div className="space-y-8 text-sm sm:text-base text-text-secondary leading-relaxed bg-[#0b0b0f] border border-white/10 rounded-[22px] p-6 sm:p-10 shadow-[var(--shadow-card)]">
+          <section className="space-y-2.5">
+            <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
+              <span className="text-accent-primary mr-2">01.</span>
+              Information We Collect
             </h2>
             <p>
               When you submit a project inquiry or subscribe to studio updates on
@@ -97,9 +98,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="font-serif text-xl font-bold text-text-heading">
-              2. How We Use Your Project Brief &amp; Files
+          <section className="space-y-2.5 pt-6 border-t border-white/10">
+            <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
+              <span className="text-accent-primary mr-2">02.</span>
+              How We Use Your Project Brief &amp; Files
             </h2>
             <p>
               We use your submitted information strictly to evaluate your
@@ -112,9 +114,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="font-serif text-xl font-bold text-text-heading">
-              3. Mutual NDAs &amp; Security
+          <section className="space-y-2.5 pt-6 border-t border-white/10">
+            <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
+              <span className="text-accent-primary mr-2">03.</span>
+              Mutual NDAs &amp; Security
             </h2>
             <p>
               For sensitive hardware, packaging, or pre-launch campaigns, we are
@@ -126,9 +129,10 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="font-serif text-xl font-bold text-text-heading">
-              4. Your UK GDPR Rights &amp; Contact
+          <section className="space-y-2.5 pt-6 border-t border-white/10">
+            <h2 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
+              <span className="text-accent-primary mr-2">04.</span>
+              Your UK GDPR Rights &amp; Contact
             </h2>
             <p>
               Under UK data protection law, you may request access to,

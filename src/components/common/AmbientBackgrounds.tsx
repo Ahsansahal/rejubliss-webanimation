@@ -79,10 +79,10 @@ export function AmbientBackgrounds() {
     return (
       <div
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-45"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-60"
         style={{
           background:
-            "radial-gradient(circle at 82% 16%, var(--ambient-orb-1), transparent 46%), radial-gradient(circle at 14% 78%, var(--ambient-orb-2), transparent 50%)",
+            "radial-gradient(ellipse 55% 48% at 84% 16%, var(--ambient-orb-1), transparent 68%), radial-gradient(circle at 14% 82%, var(--ambient-orb-2), transparent 52%)",
         }}
       />
     );

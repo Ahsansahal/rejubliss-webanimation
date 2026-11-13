@@ -9,9 +9,9 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * Subtle, GPU-friendly GSAP + ScrollTrigger reveal hook.
+ * Reference-aligned GSAP + ScrollTrigger reveal hook (`expo.out` / cubic-bezier(0.16, 1, 0.3, 1)).
  * Automatically honors `prefers-reduced-motion: reduce` and clears inline
- * styles upon completion so layout and theme transitions stay clean.
+ * styles upon completion so layout and responsive reflows stay pristine.
  */
 export function useGsapSectionReveal(
   containerRef: RefObject<HTMLElement | null>,
@@ -29,13 +29,14 @@ export function useGsapSectionReveal(
 
       gsap.fromTo(
         targets,
-        { y: 16 },
+        { y: 22, opacity: 0 },
         {
           y: 0,
-          duration: 0.68,
-          stagger: 0.07,
-          ease: "power3.out",
-          clearProps: "transform",
+          opacity: 1,
+          duration: 0.72,
+          stagger: 0.075,
+          ease: "expo.out",
+          clearProps: "transform,opacity",
           scrollTrigger: {
             trigger: container,
             start: "top 86%",

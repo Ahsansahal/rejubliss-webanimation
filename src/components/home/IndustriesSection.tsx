@@ -21,29 +21,24 @@ export function IndustriesSection() {
       id="industries"
       ref={sectionRef}
       aria-labelledby="industries-heading"
-      className="relative py-20 sm:py-24 bg-bg-secondary/70 border-t border-b border-border-subtle transition-colors duration-300"
+      className="relative py-22 sm:py-26 bg-[#050507] border-t border-b border-white/10"
     >
-      <div className="w-[97%] max-w-[1800px] mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
         {/* Header */}
         <div
           data-gsap-reveal
           className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-9"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-accent-interactive" />
-              <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                Sector Applications
-              </span>
-            </div>
+            <span className="editorial-eyebrow block mb-3">
+              04 · Sector Applications
+            </span>
             <h2
               id="industries-heading"
-              className="font-serif text-3xl sm:text-4xl lg:text-[44px] font-bold text-text-heading leading-tight tracking-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-[46px] font-bold text-text-heading leading-[1.05] tracking-[-0.03em]"
             >
               Creative Experiences{" "}
-              <span className="hero-gradient-text italic font-normal">
-                Across Industries
-              </span>
+              <span className="text-accent-primary">Across Industries</span>
             </h2>
           </div>
 
@@ -54,12 +49,12 @@ export function IndustriesSection() {
           </p>
         </div>
 
-        {/* Compact Horizontal Sector Selector */}
+        {/* Horizontal Pill Sector Selector */}
         <div
           data-gsap-reveal
           role="tablist"
           aria-label="Industries served"
-          className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-border-subtle"
+          className="flex items-center gap-2 overflow-x-auto pb-5 mb-9 border-b border-white/10"
         >
           {INDUSTRY_SECTORS.map((sector) => {
             const isSelected = sector.id === activeSector.id;
@@ -72,10 +67,10 @@ export function IndustriesSection() {
                 aria-selected={isSelected}
                 aria-controls={`industry-panel-${sector.id}`}
                 onClick={() => setActiveId(sector.id)}
-                className={`shrink-0 px-4 py-2 rounded-full text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
+                className={`shrink-0 px-4 py-2 rounded-full text-[11.5px] font-semibold transition-all cursor-pointer ${
                   isSelected
                     ? "btn-primary-solid"
-                    : "bg-bg-card text-text-secondary hover:text-text-heading border border-border-subtle hover:border-border-accent"
+                    : "bg-[#0b0b0f] text-text-secondary hover:text-text-heading border border-white/10 hover:border-accent-primary/50"
                 }`}
               >
                 {sector.title}
@@ -106,7 +101,7 @@ export function IndustriesSection() {
             >
               {/* Visual Frame — image mounted only on active tab to preserve bandwidth */}
               {isSelected ? (
-                <div className="lg:col-span-6 relative aspect-[16/10] rounded-[24px] overflow-hidden bg-midnight-navy border border-border-subtle shadow-[var(--shadow-card)]">
+                <div className="lg:col-span-6 relative aspect-[16/10] rounded-[20px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card)]">
                   <Image
                     src={sector.image}
                     alt={sector.imageAlt}
@@ -115,16 +110,16 @@ export function IndustriesSection() {
                     sizes="(max-width: 1024px) 96vw, 48vw"
                     className="object-cover transition-all duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-midnight-navy/75 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
                     {sector.experienceType === "verified-client" ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-deep-teal/95 text-pearl-white text-xs font-bold">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-primary text-black text-[11px] font-bold uppercase tracking-[0.08em]">
                         <BadgeCheck size={13} />
                         <span>{sector.experienceLabel}</span>
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-midnight-navy/85 backdrop-blur-md text-ice-cyan text-xs font-semibold border border-pearl-white/15">
-                        <Sparkles size={13} />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-accent-primary text-[11px] font-semibold uppercase tracking-[0.12em] border border-white/15">
+                        <Sparkles size={12} />
                         <span>{sector.experienceLabel}</span>
                       </span>
                     )}
@@ -134,7 +129,7 @@ export function IndustriesSection() {
 
               {/* Concise Editorial Industry Context */}
               <div className="lg:col-span-6 space-y-5">
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading">
+                <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading">
                   {sector.title}
                 </h3>
 
@@ -142,13 +137,13 @@ export function IndustriesSection() {
                   {sector.description}
                 </p>
 
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed pl-4 border-l-2 border-accent-interactive">
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed pl-4 border-l-2 border-accent-primary">
                   {sector.applicationNote}
                 </p>
 
                 {relatedProjects.length > 0 ? (
                   <div className="pt-3">
-                    <span className="block text-[11px] font-bold uppercase tracking-widest text-text-muted mb-3">
+                    <span className="block editorial-eyebrow text-[10.5px] mb-3">
                       Relevant Portfolio Proof
                     </span>
                     <div className="flex flex-wrap gap-3">
@@ -156,10 +151,10 @@ export function IndustriesSection() {
                         <Link
                           key={proj.slug}
                           href={`/work/${proj.slug}`}
-                          className="inline-flex items-center gap-3 pr-4 p-1.5 rounded-full bg-bg-card border border-border-subtle hover:border-border-accent transition-colors group"
+                          className="inline-flex items-center gap-3 pr-4 p-1.5 rounded-full bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 transition-colors group"
                         >
                           {isSelected ? (
-                            <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-bg-subtle">
+                            <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-[#050507] border border-white/10">
                               <Image
                                 src={proj.image}
                                 alt=""
@@ -171,7 +166,7 @@ export function IndustriesSection() {
                             </div>
                           ) : null}
                           <div className="text-xs">
-                            <span className="font-bold text-text-heading group-hover:text-accent-primary transition-colors">
+                            <span className="font-display font-bold text-text-heading group-hover:text-accent-primary transition-colors">
                               {proj.title}
                             </span>
                             <span className="text-text-muted ml-1.5">

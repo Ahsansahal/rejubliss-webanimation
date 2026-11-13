@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   AlertCircle,
-  ArrowRight,
+  ArrowUpRight,
   CheckCircle2,
   ChevronDown,
   Clock,
@@ -287,38 +287,42 @@ export function ProjectInquirySection() {
   };
 
   const inputBaseClass =
-    "w-full px-4 py-3.5 rounded-xl bg-bg-primary border border-border-subtle focus:border-accent-interactive text-sm text-text-heading placeholder:text-text-muted/70 outline-none transition-colors";
+    "w-full px-4 py-3.5 rounded-xl bg-[#050507] border border-white/12 focus:border-accent-primary text-sm text-text-heading placeholder:text-text-muted/70 outline-none transition-colors";
 
   return (
     <section
       id="contact"
       ref={sectionRef}
       aria-labelledby="inquiry-heading"
-      className="relative py-20 sm:py-28 bg-bg-primary overflow-hidden transition-colors duration-300"
+      className="relative py-22 sm:py-28 bg-bg-primary overflow-hidden"
     >
       <div id="quote" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="w-[97%] max-w-[1800px] mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        {/* Monumental Editorial Contact Header */}
+        <div data-gsap-reveal className="pb-8 sm:pb-10 mb-10 sm:mb-12 border-b border-white/10">
+          <span className="editorial-eyebrow block mb-3">
+            07 · Project Inquiry
+          </span>
+          <h2
+            id="inquiry-heading"
+            className="font-display text-[clamp(2rem,5.2vw,4.5rem)] font-extrabold uppercase text-text-heading leading-[0.98] tracking-[-0.04em]"
+          >
+            Let&apos;s Work Together
+          </h2>
+        </div>
+
         {/* Part A: Project Inquiry & Brief Sheet */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Concise Studio Brief Guidance & Direct Channels */}
           <div data-gsap-reveal className="lg:col-span-5 space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-6 h-0.5 bg-accent-interactive" />
-                <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                  Project Inquiry
-                </span>
-              </div>
-              <h2
-                id="inquiry-heading"
-                className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-bold text-text-heading leading-tight tracking-tight"
-              >
+              <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.03em] leading-[1.1] text-text-heading">
                 Have a Brief in Mind?{" "}
-                <span className="hero-gradient-text italic font-normal">
+                <span className="text-accent-primary block mt-1">
                   Let&apos;s Scope It Together.
                 </span>
-              </h2>
+              </h3>
               <p className="mt-4 text-sm sm:text-base text-text-secondary leading-relaxed">
                 Tell us what you are launching, visualizing, or building. A
                 creative director will review your brief and reply with a clear
@@ -327,11 +331,11 @@ export function ProjectInquirySection() {
             </div>
 
             {/* Clean Unboxed Commitments */}
-            <ul className="border-t border-border-subtle divide-y divide-border-subtle text-xs sm:text-sm text-text-secondary">
+            <ul className="border-t border-white/10 divide-y divide-white/10 text-xs sm:text-sm text-text-secondary">
               <li className="py-4 flex items-start gap-3.5">
                 <Clock
                   size={17}
-                  className="text-accent-interactive shrink-0 mt-0.5"
+                  className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
                   <strong className="text-text-heading">
@@ -344,7 +348,7 @@ export function ProjectInquirySection() {
               <li className="py-4 flex items-start gap-3.5">
                 <Sparkles
                   size={17}
-                  className="text-accent-interactive shrink-0 mt-0.5"
+                  className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
                   <strong className="text-text-heading">
@@ -357,7 +361,7 @@ export function ProjectInquirySection() {
               <li className="py-4 flex items-start gap-3.5">
                 <ShieldCheck
                   size={17}
-                  className="text-accent-interactive shrink-0 mt-0.5"
+                  className="text-accent-primary shrink-0 mt-0.5"
                 />
                 <span>
                   <strong className="text-text-heading">
@@ -369,24 +373,24 @@ export function ProjectInquirySection() {
               </li>
             </ul>
 
-            {/* Compact Direct Studio Contact Strip */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-midnight-navy text-pearl-white border border-ocean-blue space-y-2.5">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-ice-cyan block">
-                Direct Studio Desk • London, UK
+            {/* Direct Studio Contact Card */}
+            <div className="p-5 sm:p-6 rounded-[20px] bg-[#0b0b0f] text-text-heading border border-white/10 space-y-3">
+              <span className="editorial-eyebrow text-[11px] block">
+                Direct Studio Desk · London, UK
               </span>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-0.5">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2.5 pt-0.5">
                 <a
                   href="mailto:info@rejubliss.co.uk"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-pearl-white hover:text-ice-cyan transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
                 >
-                  <Mail size={15} className="text-ice-cyan shrink-0" />
+                  <Mail size={15} className="text-accent-primary shrink-0" />
                   <span>info@rejubliss.co.uk</span>
                 </a>
                 <a
                   href="tel:+442081234567"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-pearl-white hover:text-ice-cyan transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-text-heading hover:text-accent-primary transition-colors"
                 >
-                  <Phone size={15} className="text-ice-cyan shrink-0" />
+                  <Phone size={15} className="text-accent-primary shrink-0" />
                   <span>+44 20 8123 4567</span>
                 </a>
               </div>
@@ -395,21 +399,21 @@ export function ProjectInquirySection() {
 
           {/* Right Column: Structured 3-Group Project Brief Form */}
           <div data-gsap-reveal className="lg:col-span-7">
-            <div className="bg-bg-card rounded-[28px] border border-border-subtle shadow-[var(--shadow-card-hover)] p-6 sm:p-8 lg:p-10">
+            <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 shadow-[var(--shadow-card-hover)] p-6 sm:p-8 lg:p-10">
               {receipt ? (
                 <div
                   role="status"
                   aria-live="polite"
                   className="py-6 space-y-6"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-bg-accent-soft border border-border-accent text-accent-primary flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-2xl bg-accent-primary/14 border border-accent-primary/40 text-accent-primary flex items-center justify-center">
                     <CheckCircle2 size={28} />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-accent-primary block mb-1">
-                      Inquiry Received • Reference {receipt.inquiryId}
+                    <span className="editorial-eyebrow block mb-1.5">
+                      Inquiry Received · Reference {receipt.inquiryId}
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-2">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.02em] text-text-heading mb-2">
                       Thank you, {receipt.fullName}. Your brief is with our
                       studio team.
                     </h3>
@@ -430,23 +434,23 @@ export function ProjectInquirySection() {
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-bg-subtle/75 border border-border-subtle text-xs text-text-secondary flex flex-wrap items-center justify-between gap-2">
+                  <div className="p-4 rounded-xl bg-[#050507] border border-white/10 text-xs text-text-secondary flex flex-wrap items-center justify-between gap-2">
                     <span>
                       Reference Code:{" "}
                       <strong className="font-mono text-text-heading">
                         {receipt.inquiryId}
                       </strong>
                     </span>
-                    <span>London Studio Queue • Confidential</span>
+                    <span>London Studio Queue · Confidential</span>
                   </div>
 
                   <button
                     type="button"
                     onClick={() => setReceipt(null)}
-                    className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold cursor-pointer"
+                    className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs cursor-pointer"
                   >
                     <span>Submit Another Project Brief</span>
-                    <ArrowRight size={14} className="text-accent-primary" />
+                    <ArrowUpRight size={14} className="text-accent-primary" />
                   </button>
                 </div>
               ) : (
@@ -471,7 +475,7 @@ export function ProjectInquirySection() {
                   {submitError ? (
                     <div
                       role="alert"
-                      className="p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-sm text-red-700 dark:text-red-300 flex items-start gap-3"
+                      className="p-4 rounded-xl bg-red-500/12 border border-red-500/35 text-sm text-red-300 flex items-start gap-3"
                     >
                       <AlertCircle size={18} className="shrink-0 mt-0.5" />
                       <span>{submitError}</span>
@@ -480,9 +484,9 @@ export function ProjectInquirySection() {
 
                   {/* Group 01: Contact Details */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-accent-primary">
-                      <span className="font-mono">01</span>
-                      <span>•</span>
+                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                      <span className="editorial-index text-xs">01</span>
+                      <span>·</span>
                       <span>Your Details</span>
                     </div>
 
@@ -513,7 +517,7 @@ export function ProjectInquirySection() {
                         {fieldErrors.fullName ? (
                           <p
                             id="err-fullName"
-                            className="mt-1 text-xs font-medium text-red-600 dark:text-red-400"
+                            className="mt-1 text-xs font-medium text-red-400"
                           >
                             {fieldErrors.fullName}
                           </p>
@@ -546,7 +550,7 @@ export function ProjectInquirySection() {
                         {fieldErrors.email ? (
                           <p
                             id="err-email"
-                            className="mt-1 text-xs font-medium text-red-600 dark:text-red-400"
+                            className="mt-1 text-xs font-medium text-red-400"
                           >
                             {fieldErrors.email}
                           </p>
@@ -575,10 +579,10 @@ export function ProjectInquirySection() {
                   </div>
 
                   {/* Group 02: Scope & Timing */}
-                  <div className="pt-5 border-t border-border-subtle space-y-4">
-                    <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-accent-primary">
-                      <span className="font-mono">02</span>
-                      <span>•</span>
+                  <div className="pt-5 border-t border-white/10 space-y-4">
+                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                      <span className="editorial-index text-xs">02</span>
+                      <span>·</span>
                       <span>Scope &amp; Timing</span>
                     </div>
 
@@ -607,7 +611,7 @@ export function ProjectInquirySection() {
                           ))}
                         </select>
                         {fieldErrors.service ? (
-                          <p className="mt-1 text-xs font-medium text-red-600 dark:text-red-400">
+                          <p className="mt-1 text-xs font-medium text-red-400">
                             {fieldErrors.service}
                           </p>
                         ) : null}
@@ -664,10 +668,10 @@ export function ProjectInquirySection() {
                   </div>
 
                   {/* Group 03: Project Brief & Optional Reference */}
-                  <div className="pt-5 border-t border-border-subtle space-y-4">
-                    <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-accent-primary">
-                      <span className="font-mono">03</span>
-                      <span>•</span>
+                  <div className="pt-5 border-t border-white/10 space-y-4">
+                    <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                      <span className="editorial-index text-xs">03</span>
+                      <span>·</span>
                       <span>Project Brief &amp; Optional Assets</span>
                     </div>
 
@@ -698,7 +702,7 @@ export function ProjectInquirySection() {
                       {fieldErrors.description ? (
                         <p
                           id="err-description"
-                          className="mt-1 text-xs font-medium text-red-600 dark:text-red-400"
+                          className="mt-1 text-xs font-medium text-red-400"
                         >
                           {fieldErrors.description}
                         </p>
@@ -727,7 +731,7 @@ export function ProjectInquirySection() {
                           className={inputBaseClass}
                         />
                         {fieldErrors.referenceUrl ? (
-                          <p className="mt-1 text-xs font-medium text-red-600 dark:text-red-400">
+                          <p className="mt-1 text-xs font-medium text-red-400">
                             {fieldErrors.referenceUrl}
                           </p>
                         ) : null}
@@ -753,13 +757,13 @@ export function ProjectInquirySection() {
                           className="sr-only"
                         />
                         {attachment ? (
-                          <div className="flex items-center justify-between gap-2 px-4 py-3.5 rounded-xl bg-bg-accent-soft border border-border-accent text-xs font-semibold text-text-heading">
+                          <div className="flex items-center justify-between gap-2 px-4 py-3.5 rounded-xl bg-accent-primary/14 border border-accent-primary/40 text-xs font-semibold text-text-heading">
                             <span className="truncate">{attachment.name}</span>
                             <button
                               type="button"
                               onClick={clearAttachment}
                               aria-label="Remove attached file"
-                              className="p-0.5 rounded-full hover:bg-bg-subtle text-text-muted hover:text-text-heading cursor-pointer shrink-0"
+                              className="p-0.5 rounded-full hover:bg-white/10 text-text-muted hover:text-text-heading cursor-pointer shrink-0"
                             >
                               <X size={14} />
                             </button>
@@ -767,14 +771,14 @@ export function ProjectInquirySection() {
                         ) : (
                           <label
                             htmlFor="inquiry-attachment"
-                            className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-bg-primary hover:bg-bg-subtle border border-dashed border-border-strong hover:border-accent-interactive text-xs font-semibold text-text-secondary cursor-pointer transition-colors"
+                            className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-[#050507] hover:bg-white/[0.04] border border-dashed border-white/20 hover:border-accent-primary text-xs font-semibold text-text-secondary cursor-pointer transition-colors"
                           >
                             <FileUp size={15} className="text-accent-primary" />
                             <span>Attach PDF, Deck, Image or ZIP</span>
                           </label>
                         )}
                         {fieldErrors.attachment ? (
-                          <p className="mt-1 text-xs font-medium text-red-600 dark:text-red-400">
+                          <p className="mt-1 text-xs font-medium text-red-400">
                             {fieldErrors.attachment}
                           </p>
                         ) : null}
@@ -782,8 +786,8 @@ export function ProjectInquirySection() {
                     </div>
                   </div>
 
-                  {/* Strategic CTA Placement #3: Inquiry Submit */}
-                  <div className="pt-5 border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  {/* Inquiry Submit Bar */}
+                  <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <p className="text-xs text-text-muted leading-relaxed flex items-start gap-1.5 max-w-sm">
                       <Lock
                         size={13}
@@ -804,19 +808,19 @@ export function ProjectInquirySection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-primary-cta inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-bold disabled:opacity-65 cursor-pointer shrink-0 group"
+                      className="btn-primary-cta inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs disabled:opacity-65 cursor-pointer shrink-0 group"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 size={16} className="animate-spin" />
+                          <Loader2 size={15} className="animate-spin" />
                           <span>Sending Brief...</span>
                         </>
                       ) : (
                         <>
                           <span>Start Your Project</span>
-                          <ArrowRight
-                            size={16}
-                            className="group-hover:translate-x-1 transition-transform"
+                          <ArrowUpRight
+                            size={15}
+                            className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                           />
                         </>
                       )}
@@ -832,20 +836,15 @@ export function ProjectInquirySection() {
         <div
           id="faq"
           data-gsap-reveal
-          className="mt-20 sm:mt-24 pt-16 sm:pt-20 border-t border-border-subtle scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
+          className="mt-20 sm:mt-24 pt-16 sm:pt-20 border-t border-white/10 scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start"
         >
           <div className="lg:col-span-4 space-y-3">
-            <div className="inline-flex items-center gap-2">
-              <span className="w-6 h-0.5 bg-accent-interactive" />
-              <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                Common Questions
-              </span>
-            </div>
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-[36px] font-bold text-text-heading leading-tight tracking-tight">
+            <span className="editorial-eyebrow block">
+              08 · Common Questions
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-[36px] font-bold text-text-heading leading-[1.08] tracking-[-0.03em]">
               Clear Answers{" "}
-              <span className="hero-gradient-text italic font-normal">
-                Before We Begin
-              </span>
+              <span className="text-accent-primary">Before We Begin</span>
             </h2>
             <p className="text-sm text-text-secondary leading-relaxed">
               Practical guidance on project scoping, production timelines, CAD
@@ -853,7 +852,7 @@ export function ProjectInquirySection() {
             </p>
           </div>
 
-          <div className="lg:col-span-8 border-t border-border-subtle divide-y divide-border-subtle">
+          <div className="lg:col-span-8 border-t border-white/10 divide-y divide-white/10">
             {STUDIO_FAQS.map((faq, idx) => {
               const isOpen = openFaqId === faq.id;
               const triggerId = `faq-trigger-${faq.id}`;
@@ -871,10 +870,10 @@ export function ProjectInquirySection() {
                       className="w-full py-4.5 text-left flex items-center justify-between gap-4 cursor-pointer group"
                     >
                       <span className="flex items-baseline gap-4">
-                        <span className="font-mono text-xs font-bold text-accent-interactive shrink-0">
+                        <span className="editorial-index shrink-0">
                           {String(idx + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-serif text-base sm:text-lg font-bold text-text-heading group-hover:text-accent-primary transition-colors">
+                        <span className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-text-heading group-hover:text-accent-primary transition-colors">
                           {faq.question}
                         </span>
                       </span>
@@ -883,7 +882,7 @@ export function ProjectInquirySection() {
                         size={18}
                         className={`shrink-0 text-text-muted transition-transform duration-200 ${
                           isOpen
-                            ? "rotate-180 text-accent-interactive"
+                            ? "rotate-180 text-accent-primary"
                             : "group-hover:text-accent-primary"
                         }`}
                       />

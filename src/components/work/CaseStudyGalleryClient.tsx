@@ -28,7 +28,7 @@ export function CaseStudyGalleryClient({
   return (
     <div className="space-y-4">
       {/* Main Stage */}
-      <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-midnight-navy border border-border-subtle card-shadow-hover flex items-center justify-center">
+      <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[22px] overflow-hidden bg-[#050507] border border-white/10 shadow-[var(--shadow-card-hover)] flex items-center justify-center">
         <Image
           src={activeSrc}
           alt={`${title} — production visual ${activeIndex + 1} of ${total}`}
@@ -39,8 +39,8 @@ export function CaseStudyGalleryClient({
           className="object-contain p-2 sm:p-4"
         />
 
-        <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-midnight-navy/85 backdrop-blur-md border border-white/15 text-pearl-white text-xs font-semibold inline-flex items-center gap-1.5">
-          <Images size={13} className="text-ice-cyan" />
+        <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-text-heading text-[11px] font-semibold uppercase tracking-[0.14em] inline-flex items-center gap-1.5">
+          <Images size={12} className="text-accent-primary" />
           <span>
             {activeIndex + 1} / {total} {total === 1 ? "Visual" : "Visuals"}
           </span>
@@ -52,7 +52,7 @@ export function CaseStudyGalleryClient({
               type="button"
               onClick={handlePrev}
               aria-label="Previous project visual"
-              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-midnight-navy/80 hover:bg-deep-teal text-pearl-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer"
+              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-heading border border-white/15 flex items-center justify-center transition-all cursor-pointer"
             >
               <ChevronLeft size={20} />
             </button>
@@ -60,7 +60,7 @@ export function CaseStudyGalleryClient({
               type="button"
               onClick={handleNext}
               aria-label="Next project visual"
-              className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-midnight-navy/80 hover:bg-deep-teal text-pearl-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer"
+              className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-heading border border-white/15 flex items-center justify-center transition-all cursor-pointer"
             >
               <ChevronRight size={20} />
             </button>
@@ -82,8 +82,8 @@ export function CaseStudyGalleryClient({
                 aria-current={isSelected ? "true" : undefined}
                 className={`relative w-20 h-14 sm:w-24 sm:h-16 rounded-xl overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
                   isSelected
-                    ? "border-accent-interactive scale-[1.03] opacity-100"
-                    : "border-border-subtle opacity-65 hover:opacity-100"
+                    ? "border-accent-primary scale-[1.03] opacity-100"
+                    : "border-white/10 opacity-55 hover:opacity-100"
                 }`}
               >
                 <Image

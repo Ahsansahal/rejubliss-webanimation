@@ -86,274 +86,244 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative w-full pt-8 pb-16 sm:pb-20 bg-bg-primary overflow-hidden transition-colors duration-300">
-      {/* Background Ambient Crystalline Wash */}
-      <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[var(--ambient-orb-1)] rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] h-[300px] bg-[var(--ambient-orb-2)] rounded-full blur-[110px] pointer-events-none" />
+    <footer className="relative w-full bg-bg-primary border-t border-white/10 overflow-hidden">
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 pt-16 sm:pt-20 pb-12 sm:pb-16">
+        {/* Main Top Row */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16 pb-14">
+          {/* Left: Studio Identity & Dispatches Form */}
+          <div className="flex flex-col items-start gap-5 max-w-md w-full">
+            <span className="editorial-eyebrow">
+              London, United Kingdom · 3D, CGI &amp; WebGL Studio
+            </span>
 
-      {/* Floating Crystalline Glass Shell */}
-      <div className="relative w-[97%] max-w-[97%] mx-auto p-[2px] rounded-[36px] sm:rounded-[42px] bg-[image:var(--footer-shell-border)] shadow-[var(--shadow-footer)]">
-        <div className="relative rounded-[34px] sm:rounded-[40px] bg-[image:var(--footer-glass-bg)] backdrop-blur-2xl px-6 sm:px-10 lg:px-14 py-10 sm:py-12 border border-[var(--border-glass)]">
-          {/* Main Top Row */}
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-14 pb-10">
-            {/* Left: Brand & Newsletter */}
-            <div className="flex flex-col items-start gap-5 max-w-md w-full">
-              <Link href="/" className="flex items-center gap-3.5 group">
-                <div className="relative flex items-center justify-center w-11 h-11 transition-transform group-hover:scale-105 duration-300">
-                  <Image
-                    src="/images/logo-emblem.png"
-                    alt="Rejubliss 3D Animation Studios"
-                    width={42}
-                    height={42}
-                    className="object-contain drop-shadow-[0_2px_8px_rgba(8,127,140,0.22)]"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-serif text-2xl font-bold tracking-tight text-text-heading leading-none">
-                    Rejubliss
-                  </span>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-accent-primary mt-1">
-                    3D Animation Studios • London
-                  </span>
-                </div>
-              </Link>
+            <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+              Cinematic 3D animation, photorealistic CGI product visualization,
+              motion storytelling, and interactive WebGL web experiences
+              engineered for ambitious brands.
+            </p>
 
-              <p className="text-sm text-text-muted leading-relaxed">
-                Cinematic 3D animation, photorealistic CGI product
-                visualization, motion storytelling, and interactive WebGL web
-                experiences engineered for ambitious brands.
-              </p>
-
-              {/* Newsletter Form */}
-              <div className="w-full pt-1">
-                <form
-                  onSubmit={handleSubscribe}
-                  className="flex items-center gap-2 p-1.5 rounded-full bg-bg-card/85 backdrop-blur-xl border border-border-subtle shadow-[var(--shadow-card)] focus-within:border-accent-interactive transition-all"
+            {/* Newsletter Form */}
+            <div className="w-full pt-1">
+              <form
+                onSubmit={handleSubscribe}
+                className="flex items-center gap-2 p-1.5 rounded-full bg-[#0b0b0f] border border-white/12 focus-within:border-accent-primary transition-all"
+              >
+                {/* Honeypot field */}
+                <input
+                  type="text"
+                  name="companyWebsite"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="sr-only"
+                  aria-hidden="true"
+                />
+                <input
+                  type="email"
+                  placeholder="Business email for reel & CGI updates"
+                  aria-label="Email address for studio newsletter"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="bg-transparent px-4 py-2 text-xs sm:text-sm text-text-primary placeholder:text-text-muted outline-none flex-1 font-medium min-w-0"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  aria-label="Subscribe"
+                  className="btn-primary-cta shrink-0 px-5 py-2.5 rounded-full text-[11px] flex items-center gap-1.5 cursor-pointer disabled:opacity-70"
                 >
-                  {/* Honeypot field */}
-                  <input
-                    type="text"
-                    name="companyWebsite"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
-                    className="sr-only"
-                    aria-hidden="true"
+                  {status === "submitting" ? (
+                    <>
+                      <Loader2 size={13} className="animate-spin" />
+                      <span>Saving</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Subscribe</span>
+                      <ArrowRight size={13} />
+                    </>
+                  )}
+                </button>
+              </form>
+
+              {status === "success" ? (
+                <div className="flex items-center gap-1.5 text-xs text-accent-primary font-semibold mt-2.5 pl-2">
+                  <CheckCircle2
+                    size={13}
+                    className="text-accent-primary shrink-0"
                   />
-                  <input
-                    type="email"
-                    placeholder="Business email for reel & CGI updates"
-                    aria-label="Email address for studio newsletter"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="bg-transparent px-4 py-2 text-xs sm:text-sm text-text-primary placeholder:text-text-muted outline-none flex-1 font-medium min-w-0"
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === "submitting"}
-                    aria-label="Subscribe"
-                    className="btn-primary-cta relative overflow-hidden group shrink-0 px-5 sm:px-6 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-1.5 cursor-pointer disabled:opacity-70"
-                  >
-                    {status === "submitting" ? (
-                      <>
-                        <Loader2 size={13} className="animate-spin" />
-                        <span>Saving</span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="relative z-10">Subscribe</span>
-                        <ArrowRight
-                          size={13}
-                          className="relative z-10 group-hover:translate-x-0.5 transition-transform"
-                        />
-                      </>
-                    )}
-                  </button>
-                </form>
-
-                {status === "success" ? (
-                  <div className="flex items-center gap-1.5 text-xs text-accent-primary font-semibold mt-2.5 pl-2">
-                    <CheckCircle2
-                      size={13}
-                      className="text-accent-interactive shrink-0"
-                    />
-                    <span>{feedbackMessage}</span>
-                  </div>
-                ) : null}
-
-                {status === "error" ? (
-                  <div className="flex items-center gap-1.5 text-xs text-red-600 dark:text-red-400 font-semibold mt-2.5 pl-2">
-                    <AlertCircle size={13} className="shrink-0" />
-                    <span>{feedbackMessage}</span>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            {/* Right: 3 Structured Link Columns */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-14 w-full lg:w-auto">
-              {/* Column 1: Capabilities */}
-              <div className="flex flex-col gap-3">
-                <span className="text-[12px] font-semibold tracking-[0.08em] uppercase text-text-muted select-none">
-                  Capabilities
-                </span>
-                <div className="flex flex-col gap-2.5 text-sm font-medium">
-                  <Link
-                    href="/services/3d-animation"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    3D Animation
-                  </Link>
-                  <Link
-                    href="/services/cgi-rendering"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Photorealistic CGI
-                  </Link>
-                  <Link
-                    href="/services/product-visualization"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Product Visualization
-                  </Link>
-                  <Link
-                    href="/services/motion-graphics"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Motion Graphics
-                  </Link>
-                  <Link
-                    href="/services/explainer-videos"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Explainer Videos
-                  </Link>
-                  <Link
-                    href="/services/character-animation"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Character Animation
-                  </Link>
-                  <Link
-                    href="/services/architectural-visualization"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Architectural CGI
-                  </Link>
-                  <Link
-                    href="/services/website-design"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Website Design
-                  </Link>
-                  <Link
-                    href="/services/interactive-webgl"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Interactive WebGL
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="text-accent-primary hover:text-accent-interactive font-semibold transition-colors"
-                  >
-                    All Capabilities →
-                  </Link>
+                  <span>{feedbackMessage}</span>
                 </div>
-              </div>
+              ) : null}
 
-              {/* Column 2: Studio & Work */}
-              <div className="flex flex-col gap-3">
-                <span className="text-[12px] font-semibold tracking-[0.08em] uppercase text-text-muted select-none">
-                  Studio &amp; Work
-                </span>
-                <div className="flex flex-col gap-2.5 text-sm font-medium">
-                  <Link
-                    href="/work"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Case Studies &amp; Portfolio
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Services &amp; Deliverables
-                  </Link>
-                  <Link
-                    href="/#industries"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Industries We Serve
-                  </Link>
-                  <Link
-                    href="/#process"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Six-Stage Process
-                  </Link>
-                  <Link
-                    href="/#faq"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Client FAQs
-                  </Link>
-                  <Link
-                    href="/#contact"
-                    className="text-accent-primary hover:text-accent-interactive font-semibold transition-colors"
-                  >
-                    Start Your Project →
-                  </Link>
+              {status === "error" ? (
+                <div className="flex items-center gap-1.5 text-xs text-red-400 font-semibold mt-2.5 pl-2">
+                  <AlertCircle size={13} className="shrink-0" />
+                  <span>{feedbackMessage}</span>
                 </div>
-              </div>
-
-              {/* Column 3: Connect & Legal */}
-              <div className="col-span-2 sm:col-span-1 flex flex-col gap-3">
-                <span className="text-[12px] font-semibold tracking-[0.08em] uppercase text-text-muted select-none">
-                  Connect
-                </span>
-                <div className="flex flex-col gap-2.5 text-sm font-medium">
-                  <span className="text-text-secondary">
-                    London, United Kingdom
-                  </span>
-                  <a
-                    href="mailto:info@rejubliss.co.uk"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    info@rejubliss.co.uk
-                  </a>
-                  <a
-                    href="tel:+442081234567"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    +44 20 8123 4567
-                  </a>
-                  <Link
-                    href="/privacy"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Privacy Policy
-                  </Link>
-                  <Link
-                    href="/terms"
-                    className="text-text-secondary hover:text-accent-primary transition-colors"
-                  >
-                    Terms &amp; Conditions
-                  </Link>
-                </div>
-              </div>
+              ) : null}
             </div>
           </div>
 
-          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-border-subtle to-transparent my-6" />
+          {/* Right: 3 Structured Editorial Link Columns */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 w-full lg:w-auto">
+            {/* Column 1: Capabilities */}
+            <div className="flex flex-col gap-3.5">
+              <span className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-text-muted select-none">
+                Capabilities
+              </span>
+              <div className="flex flex-col gap-2.5 text-sm">
+                <Link
+                  href="/services/3d-animation"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  3D Animation
+                </Link>
+                <Link
+                  href="/services/cgi-rendering"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Photorealistic CGI
+                </Link>
+                <Link
+                  href="/services/product-visualization"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Product Visualization
+                </Link>
+                <Link
+                  href="/services/motion-graphics"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Motion Graphics
+                </Link>
+                <Link
+                  href="/services/explainer-videos"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Explainer Videos
+                </Link>
+                <Link
+                  href="/services/character-animation"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Character Animation
+                </Link>
+                <Link
+                  href="/services/architectural-visualization"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Architectural CGI
+                </Link>
+                <Link
+                  href="/services/website-design"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Website Design
+                </Link>
+                <Link
+                  href="/services/interactive-webgl"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Interactive WebGL
+                </Link>
+                <Link
+                  href="/services"
+                  className="text-accent-primary hover:text-accent-highlight font-semibold transition-colors"
+                >
+                  All Capabilities →
+                </Link>
+              </div>
+            </div>
 
-          {/* Bottom Row */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-            <span className="text-xs text-text-muted font-medium text-center sm:text-left">
-              © 2026 Rejubliss 3D Animation Studios. All rights reserved.
-            </span>
+            {/* Column 2: Studio & Work */}
+            <div className="flex flex-col gap-3.5">
+              <span className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-text-muted select-none">
+                Studio &amp; Work
+              </span>
+              <div className="flex flex-col gap-2.5 text-sm">
+                <Link
+                  href="/work"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Case Studies &amp; Portfolio
+                </Link>
+                <Link
+                  href="/services"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Services &amp; Deliverables
+                </Link>
+                <Link
+                  href="/#industries"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Industries We Serve
+                </Link>
+                <Link
+                  href="/#process"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Six-Stage Process
+                </Link>
+                <Link
+                  href="/#faq"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Client FAQs
+                </Link>
+                <Link
+                  href="/#contact"
+                  className="text-accent-primary hover:text-accent-highlight font-semibold transition-colors"
+                >
+                  Start Your Project →
+                </Link>
+              </div>
+            </div>
 
+            {/* Column 3: Connect & Legal */}
+            <div className="col-span-2 sm:col-span-1 flex flex-col gap-3.5">
+              <span className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-text-muted select-none">
+                Connect
+              </span>
+              <div className="flex flex-col gap-2.5 text-sm">
+                <span className="text-text-secondary">
+                  London, United Kingdom
+                </span>
+                <a
+                  href="mailto:info@rejubliss.co.uk"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  info@rejubliss.co.uk
+                </a>
+                <a
+                  href="tel:+442081234567"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  +44 20 8123 4567
+                </a>
+                <Link
+                  href="/privacy"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="text-text-secondary hover:text-accent-primary transition-colors"
+                >
+                  Terms &amp; Conditions
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hairline Divider & Monumental Signature Row */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">
               {socialLinks.map((item) => (
                 <a
@@ -362,18 +332,38 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="w-10 h-10 rounded-full bg-bg-card/85 backdrop-blur-md border border-border-subtle shadow-[var(--shadow-card)] hover:bg-[var(--btn-primary-bg)] hover:text-[var(--text-on-primary)] hover:border-[var(--btn-primary-bg)] text-text-secondary flex items-center justify-center transition-all duration-300 group cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-[#0b0b0f] border border-white/12 hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-secondary flex items-center justify-center transition-all duration-300 cursor-pointer"
                 >
-                  <svg
-                    className="w-4 h-4 fill-current group-hover:scale-110 transition-transform duration-200"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     {item.icon}
                   </svg>
                 </a>
               ))}
             </div>
+
+            <span className="text-xs text-text-muted">
+              © 2026 Rejubliss 3D Animation Studios. All rights reserved.
+            </span>
           </div>
+
+          <Link
+            href="/"
+            className="flex items-center gap-3.5 sm:gap-4 group select-none"
+          >
+            <div className="relative flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full border border-white/12 bg-[#0b0b0f] group-hover:border-accent-primary/60 transition-colors shrink-0">
+              <Image
+                src="/images/logo-emblem.png"
+                alt="Rejubliss 3D Animation Studios"
+                width={36}
+                height={36}
+                className="object-contain"
+              />
+            </div>
+            <span className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.04em] text-text-heading leading-none">
+              Rejubliss
+            </span>
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-accent-primary mb-1" />
+          </Link>
         </div>
       </div>
     </footer>

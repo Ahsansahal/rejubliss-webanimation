@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
-  ArrowRight,
+  ArrowUpRight,
   Building2,
   CheckCircle2,
   FileCheck2,
@@ -160,7 +160,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -170,13 +170,21 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <Header />
 
-      {/* 01. Service Hero & Direct AEO Definition */}
-      <section className="pt-28 sm:pt-34 pb-16 bg-bg-primary">
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+      {/* 01. Service Hero & Direct Definition */}
+      <section className="relative pt-28 sm:pt-36 pb-16 bg-bg-primary overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 45% at 85% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
+          }}
+        />
+        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-white/10">
             <nav
               aria-label="Breadcrumb"
-              className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-text-muted"
+              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted"
             >
               <Link
                 href="/"
@@ -192,28 +200,26 @@ export default async function ServiceDetailPage({ params }: Props) {
                 Services
               </Link>
               <span aria-hidden="true">/</span>
-              <span className="text-accent-primary font-bold">
-                {service.title}
-              </span>
+              <span className="text-accent-primary">{service.title}</span>
             </nav>
 
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-text-secondary hover:text-accent-primary transition-colors"
+              className="inline-flex items-center gap-1.5 font-display text-[11px] uppercase tracking-[0.08em] font-bold text-text-secondary hover:text-accent-primary transition-colors"
             >
-              <ArrowLeft size={14} />
+              <ArrowLeft size={13} />
               <span>All 9 Capabilities</span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bg-accent-soft border border-border-accent text-accent-primary text-xs font-bold uppercase tracking-wider">
-                <Sparkles size={13} />
-                <span>{service.badge} • London &amp; Worldwide</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/12 text-accent-primary text-[11px] font-semibold uppercase tracking-[0.18em]">
+                <Sparkles size={12} />
+                <span>{service.badge} · London &amp; Worldwide</span>
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[50px] font-bold text-text-heading leading-[1.1] tracking-tight">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-text-heading leading-[1.04] tracking-[-0.035em]">
                 {service.h1Heading}
               </h1>
 
@@ -221,18 +227,18 @@ export default async function ServiceDetailPage({ params }: Props) {
                 {service.directDefinition}
               </p>
 
-              {/* 3 Strategic Fit Cards */}
+              {/* Strategic Fit Cards */}
               <div className="grid grid-cols-1 gap-3 pt-1">
-                <div className="p-4 rounded-2xl bg-bg-card border border-border-subtle card-shadow-soft">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-accent-primary block mb-1">
+                <div className="p-4 sm:p-5 rounded-[18px] bg-[#0b0b0f] border border-white/10">
+                  <span className="editorial-eyebrow text-[10.5px] block mb-1.5">
                     What We Create
                   </span>
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                     {service.whatWeCreate}
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-bg-card border border-border-subtle card-shadow-soft">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-accent-primary block mb-1">
+                <div className="p-4 sm:p-5 rounded-[18px] bg-[#0b0b0f] border border-white/10">
+                  <span className="editorial-eyebrow text-[10.5px] block mb-1.5">
                     Ideal Client Fit
                   </span>
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -246,17 +252,17 @@ export default async function ServiceDetailPage({ params }: Props) {
                   href={`/?service=${encodeURIComponent(
                     service.title
                   )}#contact`}
-                  className="btn-primary-cta inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-bold group"
+                  className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group"
                 >
                   <span>Request a {service.shortTitle} Quote</span>
-                  <ArrowRight
-                    size={16}
-                    className="group-hover:translate-x-1 transition-transform"
+                  <ArrowUpRight
+                    size={15}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                   />
                 </Link>
                 <Link
                   href="/work"
-                  className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold"
+                  className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs"
                 >
                   <span>Explore Case Studies</span>
                 </Link>
@@ -265,7 +271,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
             {/* Visual Composition */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-bg-subtle border border-border-subtle card-shadow-hover">
+              <div className="relative aspect-[16/10] w-full rounded-[22px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card-hover)]">
                 <Image
                   src={service.heroImage}
                   alt={`${service.title} production frame by Rejubliss London`}
@@ -277,7 +283,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-bg-subtle border border-border-subtle">
+                <div className="relative aspect-[16/10] rounded-[18px] overflow-hidden bg-[#0b0b0f] border border-white/10">
                   <Image
                     src={service.secondaryImage}
                     alt={`${service.title} secondary studio visual`}
@@ -286,23 +292,23 @@ export default async function ServiceDetailPage({ params }: Props) {
                     className="object-cover"
                   />
                 </div>
-                <div className="rounded-2xl bg-midnight-navy text-pearl-white p-5 border border-ocean-blue flex flex-col justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ice-cyan">
-                    <Wrench size={14} />
+                <div className="rounded-[18px] bg-[#0b0b0f] text-text-heading p-5 border border-white/10 flex flex-col justify-between">
+                  <div className="flex items-center gap-2 editorial-eyebrow text-[10.5px]">
+                    <Wrench size={13} className="text-accent-primary" />
                     <span>Studio Pipeline</span>
                   </div>
-                  <div className="flex flex-wrap gap-1.5 my-2">
+                  <div className="flex flex-wrap gap-1.5 my-3">
                     {service.toolsAndPipeline.map((tool) => (
                       <span
                         key={tool}
-                        className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-ocean-blue border border-ice-cyan/25 text-pearl-white"
+                        className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-text-secondary"
                       >
                         {tool}
                       </span>
                     ))}
                   </div>
-                  <span className="text-[11px] text-metallic-silver/80">
-                    NDA-ready • Milestone sign-offs • Multi-channel masters
+                  <span className="text-[11px] text-text-muted">
+                    NDA-ready · Milestone sign-offs · Multi-channel masters
                   </span>
                 </div>
               </div>
@@ -312,14 +318,14 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 02. Business Problems Solved & What Is Included */}
-      <section className="py-16 bg-bg-secondary/60 border-t border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-bg-card rounded-3xl border border-border-subtle card-shadow-soft p-7 sm:p-8">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
-              <Target size={15} />
+      <section className="py-18 bg-[#050507] border-t border-b border-white/10">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+            <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
+              <Target size={14} />
               <span>Commercial Challenges Solved</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-5">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading mb-5">
               Problems {service.shortTitle} Solves for Your Team
             </h2>
             <ul className="space-y-3.5">
@@ -329,8 +335,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                   className="flex items-start gap-3 text-sm text-text-secondary leading-relaxed"
                 >
                   <CheckCircle2
-                    size={17}
-                    className="text-accent-interactive shrink-0 mt-0.5"
+                    size={16}
+                    className="text-accent-primary shrink-0 mt-0.5"
                   />
                   <span>{problem}</span>
                 </li>
@@ -338,12 +344,12 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="bg-bg-card rounded-3xl border border-border-subtle card-shadow-soft p-7 sm:p-8">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
-              <Layers size={15} />
+          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+            <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
+              <Layers size={14} />
               <span>End-to-End Scope</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-5">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading mb-5">
               What Every {service.shortTitle} Commission Includes
             </h2>
             <ul className="space-y-3.5">
@@ -353,8 +359,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                   className="flex items-start gap-3 text-sm text-text-secondary leading-relaxed"
                 >
                   <CheckCircle2
-                    size={17}
-                    className="text-accent-interactive shrink-0 mt-0.5"
+                    size={16}
+                    className="text-accent-primary shrink-0 mt-0.5"
                   />
                   <span>{included}</span>
                 </li>
@@ -365,14 +371,14 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 03. Deliverables & Commercial Applications */}
-      <section className="py-16 bg-bg-primary border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-bg-card rounded-3xl border border-border-subtle card-shadow-soft p-7 sm:p-8">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
-              <FileCheck2 size={15} />
+      <section className="py-18 bg-bg-primary border-b border-white/10">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+            <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
+              <FileCheck2 size={14} />
               <span>Expected Deliverables</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-5">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading mb-5">
               Final Files &amp; Masters You Receive
             </h2>
             <ul className="space-y-3">
@@ -382,8 +388,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                   className="flex items-start gap-3 text-sm text-text-secondary"
                 >
                   <CheckCircle2
-                    size={17}
-                    className="text-accent-interactive shrink-0 mt-0.5"
+                    size={16}
+                    className="text-accent-primary shrink-0 mt-0.5"
                   />
                   <span>{item}</span>
                 </li>
@@ -391,12 +397,12 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="bg-bg-card rounded-3xl border border-border-subtle card-shadow-soft p-7 sm:p-8">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
-              <Sparkles size={15} />
+          <div className="bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+            <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
+              <Sparkles size={14} />
               <span>Benefits &amp; Channels</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-5">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading mb-5">
               Where Brands Deploy {service.shortTitle}
             </h2>
             <ul className="space-y-3">
@@ -406,8 +412,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                   className="flex items-start gap-3 text-sm text-text-secondary"
                 >
                   <CheckCircle2
-                    size={17}
-                    className="text-accent-interactive shrink-0 mt-0.5"
+                    size={16}
+                    className="text-accent-primary shrink-0 mt-0.5"
                   />
                   <span>{app}</span>
                 </li>
@@ -418,35 +424,38 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 04. Service Production Process & Industries Served */}
-      <section className="py-16 sm:py-20 bg-bg-secondary/50 border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6 space-y-16">
+      <section className="py-18 sm:py-22 bg-[#050507] border-b border-white/10">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 space-y-16">
           {/* Production Workflow */}
           <div>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary block mb-1.5">
+                <span className="editorial-eyebrow block mb-2">
                   Milestone Workflow
                 </span>
-                <h2 className="font-serif text-2xl sm:text-4xl font-bold text-text-heading">
-                  How Our {service.shortTitle} Production Process Works
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-[-0.03em] text-text-heading">
+                  How Our {service.shortTitle} Process Works
                 </h2>
               </div>
               <Link
                 href="/#process"
-                className="text-xs sm:text-sm font-bold text-accent-primary hover:underline inline-flex items-center gap-1"
+                className="font-display text-xs uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight inline-flex items-center gap-1"
               >
-                <span>See Studio 6-Stage Workflow</span>
-                <ArrowRight size={14} />
+                <span>Studio 6-Stage Workflow</span>
+                <ArrowUpRight size={14} />
               </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {service.processHighlights.map((item) => (
+              {service.processHighlights.map((item, idx) => (
                 <div
                   key={item.step}
-                  className="p-6 rounded-2xl bg-bg-card border border-border-subtle card-shadow-soft"
+                  className="p-6 rounded-[20px] bg-[#0b0b0f] border border-white/10"
                 >
-                  <h3 className="font-serif text-lg font-bold text-text-heading mb-2">
+                  <span className="editorial-index block mb-2">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="font-display text-base sm:text-lg font-bold tracking-[-0.02em] text-text-heading mb-2">
                     {item.step}
                   </h3>
                   <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -458,22 +467,22 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
 
           {/* Industries Served + Why Choose Rejubliss */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-7 bg-bg-card rounded-3xl border border-border-subtle card-shadow-soft p-7 sm:p-8">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
-                <Building2 size={15} />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="lg:col-span-7 bg-[#0b0b0f] rounded-[22px] border border-white/10 p-7 sm:p-8">
+              <div className="flex items-center gap-2 editorial-eyebrow text-[11px] mb-3">
+                <Building2 size={14} />
                 <span>Industries Served</span>
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-5">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading mb-6">
                 Sector Applications for {service.shortTitle}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.industriesServed.map((ind) => (
                   <div
                     key={ind.sector}
-                    className="p-4 rounded-2xl bg-bg-subtle/60 border border-border-subtle"
+                    className="p-4 rounded-[18px] bg-[#050507] border border-white/10"
                   >
-                    <h3 className="font-serif text-base font-bold text-text-heading mb-1">
+                    <h3 className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-text-heading mb-1.5">
                       {ind.sector}
                     </h3>
                     <p className="text-xs text-text-secondary leading-relaxed">
@@ -484,21 +493,21 @@ export default async function ServiceDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-midnight-navy text-pearl-white rounded-3xl border border-ocean-blue p-7 sm:p-8 space-y-5">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-ice-cyan">
-                <ShieldCheck size={15} />
+            <div className="lg:col-span-5 bg-[#0b0b0f] text-text-heading rounded-[22px] border border-white/10 p-7 sm:p-8 space-y-5">
+              <div className="flex items-center gap-2 editorial-eyebrow text-[11px]">
+                <ShieldCheck size={14} />
                 <span>Why Choose Rejubliss</span>
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-pearl-white">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading">
                 What Sets Our London Studio Apart
               </h2>
-              <div className="divide-y divide-white/15">
+              <div className="divide-y divide-white/10">
                 {service.whyChoosePoints.map((pt) => (
-                  <div key={pt.title} className="py-3.5 first:pt-0 last:pb-0">
-                    <h3 className="font-serif text-base font-bold text-ice-cyan mb-1">
+                  <div key={pt.title} className="py-4 first:pt-0 last:pb-0">
+                    <h3 className="font-display text-sm sm:text-base font-bold tracking-[-0.015em] text-accent-primary mb-1">
                       {pt.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-metallic-silver/90 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                       {pt.description}
                     </p>
                   </div>
@@ -511,23 +520,23 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       {/* 05. Related Portfolio Case Studies */}
       {relatedProjects.length > 0 ? (
-        <section className="py-16 sm:py-20 bg-bg-primary border-b border-border-subtle">
-          <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6">
-            <div className="flex flex-wrap items-end justify-between gap-4 mb-9">
+        <section className="py-18 sm:py-22 bg-bg-primary border-b border-white/10">
+          <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary block mb-1.5">
+                <span className="editorial-eyebrow block mb-2">
                   Applied Studio Work
                 </span>
-                <h2 className="font-serif text-2xl sm:text-4xl font-bold text-text-heading">
-                  {service.title} Portfolio &amp; Case Studies
+                <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-[-0.03em] text-text-heading">
+                  {service.title} Case Studies
                 </h2>
               </div>
               <Link
                 href="/work"
-                className="text-xs sm:text-sm font-bold text-accent-primary hover:underline inline-flex items-center gap-1"
+                className="font-display text-xs uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight inline-flex items-center gap-1"
               >
                 <span>View All 18 Case Studies</span>
-                <ArrowRight size={14} />
+                <ArrowUpRight size={14} />
               </Link>
             </div>
 
@@ -536,10 +545,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <Link
                   key={proj.slug}
                   href={`/work/${proj.slug}`}
-                  className="group bg-bg-card rounded-3xl border border-border-subtle hover:border-border-accent card-shadow-soft hover:card-shadow-hover overflow-hidden flex flex-col justify-between transition-all"
+                  className="group bg-[#0b0b0f] rounded-[20px] border border-white/10 hover:border-accent-primary/50 overflow-hidden flex flex-col justify-between transition-all"
                 >
                   <div>
-                    <div className="relative aspect-[16/10] w-full bg-bg-subtle overflow-hidden">
+                    <div className="relative aspect-[16/10] w-full bg-[#050507] overflow-hidden border-b border-white/10">
                       <Image
                         src={proj.image}
                         alt={`${proj.fullTitle} — ${proj.client}`}
@@ -549,10 +558,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                       />
                     </div>
                     <div className="p-5">
-                      <span className="text-[11px] font-bold text-accent-primary block mb-1">
-                        {proj.client} • {proj.caseStudy.projectTypeLabel}
+                      <span className="editorial-eyebrow text-[10px] block mb-1.5">
+                        {proj.client} · {proj.caseStudy.projectTypeLabel}
                       </span>
-                      <h3 className="font-serif text-lg font-bold text-text-heading group-hover:text-accent-primary transition-colors leading-snug mb-2">
+                      <h3 className="font-display text-base font-bold tracking-[-0.02em] text-text-heading group-hover:text-accent-primary transition-colors leading-snug mb-2">
                         {proj.fullTitle}
                       </h3>
                       <p className="text-xs text-text-secondary line-clamp-2">
@@ -560,9 +569,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                       </p>
                     </div>
                   </div>
-                  <div className="px-5 pb-5 pt-2 text-xs font-bold text-accent-primary inline-flex items-center gap-1">
-                    <span>Read {proj.title} Case Study</span>
-                    <ArrowRight size={12} />
+                  <div className="px-5 pb-5 pt-1 font-display text-[11px] uppercase tracking-[0.06em] font-bold text-accent-primary inline-flex items-center gap-1">
+                    <span>Case Study</span>
+                    <ArrowUpRight size={12} />
                   </div>
                 </Link>
               ))}
@@ -571,20 +580,20 @@ export default async function ServiceDetailPage({ params }: Props) {
         </section>
       ) : null}
 
-      {/* 06. Service-Specific FAQs (Crawlable Answer-Focused HTML for SEO & AEO) */}
+      {/* 06. Service-Specific FAQs */}
       <section
         aria-labelledby="service-faq-heading"
-        className="py-16 sm:py-20 bg-bg-secondary/45 border-b border-border-subtle"
+        className="py-18 sm:py-22 bg-[#050507] border-b border-white/10"
       >
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-4 space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary">
-              <HelpCircle size={15} />
+            <div className="inline-flex items-center gap-2 editorial-eyebrow text-[11px]">
+              <HelpCircle size={14} />
               <span>Service FAQs</span>
             </div>
             <h2
               id="service-faq-heading"
-              className="font-serif text-2xl sm:text-4xl font-bold text-text-heading leading-tight"
+              className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-text-heading leading-tight"
             >
               Common {service.shortTitle} Questions
             </h2>
@@ -594,20 +603,23 @@ export default async function ServiceDetailPage({ params }: Props) {
             </p>
             <Link
               href={`/?service=${encodeURIComponent(service.title)}#contact`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-accent-primary hover:underline pt-1"
+              className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.06em] font-bold text-accent-primary hover:text-accent-highlight pt-1"
             >
-              <span>Ask our directors a project-specific question</span>
-              <ArrowRight size={13} />
+              <span>Ask a project-specific question</span>
+              <ArrowUpRight size={13} />
             </Link>
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-            {service.faqs.map((faq) => (
+            {service.faqs.map((faq, idx) => (
               <div
                 key={faq.question}
-                className="p-6 rounded-2xl bg-bg-card border border-border-subtle card-shadow-soft space-y-2.5"
+                className="p-6 rounded-[20px] bg-[#0b0b0f] border border-white/10 space-y-2.5"
               >
-                <h3 className="font-serif text-lg font-bold text-text-heading leading-snug">
+                <span className="editorial-index text-xs block">
+                  0{idx + 1}
+                </span>
+                <h3 className="font-display text-base font-bold tracking-[-0.015em] text-text-heading leading-snug">
                   {faq.question}
                 </h3>
                 <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -620,18 +632,18 @@ export default async function ServiceDetailPage({ params }: Props) {
       </section>
 
       {/* 07. Complementary Studio Services */}
-      <section className="py-14 bg-bg-primary">
-        <div className="w-[97%] max-w-[1650px] mx-auto px-2 sm:px-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <h2 className="font-serif text-2xl font-bold text-text-heading">
+      <section className="py-16 bg-bg-primary">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-7">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading">
               Explore Complementary Studio Services
             </h2>
             <Link
               href="/services"
-              className="text-xs font-bold text-accent-primary hover:underline inline-flex items-center gap-1"
+              className="font-display text-xs uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight inline-flex items-center gap-1"
             >
               <span>View All 9 Services</span>
-              <ArrowRight size={13} />
+              <ArrowUpRight size={13} />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -639,12 +651,12 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Link
                 key={item.slug}
                 href={`/services/${item.slug}`}
-                className="p-5 rounded-2xl bg-bg-card border border-border-subtle hover:border-border-accent card-shadow-soft transition-all group"
+                className="p-5 rounded-[20px] bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 transition-all group"
               >
-                <span className="text-[11px] font-bold uppercase tracking-wider text-accent-primary block mb-1">
+                <span className="editorial-eyebrow text-[10px] block mb-1.5">
                   {item.badge}
                 </span>
-                <h3 className="font-serif text-lg font-bold text-text-heading group-hover:text-accent-primary transition-colors mb-1.5">
+                <h3 className="font-display text-base font-bold tracking-[-0.02em] text-text-heading group-hover:text-accent-primary transition-colors mb-1.5">
                   {item.title}
                 </h3>
                 <p className="text-xs text-text-muted line-clamp-2">

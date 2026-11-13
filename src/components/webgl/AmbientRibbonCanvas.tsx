@@ -34,9 +34,9 @@ function FloatingBrandDust({
   const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
-    const colorA = new THREE.Color(isDark ? "#73C9D0" : "#087F8C");
-    const colorB = new THREE.Color(isDark ? "#16A6B0" : "#063B50");
-    const colorC = new THREE.Color(isDark ? "#D8E8E8" : "#16A6B0");
+    const colorA = new THREE.Color(isDark ? "#E53726" : "#D12B1B");
+    const colorB = new THREE.Color(isDark ? "#8F1D12" : "#7A180F");
+    const colorC = new THREE.Color(isDark ? "#F5F4EF" : "#3A3935");
     const tempColor = new THREE.Color();
 
     for (let i = 0; i < count; i++) {
@@ -93,10 +93,10 @@ function FloatingBrandDust({
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={isDark ? 0.055 : 0.05}
+        size={isDark ? 0.045 : 0.04}
         vertexColors
         transparent
-        opacity={isDark ? 0.45 : 0.32}
+        opacity={isDark ? 0.3 : 0.22}
         blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
       />
@@ -118,7 +118,7 @@ export function AmbientRibbonCanvas() {
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-65">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-50">
       <Canvas
         dpr={[1, 1.5]}
         camera={{ position: [0, 0, 5], fov: 45 }}

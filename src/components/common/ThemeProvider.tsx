@@ -11,7 +11,7 @@ import React, {
 
 export type ThemeMode = "light" | "dark";
 
-export const THEME_STORAGE_KEY = "rejubliss-theme";
+export const THEME_STORAGE_KEY = "rejubliss-studio-theme";
 
 interface ThemeContextValue {
   theme: ThemeMode;
@@ -20,7 +20,7 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: "light",
+  theme: "dark",
   setTheme: () => {},
   toggleTheme: () => {},
 });
@@ -53,7 +53,7 @@ function subscribeTheme(callback: () => void) {
 }
 
 function getClientThemeSnapshot(): ThemeMode {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
   try {
     const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
     if (saved === "dark" || saved === "light") {
@@ -63,11 +63,11 @@ function getClientThemeSnapshot(): ThemeMode {
     // Ignore storage access errors in restricted environments
   }
   const attr = document.documentElement.getAttribute("data-theme");
-  return attr === "dark" ? "dark" : "light";
+  return attr === "light" ? "light" : "dark";
 }
 
 function getServerThemeSnapshot(): ThemeMode {
-  return "light";
+  return "dark";
 }
 
 function applyDocumentTheme(mode: ThemeMode) {

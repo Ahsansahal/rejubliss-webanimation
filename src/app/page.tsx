@@ -138,7 +138,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col relative selection:bg-accent-interactive/25 selection:text-text-heading transition-colors duration-300">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col relative selection:bg-accent-primary selection:text-black transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

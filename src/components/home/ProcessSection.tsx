@@ -87,13 +87,14 @@ export function ProcessSection() {
 
       gsap.fromTo(
         section.querySelectorAll("[data-timeline-node]"),
-        { y: 14 },
+        { y: 18, opacity: 0 },
         {
           y: 0,
-          duration: 0.56,
+          opacity: 1,
+          duration: 0.65,
           stagger: 0.07,
-          ease: "power3.out",
-          clearProps: "transform",
+          ease: "expo.out",
+          clearProps: "transform,opacity",
           scrollTrigger: {
             trigger: section,
             start: "top 82%",
@@ -113,40 +114,35 @@ export function ProcessSection() {
       id="process"
       ref={sectionRef}
       aria-labelledby="process-heading"
-      className="relative py-20 sm:py-26 bg-bg-primary transition-colors duration-300"
+      className="relative py-22 sm:py-28 bg-bg-primary"
     >
       {/* Backwards-compatible #about hash */}
       <div id="about" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="w-[97%] max-w-[1800px] mx-auto px-2 sm:px-4 lg:px-6">
-        {/* Compact Header + Active Milestone Visual Strip */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14">
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        {/* Header + Active Milestone Visual Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-10 mb-14 border-b border-white/10">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-accent-interactive" />
-              <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                Production Workflow
-              </span>
-            </div>
+            <span className="editorial-eyebrow block mb-3">
+              05 · Production Workflow
+            </span>
             <h2
               id="process-heading"
-              className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-bold text-text-heading leading-tight tracking-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-[48px] font-bold text-text-heading leading-[1.05] tracking-[-0.03em]"
             >
               Six Connected Stages{" "}
-              <span className="hero-gradient-text italic font-normal">
-                With Clear Sign-Offs
-              </span>
+              <span className="text-accent-primary">With Clear Sign-Offs</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-text-secondary max-w-xl leading-relaxed">
+            <p className="mt-3.5 text-sm sm:text-base text-text-secondary max-w-xl leading-relaxed">
               Every milestone has an explicit approval checkpoint—so creative
               direction, pacing, and lighting are verified before final
               high-resolution rendering begins.
             </p>
           </div>
 
-          {/* Sleek Contextual Milestone Preview Strip */}
-          <div className="lg:col-span-5 flex items-center gap-4 p-3 rounded-2xl bg-bg-secondary border border-border-subtle">
-            <div className="relative w-24 h-16 sm:w-28 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-midnight-navy">
+          {/* Contextual Milestone Preview Card */}
+          <div className="lg:col-span-5 flex items-center gap-4 p-3.5 rounded-[20px] bg-[#0b0b0f] border border-white/10">
+            <div className="relative w-24 h-16 sm:w-28 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-[#050507] border border-white/10">
               <Image
                 src={activeStep.image}
                 alt={activeStep.title}
@@ -156,14 +152,14 @@ export function ProcessSection() {
               />
             </div>
             <div className="min-w-0">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-accent-primary">
-                <ShieldCheck size={13} className="text-accent-interactive" />
+              <span className="inline-flex items-center gap-1.5 editorial-eyebrow text-[10.5px]">
+                <ShieldCheck size={13} className="text-accent-primary" />
                 <span>Stage {activeStep.number} Checkpoint</span>
               </span>
-              <p className="font-serif text-base font-bold text-text-heading truncate mt-0.5">
+              <p className="font-display text-sm sm:text-base font-bold tracking-[-0.02em] text-text-heading truncate mt-1">
                 {activeStep.gate}
               </p>
-              <p className="text-xs text-text-muted">
+              <p className="text-xs text-text-muted mt-0.5">
                 Hover or tap any milestone below to inspect
               </p>
             </div>
@@ -175,11 +171,11 @@ export function ProcessSection() {
           {/* Desktop Continuous Connector Track */}
           <div
             aria-hidden="true"
-            className="hidden lg:block absolute top-[22px] left-0 right-0 h-[2px] bg-border-subtle"
+            className="hidden lg:block absolute top-[22px] left-0 right-0 h-[1.5px] bg-white/10"
           >
             <div
               ref={lineFillRef}
-              className="origin-left h-full w-full bg-gradient-to-r from-accent-primary via-accent-interactive to-accent-ice"
+              className="origin-left h-full w-full bg-accent-primary"
             />
           </div>
 
@@ -191,13 +187,13 @@ export function ProcessSection() {
                   key={step.number}
                   data-timeline-node
                   onMouseEnter={() => setActiveIdx(idx)}
-                  className="relative pl-10 sm:pl-0"
+                  className="relative pl-12 sm:pl-0"
                 >
                   {/* Mobile vertical connector line */}
                   {idx < CONCISE_STEPS.length - 1 ? (
                     <span
                       aria-hidden="true"
-                      className="sm:hidden absolute left-[17px] top-9 -bottom-8 w-[2px] bg-border-subtle"
+                      className="sm:hidden absolute left-[18px] top-10 -bottom-8 w-[1.5px] bg-white/12"
                     />
                   ) : null}
 
@@ -209,10 +205,10 @@ export function ProcessSection() {
                     {/* Connected Step Circle Node */}
                     <div className="absolute left-0 top-0 sm:static sm:mb-5 flex items-center">
                       <span
-                        className={`w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center font-mono text-xs font-bold border-2 transition-all duration-300 ${
+                        className={`w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center font-display text-xs font-bold border transition-all duration-300 ${
                           isCurrent
-                            ? "bg-[var(--btn-primary-bg)] text-[var(--text-on-primary)] border-[var(--btn-primary-bg)] scale-105 shadow-md"
-                            : "bg-bg-primary text-text-heading border-border-strong group-hover:border-accent-interactive group-hover:text-accent-primary"
+                            ? "bg-accent-primary text-black border-accent-primary scale-105 shadow-[0_0_24px_rgba(229,55,38,0.4)]"
+                            : "bg-[#0b0b0f] text-text-heading border-white/20 group-hover:border-accent-primary group-hover:text-accent-primary"
                         }`}
                       >
                         {step.number}
@@ -221,7 +217,7 @@ export function ProcessSection() {
 
                     {/* Unboxed Milestone Typography */}
                     <h3
-                      className={`font-serif text-lg sm:text-[19px] font-bold mb-2 transition-colors ${
+                      className={`font-display text-base sm:text-lg font-bold tracking-[-0.02em] mb-2 transition-colors ${
                         isCurrent
                           ? "text-accent-primary"
                           : "text-text-heading group-hover:text-accent-primary"
@@ -234,7 +230,7 @@ export function ProcessSection() {
                       {step.summary}
                     </p>
 
-                    <span className="inline-block text-[11px] font-semibold text-accent-primary/90">
+                    <span className="inline-block text-[11px] uppercase tracking-[0.12em] font-semibold text-accent-primary">
                       {step.gate}
                     </span>
                   </button>

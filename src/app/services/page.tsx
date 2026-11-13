@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
@@ -80,7 +80,7 @@ export default function ServicesIndexPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -89,12 +89,20 @@ export default function ServicesIndexPage() {
       />
       <Header />
 
-      {/* Hero Header */}
-      <section className="pt-28 pb-14 sm:pt-36 sm:pb-18 bg-bg-secondary border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4 lg:px-6">
+      {/* Editorial Hero Header */}
+      <section className="relative pt-28 pb-14 sm:pt-36 sm:pb-18 bg-bg-primary border-b border-white/10 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 45% at 84% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
+          }}
+        />
+        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs font-semibold text-text-muted mb-5"
+            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-6"
           >
             <Link href="/" className="hover:text-accent-primary transition-colors">
               Home
@@ -103,18 +111,15 @@ export default function ServicesIndexPage() {
             <span className="text-accent-primary">Services</span>
           </nav>
 
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-accent-soft border border-border-accent text-xs font-bold uppercase tracking-widest text-accent-primary mb-4">
-              <Sparkles size={13} className="text-accent-interactive" />
-              <span>Studio Capabilities &amp; Deliverables</span>
-            </div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[56px] font-bold text-text-heading leading-tight tracking-tight mb-4">
-              Nine Specialist Disciplines Under{" "}
-              <span className="hero-gradient-text italic font-normal">
-                One Creative Roof
-              </span>
+          <div className="max-w-4xl">
+            <span className="editorial-eyebrow block mb-3">
+              01 · Studio Capabilities &amp; Deliverables
+            </span>
+            <h1 className="font-display text-[clamp(2rem,5vw,4.25rem)] font-extrabold uppercase text-text-heading leading-[0.98] tracking-[-0.04em] mb-5">
+              Nine Specialist Disciplines{" "}
+              <span className="text-accent-primary">Under One Creative Roof</span>
             </h1>
-            <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-7">
+            <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
               From photorealistic packaging CGI, 4K 3D product animation, and
               script-to-screen explainer videos to real-time Three.js WebGL
               platforms, every Rejubliss commission in London and worldwide is
@@ -123,14 +128,17 @@ export default function ServicesIndexPage() {
             <div className="flex flex-wrap items-center gap-3.5">
               <Link
                 href="/#contact"
-                className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold"
+                className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group"
               >
                 <span>Start Your Project</span>
-                <ArrowRight size={15} />
+                <ArrowUpRight
+                  size={15}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                />
               </Link>
               <Link
                 href="/work"
-                className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold"
+                className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs"
               >
                 <span>Explore Client Case Studies</span>
               </Link>
@@ -140,17 +148,17 @@ export default function ServicesIndexPage() {
       </section>
 
       {/* All 9 Service Cards */}
-      <section className="py-18 sm:py-22 bg-bg-primary">
-        <div className="w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4 lg:px-6">
+      <section className="py-18 sm:py-24 bg-bg-primary">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {STUDIO_SERVICES.map((srv, idx) => (
               <article
                 key={srv.slug}
-                className="rounded-3xl bg-bg-card border border-border-subtle hover:border-border-accent shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all overflow-hidden grid grid-cols-1 sm:grid-cols-12"
+                className="group rounded-[22px] bg-[#0b0b0f] border border-white/10 hover:border-accent-primary/50 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all overflow-hidden grid grid-cols-1 sm:grid-cols-12"
               >
                 <Link
                   href={`/services/${srv.slug}`}
-                  className="sm:col-span-5 relative min-h-[220px] bg-bg-subtle block"
+                  className="sm:col-span-5 relative min-h-[230px] bg-[#050507] block overflow-hidden border-b sm:border-b-0 sm:border-r border-white/10"
                 >
                   <Image
                     src={srv.heroImage}
@@ -158,16 +166,21 @@ export default function ServicesIndexPage() {
                     fill
                     preload={idx < 2}
                     sizes="(max-width: 640px) 95vw, 35vw"
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-bg-card/92 backdrop-blur-md border border-border-accent text-[10.5px] font-bold uppercase tracking-wider text-accent-primary">
+                  <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-semibold uppercase tracking-[0.14em] text-text-heading">
                     {srv.badge}
                   </span>
                 </Link>
 
                 <div className="sm:col-span-7 p-6 flex flex-col justify-between">
                   <div>
-                    <h2 className="font-serif text-2xl font-bold text-text-heading mb-2">
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="editorial-index text-xs">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h2 className="font-display text-xl sm:text-2xl font-bold tracking-[-0.025em] text-text-heading mb-2">
                       <Link
                         href={`/services/${srv.slug}`}
                         className="hover:text-accent-primary transition-colors"
@@ -186,7 +199,7 @@ export default function ServicesIndexPage() {
                         >
                           <CheckCircle2
                             size={13}
-                            className="text-accent-interactive shrink-0 mt-0.5"
+                            className="text-accent-primary shrink-0 mt-0.5"
                           />
                           <span>{item}</span>
                         </li>
@@ -194,17 +207,17 @@ export default function ServicesIndexPage() {
                     </ul>
                   </div>
 
-                  <div className="pt-3 border-t border-border-subtle flex items-center justify-between gap-3">
+                  <div className="pt-3.5 border-t border-white/10 flex items-center justify-between gap-3">
                     <Link
                       href={`/services/${srv.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-accent-primary hover:text-accent-interactive"
+                      className="inline-flex items-center gap-1.5 font-display text-[11px] uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight transition-colors"
                     >
-                      <span>Explore {srv.shortTitle} Guide</span>
-                      <ArrowRight size={13} />
+                      <span>Explore {srv.shortTitle}</span>
+                      <ArrowUpRight size={13} />
                     </Link>
                     <Link
                       href={`/?service=${encodeURIComponent(srv.title)}#contact`}
-                      className="text-xs font-semibold text-text-muted hover:text-accent-primary"
+                      className="text-xs font-semibold text-text-muted hover:text-text-heading transition-colors"
                     >
                       Request Quote
                     </Link>
@@ -217,38 +230,45 @@ export default function ServicesIndexPage() {
       </section>
 
       {/* Commissionable Solutions Summary */}
-      <section className="py-16 bg-bg-secondary border-t border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4 lg:px-6">
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-text-heading mb-8">
-            Commissionable Solutions by Production Group
-          </h2>
+      <section className="py-18 sm:py-22 bg-[#050507] border-t border-b border-white/10">
+        <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+          <div className="mb-10">
+            <span className="editorial-eyebrow block mb-2.5">
+              02 · Production Suites
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-[-0.03em] text-text-heading">
+              Commissionable Solutions by{" "}
+              <span className="text-accent-primary">Production Group</span>
+            </h2>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {SOLUTION_GROUPS.map((group) => (
+            {SOLUTION_GROUPS.map((group, idx) => (
               <div
                 key={group.id}
-                className="rounded-2xl bg-bg-card border border-border-subtle p-6 shadow-[var(--shadow-card)]"
+                className="rounded-[22px] bg-[#0b0b0f] border border-white/10 p-6 sm:p-7 shadow-[var(--shadow-card)]"
               >
-                <span className="text-[11px] font-bold uppercase tracking-widest text-accent-primary">
-                  {group.eyebrow}
+                <span className="editorial-eyebrow text-[11px]">
+                  0{idx + 1} · {group.eyebrow}
                 </span>
-                <h3 className="font-serif text-xl font-bold text-text-heading mt-1 mb-2">
+                <h3 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading mt-2 mb-2">
                   {group.label}
                 </h3>
-                <p className="text-xs text-text-secondary leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-5">
                   {group.description}
                 </p>
                 <ul className="space-y-2">
                   {group.solutions.map((sol) => (
                     <li
                       key={sol.id}
-                      className="flex items-center justify-between text-xs font-semibold text-text-heading py-1.5 border-t border-border-subtle/70"
+                      className="flex items-center justify-between gap-2 text-xs font-semibold text-text-heading py-2 border-t border-white/10"
                     >
                       <span>{sol.title}</span>
                       <Link
                         href={`/services/${sol.serviceSlug}`}
-                        className="text-accent-primary hover:text-accent-interactive"
+                        className="text-accent-primary hover:text-accent-highlight shrink-0"
                       >
-                        {sol.title} Guide →
+                        Guide →
                       </Link>
                     </li>
                   ))}

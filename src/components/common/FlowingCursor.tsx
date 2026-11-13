@@ -73,7 +73,7 @@ export function FlowingCursor({
         deltaY: 0,
         down: false,
         moved: false,
-        color: { r: 0.004, g: 0.065, b: 0.072 },
+        color: { r: 0.085, g: 0.02, b: 0.015 },
       },
     ];
 
@@ -974,22 +974,21 @@ export function FlowingCursor({
     }
 
     const BRAND_FLUID_PALETTE = [
-      { r: 6 / 255, g: 59 / 255, b: 80 / 255 },    // Ocean Blue #063B50
-      { r: 8 / 255, g: 127 / 255, b: 140 / 255 },  // Deep Teal #087F8C
-      { r: 22 / 255, g: 166 / 255, b: 176 / 255 }, // Electric Turquoise #16A6B0
-      { r: 115 / 255, g: 201 / 255, b: 208 / 255 },// Ice Cyan #73C9D0
-      { r: 216 / 255, g: 232 / 255, b: 232 / 255 },// Metallic Silver #D8E8E8
+      { r: 229 / 255, g: 55 / 255, b: 38 / 255 },   // Vermilion #E53726
+      { r: 168 / 255, g: 36 / 255, b: 23 / 255 },   // Deep Crimson #A82417
+      { r: 112 / 255, g: 22 / 255, b: 14 / 255 },   // Dark Ember #70160E
+      { r: 245 / 255, g: 244 / 255, b: 239 / 255 }, // Editorial Paper #F5F4EF
     ];
     let paletteCursor = 0;
 
     function generateColor() {
-      // Crystalline Rejubliss brand fluid trail (controlled intensity, zero unrelated hues)
+      // Restrained studio ember fluid trail (subtle cinema glow, zero unrelated hues)
       const isDark =
         typeof document !== "undefined" &&
-        document.documentElement.getAttribute("data-theme") === "dark";
+        document.documentElement.getAttribute("data-theme") !== "light";
       const base = BRAND_FLUID_PALETTE[paletteCursor % BRAND_FLUID_PALETTE.length];
       paletteCursor += 1;
-      const intensity = isDark ? 0.14 : 0.11;
+      const intensity = isDark ? 0.085 : 0.07;
       return {
         r: base.r * intensity,
         g: base.g * intensity,

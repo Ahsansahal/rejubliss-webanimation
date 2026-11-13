@@ -19,37 +19,24 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "64px 72px",
-          background:
-            "linear-gradient(135deg, #061B35 0%, #063B50 56%, #087F8C 100%)",
-          color: "#F5FAFA",
+          background: "#000000",
+          color: "#F5F4EF",
           fontFamily: "sans-serif",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Decorative Crystalline Ambient Orbs */}
+        {/* Subtle Upper-Right Crimson Radial Wash */}
         <div
           style={{
             position: "absolute",
-            top: "-120px",
-            right: "-80px",
-            width: "520px",
-            height: "520px",
+            top: "-140px",
+            right: "-90px",
+            width: "620px",
+            height: "620px",
             borderRadius: "9999px",
             background:
-              "radial-gradient(circle, rgba(115,201,208,0.34) 0%, rgba(22,166,176,0.08) 55%, transparent 75%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-160px",
-            left: "260px",
-            width: "480px",
-            height: "480px",
-            borderRadius: "9999px",
-            background:
-              "radial-gradient(circle, rgba(22,166,176,0.25) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(229,55,38,0.28) 0%, rgba(229,55,38,0.08) 52%, transparent 74%)",
           }}
         />
 
@@ -66,27 +53,31 @@ export default function OpenGraphImage() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "14px",
+              gap: "12px",
+              padding: "10px 20px",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255, 255, 255, 0.14)",
+              background: "rgba(255, 255, 255, 0.04)",
             }}
           >
             <div
               style={{
-                width: "16px",
-                height: "16px",
+                width: "10px",
+                height: "10px",
                 borderRadius: "9999px",
-                background: "#73C9D0",
+                background: "#E53726",
               }}
             />
             <span
               style={{
-                fontSize: "22px",
+                fontSize: "18px",
                 fontWeight: 700,
-                letterSpacing: "0.16em",
+                letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "#73C9D0",
+                color: "#F5F4EF",
               }}
             >
-              Rejubliss • London Creative Studio
+              LONDON, UK • 3D, CGI &amp; WEBGL STUDIO
             </span>
           </div>
 
@@ -94,42 +85,47 @@ export default function OpenGraphImage() {
             style={{
               padding: "10px 22px",
               borderRadius: "9999px",
-              border: "1px solid rgba(115, 201, 208, 0.45)",
-              background: "rgba(6, 27, 53, 0.55)",
-              fontSize: "18px",
-              fontWeight: 600,
-              color: "#D8E8E8",
+              background: "#E53726",
+              fontSize: "17px",
+              fontWeight: 800,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "#000000",
             }}
           >
-            rejubliss.co.uk
+            REJUBLISS.CO.UK
           </span>
         </div>
 
-        {/* Center Headline */}
+        {/* Monumental Stacked Display Headline */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
-            maxWidth: "980px",
+            gap: "18px",
+            maxWidth: "1040px",
           }}
         >
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               fontSize: "64px",
               fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: "-0.02em",
-              color: "#F5FAFA",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              textTransform: "uppercase",
             }}
           >
-            Ideas Crafted Into Extraordinary 3D, CGI &amp; WebGL Worlds
+            <span style={{ color: "#F5F4EF" }}>IDEAS CRAFTED INTO</span>
+            <span style={{ color: "#E53726" }}>EXTRAORDINARY 3D,</span>
+            <span style={{ color: "#F5F4EF" }}>CGI &amp; DIGITAL WORLDS</span>
           </div>
           <div
             style={{
-              fontSize: "26px",
-              lineHeight: 1.42,
-              color: "#D8E8E8",
+              fontSize: "24px",
+              lineHeight: 1.45,
+              color: "rgba(245, 244, 239, 0.72)",
               maxWidth: "880px",
             }}
           >
@@ -138,18 +134,18 @@ export default function OpenGraphImage() {
           </div>
         </div>
 
-        {/* Bottom Capability Strip */}
+        {/* Bottom Hairline Capability Strip */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            paddingTop: "26px",
-            borderTop: "1px solid rgba(216, 232, 232, 0.22)",
+            paddingTop: "24px",
+            borderTop: "1px solid rgba(255, 255, 255, 0.12)",
             width: "100%",
           }}
         >
-          <div style={{ display: "flex", gap: "14px" }}>
+          <div style={{ display: "flex", gap: "12px" }}>
             {[
               "3D Animation",
               "Photorealistic CGI",
@@ -160,13 +156,13 @@ export default function OpenGraphImage() {
               <span
                 key={tag}
                 style={{
-                  padding: "8px 18px",
+                  padding: "8px 16px",
                   borderRadius: "9999px",
-                  background: "rgba(245, 250, 250, 0.1)",
-                  border: "1px solid rgba(115, 201, 208, 0.3)",
-                  fontSize: "17px",
+                  background: "#0B0B0F",
+                  border: "1px solid rgba(255, 255, 255, 0.12)",
+                  fontSize: "16px",
                   fontWeight: 600,
-                  color: "#F5FAFA",
+                  color: "rgba(245, 244, 239, 0.86)",
                 }}
               >
                 {tag}
@@ -175,12 +171,14 @@ export default function OpenGraphImage() {
           </div>
           <span
             style={{
-              fontSize: "18px",
+              fontSize: "17px",
               fontWeight: 700,
-              color: "#73C9D0",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#E53726",
             }}
           >
-            London • Worldwide Delivery
+            REJUBLISS STUDIO
           </span>
         </div>
       </div>

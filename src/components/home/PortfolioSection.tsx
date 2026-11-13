@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight, ArrowUpRight, Expand, Play, Images } from "lucide-react";
+import { ArrowUpRight, Expand, Play, Images } from "lucide-react";
 import {
   ALL_PORTFOLIO_PROJECTS,
   type EnrichedProject,
@@ -163,7 +163,7 @@ function PortfolioBentoCard({
     >
       {/* Dominant Visual Canvas */}
       <div
-        className={`relative w-full ${span.aspect} rounded-[24px] overflow-hidden bg-midnight-navy border border-border-subtle group-hover:border-border-accent shadow-[var(--shadow-card)] group-hover:shadow-[var(--shadow-card-hover)] transition-all duration-500`}
+        className={`relative w-full ${span.aspect} rounded-[20px] overflow-hidden bg-[#0b0b0f] border border-white/10 group-hover:border-accent-primary/50 shadow-[var(--shadow-card)] group-hover:shadow-[var(--shadow-card-hover)] transition-all duration-500`}
       >
         <Link
           href={`/work/${project.slug}`}
@@ -175,39 +175,32 @@ function PortfolioBentoCard({
             alt={`${project.fullTitle} — ${project.client}`}
             fill
             sizes={span.sizes}
-            className="object-cover group-hover:scale-[1.035] transition-transform duration-700 ease-out"
+            className="object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-midnight-navy/80 via-midnight-navy/10 to-transparent opacity-65 group-hover:opacity-85 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
         </Link>
 
-        {/* Subtle Top Indicators */}
+        {/* Top-Left & Top-Right Editorial Indicators */}
         <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-none">
-          <span className="px-3 py-1 rounded-full bg-midnight-navy/75 backdrop-blur-md border border-pearl-white/15 text-[11px] font-semibold text-pearl-white">
-            {project.portfolioCategory}
-          </span>
-
           {isMotionProject ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-deep-teal/90 backdrop-blur-md text-[11px] font-bold text-pearl-white">
-              <Play size={10} className="fill-current" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
+              <Play size={10} className="fill-accent-primary text-accent-primary" />
               <span>Motion / 3D</span>
             </span>
           ) : hasReelFrames ? (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-midnight-navy/75 backdrop-blur-md border border-pearl-white/15 text-[11px] font-medium text-pearl-white">
-              <Images size={11} className="text-ice-cyan" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
+              <Images size={11} className="text-accent-primary" />
               <span>
                 {hovered
-                  ? `${frameIdx + 1}/${previewFrames.length}`
-                  : `${project.gallery.length} Frames`}
+                  ? `${frameIdx + 1} / ${previewFrames.length}`
+                  : `${project.gallery.length} Visuals`}
               </span>
             </span>
-          ) : null}
-        </div>
-
-        {/* Hover Lightbox Trigger + Bottom Reveal Caption */}
-        <div className="absolute bottom-3.5 left-4 right-4 z-20 flex items-end justify-between gap-3 pointer-events-none">
-          <p className="text-xs text-pearl-white/90 line-clamp-1 opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 max-w-md">
-            {project.subtitle}
-          </p>
+          ) : (
+            <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-text-heading">
+              {project.portfolioCategory}
+            </span>
+          )}
 
           <button
             type="button"
@@ -217,45 +210,49 @@ function PortfolioBentoCard({
               onQuickView(project);
             }}
             aria-label={`Quick gallery preview for ${project.title}`}
-            className="pointer-events-auto ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-midnight-navy/85 hover:bg-deep-teal backdrop-blur-md border border-pearl-white/20 text-[11px] font-bold text-pearl-white transition-colors cursor-pointer"
+            className="pointer-events-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 hover:bg-accent-primary hover:text-black hover:border-accent-primary backdrop-blur-md border border-white/15 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-text-heading transition-all cursor-pointer"
           >
-            <Expand size={12} />
+            <Expand size={11} />
             <span>Preview</span>
           </button>
         </div>
+
+        {/* Bottom-Right Circular Case Study Arrow */}
+        <Link
+          href={`/work/${project.slug}`}
+          aria-label={`Open ${project.title} case study`}
+          className="absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-text-heading group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300"
+        >
+          <ArrowUpRight size={15} />
+        </Link>
       </div>
 
-      {/* Concise Editorial Metadata Beneath Frame */}
-      <div className="pt-3.5 px-1 flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 text-xs text-text-muted mb-0.5">
-            <span className="font-semibold text-accent-primary">
-              {project.client}
-            </span>
-            <span>•</span>
-            <span className="truncate">{project.caseStudy.industry}</span>
-          </div>
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-text-heading group-hover:text-accent-primary transition-colors truncate">
+      {/* Unboxed Editorial Metadata Beneath Frame */}
+      <div className="pt-4 px-0.5 space-y-1">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-display text-lg sm:text-xl font-bold tracking-[-0.025em] text-text-heading group-hover:text-accent-primary transition-colors leading-snug">
             <Link href={`/work/${project.slug}`}>{project.title}</Link>
           </h3>
         </div>
 
-        <div className="hidden sm:flex items-center gap-1.5 pt-1 shrink-0">
+        {project.subtitle ? (
+          <p className="text-xs sm:text-sm text-text-secondary line-clamp-1">
+            {project.subtitle}
+          </p>
+        ) : null}
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-0.5 text-xs text-text-muted">
+          <span className="font-semibold text-accent-primary">
+            {project.client}
+          </span>
+          <span>·</span>
+          <span>{project.caseStudy.industry}</span>
           {project.tags.slice(0, 2).map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-bg-secondary border border-border-subtle text-text-secondary"
-            >
-              {tag}
-            </span>
+            <React.Fragment key={tag}>
+              <span>·</span>
+              <span>{tag}</span>
+            </React.Fragment>
           ))}
-          <Link
-            href={`/work/${project.slug}`}
-            aria-label={`Open ${project.title} case study`}
-            className="w-7 h-7 rounded-full border border-border-subtle flex items-center justify-center text-text-muted group-hover:text-accent-primary group-hover:border-border-accent transition-colors"
-          >
-            <ArrowUpRight size={14} />
-          </Link>
         </div>
       </div>
     </article>
@@ -299,37 +296,36 @@ export function PortfolioSection({
       id="portfolio"
       ref={sectionRef}
       aria-labelledby="portfolio-heading"
-      className="relative py-22 sm:py-28 bg-bg-primary transition-colors duration-300"
+      className="relative py-22 sm:py-28 bg-bg-primary"
     >
       {/* Legacy hash compatibility */}
-      <div id="portfolio-spotlight" className="absolute -top-24" aria-hidden="true" />
+      <div
+        id="portfolio-spotlight"
+        className="absolute -top-24"
+        aria-hidden="true"
+      />
       <div id="featured-work" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="w-[97%] max-w-[1800px] mx-auto px-2 sm:px-4 lg:px-6">
-        {/* Header + Simple Discipline Filter Bar */}
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
+        {/* Header + Discipline Filter Bar */}
         <div
           data-gsap-reveal
-          className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 mb-10 sm:mb-12"
+          className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 pb-8 mb-10 sm:mb-12 border-b border-white/10"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-accent-interactive" />
-              <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                Selected Work &amp; Case Studies
-              </span>
-            </div>
+            <span className="editorial-eyebrow block mb-3">
+              03 · Selected Work &amp; Case Studies
+            </span>
             <h2
               id="portfolio-heading"
-              className="font-serif text-3xl sm:text-4xl lg:text-[48px] font-bold text-text-heading leading-tight tracking-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-[48px] font-bold text-text-heading leading-[1.05] tracking-[-0.03em]"
             >
               Crafted to Command{" "}
-              <span className="hero-gradient-text italic font-normal">
-                Attention
-              </span>
+              <span className="text-accent-primary">Attention</span>
             </h2>
           </div>
 
-          {/* Clean Category Navigation */}
+          {/* Pill Category Filter Tabs */}
           <div
             role="tablist"
             aria-label="Filter portfolio by category"
@@ -345,10 +341,10 @@ export function PortfolioSection({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-[11.5px] font-semibold transition-all duration-200 cursor-pointer ${
                     isSelected
                       ? "btn-primary-solid"
-                      : "bg-bg-secondary text-text-secondary hover:text-text-heading border border-border-subtle hover:border-border-accent"
+                      : "bg-[#0b0b0f] text-text-secondary hover:text-text-heading border border-white/10 hover:border-accent-primary/50"
                   }`}
                 >
                   {label}
@@ -359,7 +355,7 @@ export function PortfolioSection({
         </div>
 
         {/* Asymmetrical Bento Visual Grid (Zero Duplicate Projects) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-11">
           {visibleProjects.map((project, index) => (
             <PortfolioBentoCard
               key={project.slug}
@@ -370,17 +366,17 @@ export function PortfolioSection({
           ))}
         </div>
 
-        {/* Strategic Post-Portfolio Conversion Strip */}
+        {/* Post-Portfolio Conversion Strip */}
         <div
           data-gsap-reveal
-          className="mt-14 pt-8 border-t border-border-subtle flex flex-col md:flex-row md:items-center justify-between gap-5"
+          className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-5"
         >
           <div className="flex flex-wrap items-center gap-4">
             {isCuratedAll ? (
               <button
                 type="button"
                 onClick={() => setExpandedAll(true)}
-                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold cursor-pointer"
+                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs cursor-pointer"
               >
                 <span>
                   Show All {ALL_PORTFOLIO_PROJECTS.length} Productions
@@ -390,7 +386,7 @@ export function PortfolioSection({
               <button
                 type="button"
                 onClick={() => setExpandedAll(false)}
-                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold cursor-pointer"
+                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs cursor-pointer"
               >
                 <span>Show Curated Selection</span>
               </button>
@@ -398,14 +394,13 @@ export function PortfolioSection({
 
             <Link
               href="/work"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-text-secondary hover:text-accent-primary transition-colors"
+              className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.08em] font-bold text-text-secondary hover:text-accent-primary transition-colors"
             >
-              <span>Browse Full Case Study Index</span>
-              <ArrowUpRight size={15} />
+              <span>Full Case Study Index</span>
+              <ArrowUpRight size={14} className="text-accent-primary" />
             </Link>
           </div>
 
-          {/* Strategic CTA Placement #2: After the Portfolio */}
           <div className="flex flex-wrap items-center gap-4">
             <span className="text-xs sm:text-sm text-text-muted hidden sm:inline">
               Planning a product reveal, CGI campaign, or interactive web build?
@@ -416,12 +411,12 @@ export function PortfolioSection({
                 e.preventDefault();
                 triggerProjectInquiry();
               }}
-              className="btn-primary-cta inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-semibold group"
+              className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs group"
             >
               <span>Start Your Project</span>
-              <ArrowRight
+              <ArrowUpRight
                 size={15}
-                className="group-hover:translate-x-1 transition-transform"
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
             </a>
           </div>

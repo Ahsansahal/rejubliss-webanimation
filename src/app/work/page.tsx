@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { PortfolioSection } from "@/components/home/PortfolioSection";
@@ -74,7 +74,7 @@ export default function WorkIndexPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col">
+    <main className="min-h-screen bg-bg-primary text-text-primary flex flex-col selection:bg-accent-primary selection:text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -83,11 +83,19 @@ export default function WorkIndexPage() {
       />
       <Header />
 
-      <section className="pt-28 pb-10 sm:pt-36 sm:pb-12 bg-bg-secondary border-b border-border-subtle">
-        <div className="w-[97%] max-w-[1850px] mx-auto px-2 sm:px-4 lg:px-6">
+      <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16 bg-bg-primary border-b border-white/10 overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 45% at 84% 18%, rgba(229, 55, 38, 0.14), transparent 70%)",
+          }}
+        />
+        <div className="relative z-10 max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
           <nav
             aria-label="Breadcrumb"
-            className="flex items-center gap-2 text-xs font-semibold text-text-muted mb-5"
+            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted mb-6"
           >
             <Link href="/" className="hover:text-accent-primary transition-colors">
               Home
@@ -98,17 +106,14 @@ export default function WorkIndexPage() {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-accent-soft border border-border-accent text-xs font-bold uppercase tracking-widest text-accent-primary mb-4">
-                <Sparkles size={13} className="text-accent-interactive" />
-                <span>Portfolio &amp; Case Studies</span>
-              </div>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[54px] font-bold text-text-heading leading-tight tracking-tight mb-3">
+              <span className="editorial-eyebrow block mb-3">
+                01 · Portfolio &amp; Case Studies
+              </span>
+              <h1 className="font-display text-[clamp(2rem,5vw,4.25rem)] font-extrabold uppercase text-text-heading leading-[0.98] tracking-[-0.04em] mb-4">
                 Selected Client Commissions &amp;{" "}
-                <span className="hero-gradient-text italic font-normal">
-                  Studio Showcases
-                </span>
+                <span className="text-accent-primary">Studio Showcases</span>
               </h1>
-              <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
+              <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl">
                 Explore multi-asset client deliveries and technical R&amp;D reels
                 with transparent breakdowns of challenge, creative direction,
                 production pipeline, and final deliverables.
@@ -117,10 +122,13 @@ export default function WorkIndexPage() {
 
             <Link
               href="/#contact"
-              className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold shrink-0 w-fit"
+              className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs shrink-0 w-fit group"
             >
               <span>Start Your Project</span>
-              <ArrowRight size={15} />
+              <ArrowUpRight
+                size={15}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              />
             </Link>
           </div>
         </div>

@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { HOMEPAGE_CREATIVE_SERVICES } from "@/data/services";
 import { useGsapSectionReveal } from "@/lib/use-gsap-reveal";
 
@@ -20,32 +20,27 @@ export function ServicesSection() {
       id="services"
       ref={sectionRef}
       aria-labelledby="services-heading"
-      className="relative py-20 sm:py-26 bg-bg-primary transition-colors duration-300"
+      className="relative py-22 sm:py-28 bg-bg-primary"
     >
       {/* Backwards-compatible anchor for merged Creative Solutions */}
       <div id="solutions" className="absolute -top-24" aria-hidden="true" />
 
-      <div className="w-[97%] max-w-[1800px] mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="max-w-[1480px] w-full mx-auto px-4 sm:px-6 md:px-12">
         {/* Editorial Section Header */}
         <div
           data-gsap-reveal
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-16"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 mb-12 sm:mb-14 border-b border-white/10"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 bg-accent-interactive" />
-              <span className="text-xs font-bold tracking-widest uppercase text-accent-primary">
-                Creative Capabilities
-              </span>
-            </div>
+            <span className="editorial-eyebrow block mb-3">
+              01 · Creative Capabilities
+            </span>
             <h2
               id="services-heading"
-              className="font-serif text-3xl sm:text-4xl lg:text-[46px] font-bold text-text-heading leading-tight tracking-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-[48px] font-bold text-text-heading leading-[1.05] tracking-[-0.03em]"
             >
               Six Disciplines Built Around{" "}
-              <span className="hero-gradient-text italic font-normal">
-                Your Vision
-              </span>
+              <span className="text-accent-primary">Your Vision</span>
             </h2>
           </div>
 
@@ -57,12 +52,12 @@ export function ServicesSection() {
             </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent-primary hover:text-accent-interactive shrink-0 group"
+              className="btn-secondary-surface inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-[11px] shrink-0 group"
             >
               <span>All 9 Services</span>
-              <ArrowRight
-                size={14}
-                className="group-hover:translate-x-0.5 transition-transform"
+              <ArrowUpRight
+                size={13}
+                className="text-accent-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
             </Link>
           </div>
@@ -73,7 +68,7 @@ export function ServicesSection() {
           {/* Left: 6 Clean Hairline Service Chapters (SSR crawlable across all 6 disciplines) */}
           <div
             data-gsap-reveal
-            className="lg:col-span-6 border-t border-border-subtle"
+            className="lg:col-span-6 border-t border-white/10"
           >
             {HOMEPAGE_CREATIVE_SERVICES.map((service, idx) => {
               const isActive = idx === activeIndex;
@@ -81,8 +76,8 @@ export function ServicesSection() {
                 <div
                   key={service.id}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`border-b border-border-subtle transition-colors duration-200 ${
-                    isActive ? "bg-bg-secondary/60" : "hover:bg-bg-secondary/30"
+                  className={`border-b border-white/10 transition-colors duration-200 ${
+                    isActive ? "bg-white/[0.025]" : "hover:bg-white/[0.015]"
                   }`}
                 >
                   <button
@@ -93,17 +88,15 @@ export function ServicesSection() {
                   >
                     <div className="flex items-baseline gap-4 sm:gap-5 min-w-0">
                       <span
-                        className={`font-mono text-xs font-bold transition-colors ${
-                          isActive
-                            ? "text-accent-interactive"
-                            : "text-text-muted"
+                        className={`editorial-index transition-opacity ${
+                          isActive ? "opacity-100" : "opacity-55"
                         }`}
                       >
                         {service.number}
                       </span>
                       <div>
                         <h3
-                          className={`font-serif text-xl sm:text-2xl font-bold transition-colors ${
+                          className={`font-display text-lg sm:text-xl font-bold tracking-[-0.02em] transition-colors ${
                             isActive
                               ? "text-accent-primary"
                               : "text-text-heading"
@@ -111,7 +104,7 @@ export function ServicesSection() {
                         >
                           {service.title}
                         </h3>
-                        <span className="block text-xs text-text-muted mt-0.5">
+                        <span className="block text-xs uppercase tracking-[0.14em] text-text-muted mt-1">
                           {service.eyebrow}
                         </span>
                       </div>
@@ -121,7 +114,7 @@ export function ServicesSection() {
                       size={18}
                       className={`shrink-0 transition-transform duration-300 ${
                         isActive
-                          ? "text-accent-interactive rotate-45"
+                          ? "text-accent-primary rotate-45"
                           : "text-text-muted"
                       }`}
                     />
@@ -137,7 +130,7 @@ export function ServicesSection() {
                   >
                     {/* Mobile/Tablet inline visual preview — mounted only for active item to avoid extra image requests */}
                     {isActive ? (
-                      <div className="lg:hidden relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-bg-subtle">
+                      <div className="lg:hidden relative aspect-[16/10] w-full rounded-[18px] overflow-hidden bg-[#0b0b0f] border border-white/10">
                         <Image
                           src={service.image}
                           alt={`${service.title} — ${service.imageCaption}`}
@@ -158,7 +151,7 @@ export function ServicesSection() {
                       {service.deliverables.map((item) => (
                         <span
                           key={item}
-                          className="px-2.5 py-1 rounded-full text-[11.5px] font-medium bg-bg-card border border-border-subtle text-text-heading"
+                          className="px-3 py-1 rounded-full text-xs font-medium bg-[#0b0b0f] border border-white/10 text-text-secondary"
                         >
                           {item}
                         </span>
@@ -166,10 +159,10 @@ export function ServicesSection() {
                     </div>
 
                     {/* Deep Service Page Links */}
-                    <div className="flex flex-wrap items-center gap-5 pt-1 text-xs font-bold">
+                    <div className="flex flex-wrap items-center gap-5 pt-1 font-display text-[11px] uppercase tracking-[0.08em] font-bold">
                       <Link
                         href={`/services/${service.primarySlug}`}
-                        className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-interactive transition-colors"
+                        className="inline-flex items-center gap-1.5 text-accent-primary hover:text-accent-highlight transition-colors"
                       >
                         <span>Explore {service.title}</span>
                         <ArrowUpRight size={13} />
@@ -177,7 +170,7 @@ export function ServicesSection() {
                       {service.secondaryLink ? (
                         <Link
                           href={`/services/${service.secondaryLink.slug}`}
-                          className="inline-flex items-center gap-1 text-text-secondary hover:text-accent-primary transition-colors"
+                          className="inline-flex items-center gap-1.5 text-text-secondary hover:text-accent-primary transition-colors"
                         >
                           <span>{service.secondaryLink.label}</span>
                           <ArrowUpRight size={13} />
@@ -195,7 +188,7 @@ export function ServicesSection() {
             data-gsap-reveal
             className="hidden lg:block lg:col-span-6 lg:sticky lg:top-28"
           >
-            <div className="relative rounded-[28px] overflow-hidden bg-midnight-navy border border-border-subtle shadow-[var(--shadow-card-hover)]">
+            <div className="relative rounded-[22px] overflow-hidden bg-[#0b0b0f] border border-white/10 shadow-[var(--shadow-card-hover)]">
               <div className="relative aspect-[16/11] w-full">
                 <Image
                   src={activeService.image}
@@ -205,10 +198,10 @@ export function ServicesSection() {
                   sizes="48vw"
                   className="object-cover transition-opacity duration-300"
                 />
-                <div className="absolute inset-0 z-20 bg-gradient-to-t from-midnight-navy/85 via-transparent to-transparent" />
+                <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/90 via-black/15 to-transparent" />
 
                 {/* Floating Inset Detail Thumbnail */}
-                <div className="absolute bottom-5 right-5 z-30 w-36 aspect-[4/3] rounded-xl overflow-hidden border-2 border-pearl-white/25 shadow-xl bg-midnight-navy">
+                <div className="absolute bottom-5 right-5 z-30 w-36 aspect-[4/3] rounded-xl overflow-hidden border border-white/20 shadow-2xl bg-[#050507]">
                   <Image
                     src={activeService.secondaryImage}
                     alt={`${activeService.title} detail`}
@@ -220,11 +213,11 @@ export function ServicesSection() {
                 </div>
 
                 {/* Bottom Caption */}
-                <div className="absolute bottom-5 left-6 right-44 z-30 text-pearl-white">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-ice-cyan block mb-1">
-                    {activeService.number} • {activeService.title}
+                <div className="absolute bottom-5 left-6 right-44 z-30 text-text-heading">
+                  <span className="editorial-eyebrow text-[11px] block mb-1">
+                    {activeService.number} · {activeService.title}
                   </span>
-                  <p className="text-sm font-medium text-pearl-white/95 truncate">
+                  <p className="text-sm font-medium text-text-secondary truncate">
                     {activeService.imageCaption}
                   </p>
                 </div>

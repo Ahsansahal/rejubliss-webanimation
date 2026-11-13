@@ -1,28 +1,21 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display, Caveat } from "next/font/google";
+import { Unbounded, Barlow } from "next/font/google";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { MotionProvider } from "@/components/common/AmbientBackgrounds";
 import { AnalyticsTracker } from "@/components/common/AnalyticsTracker";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
   subsets: ["latin"],
   display: "swap",
 });
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-serif",
+const barlow = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const caveat = Caveat({
-  variable: "--font-script",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const googleVerification =
@@ -109,16 +102,11 @@ export const metadata: Metadata = {
 const themeInitScript = `
 (function () {
   try {
-    var stored = localStorage.getItem('rejubliss-theme');
-    var mode = stored === 'dark' ? 'dark' : 'light';
     var root = document.documentElement;
-    root.setAttribute('data-theme', mode);
-    root.classList.toggle('dark', mode === 'dark');
-    root.style.colorScheme = mode;
-  } catch (e) {
-    document.documentElement.setAttribute('data-theme', 'light');
-    document.documentElement.style.colorScheme = 'light';
-  }
+    root.setAttribute('data-theme', 'dark');
+    root.classList.add('dark');
+    root.style.colorScheme = 'dark';
+  } catch (e) {}
 })();
 `;
 
@@ -130,14 +118,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${caveat.variable}`}
+      className={`dark ${unbounded.variable} ${barlow.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="font-sans antialiased text-text-primary bg-bg-primary selection:bg-accent-interactive/25 selection:text-text-heading transition-colors duration-300">
+      <body className="font-sans antialiased text-text-primary bg-bg-primary selection:bg-accent-primary selection:text-black">
         <ThemeProvider>
           <MotionProvider>{children}</MotionProvider>
         </ThemeProvider>
