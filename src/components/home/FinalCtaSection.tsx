@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowUpRight, Mail, Phone, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, ShieldCheck } from "lucide-react";
 import { triggerProjectInquiry } from "@/lib/inquiry-events";
 import { useGsapSectionReveal } from "@/lib/use-gsap-reveal";
 
@@ -72,32 +72,16 @@ export function FinalCtaSection({
                 <Link
                   href="/#contact"
                   onClick={(e) => {
-                    if (
-                      typeof document !== "undefined" &&
-                      document.getElementById("contact")
-                    ) {
-                      e.preventDefault();
-                      triggerProjectInquiry();
-                    }
+                    e.preventDefault();
+                    triggerProjectInquiry();
                   }}
                   className="btn-primary-cta inline-flex items-center gap-2 px-7 py-4 rounded-full text-xs cursor-pointer group"
                 >
-                  <span>
-                    {aboveBriefForm
-                      ? "Complete Project Brief Below"
-                      : "Start Your Project"}
-                  </span>
-                  {aboveBriefForm ? (
-                    <ArrowDownRight
-                      size={16}
-                      className="group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform"
-                    />
-                  ) : (
-                    <ArrowUpRight
-                      size={16}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                    />
-                  )}
+                  <span>Start Your Project</span>
+                  <ArrowUpRight
+                    size={16}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
                 </Link>
 
                 <Link

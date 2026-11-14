@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { trackStudioEvent } from "@/lib/analytics";
 import { useTheme } from "@/components/common/ThemeProvider";
+import { triggerProjectInquiry } from "@/lib/inquiry-events";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -310,7 +311,11 @@ export function Footer() {
                 </Link>
                 <Link
                   href="/#contact"
-                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    triggerProjectInquiry();
+                  }}
+                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1 cursor-pointer"
                 >
                   <span>Start Your Project</span>
                   <ArrowUpRight size={13} />

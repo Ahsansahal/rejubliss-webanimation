@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { CaseStudyGalleryClient } from "@/components/work/CaseStudyGalleryClient";
 import { CaseStudyShareBar } from "@/components/work/CaseStudyShareBar";
@@ -383,15 +384,17 @@ export default async function CaseStudyPage({ params }: Props) {
                 Share your goals and target channels with our London directors
                 for a tailored scope and timeline proposal.
               </p>
-              <Link
+              <InquiryTriggerButton
+                service={relatedServices[0]?.title || "3D Animation & CGI"}
+                contextNote={`Interested in a scope similar to ${project.title} (${project.client}).`}
                 href={`/?service=${encodeURIComponent(
                   relatedServices[0]?.title || "3D Animation"
                 )}#contact`}
-                className="btn-primary-cta w-full py-3.5 px-5 rounded-full text-xs inline-flex items-center justify-center gap-2"
+                className="btn-primary-cta w-full py-3.5 px-5 rounded-full text-xs inline-flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Request Custom Quote</span>
                 <ArrowUpRight size={15} />
-              </Link>
+              </InquiryTriggerButton>
             </div>
           </aside>
         </div>

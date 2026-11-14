@@ -30,13 +30,17 @@ export function trackStudioEvent(
   if (typeof window === "undefined") return;
 
   try {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", eventName, params);
-    } else if (Array.isArray(window.dataLayer)) {
+    if (Array.isArray(window.dataLayer)) {
       window.dataLayer.push({
         event: eventName,
         ...params,
       });
+    }
+    if (
+      process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID &&
+      typeof window.gtag === "function"
+    ) {
+      window.gtag("event", eventName, params);
     }
   } catch {
     // Analytics must never interrupt user flows

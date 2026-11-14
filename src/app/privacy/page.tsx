@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -145,12 +146,9 @@ export default function PrivacyPolicyPage() {
                 info@rejubliss.co.uk
               </a>{" "}
               or return to our{" "}
-              <Link
-                href="/#contact"
-                className="text-accent-primary font-semibold underline"
-              >
+              <InquiryTriggerButton className="text-accent-primary font-semibold underline cursor-pointer">
                 Project Inquiry Form
-              </Link>
+              </InquiryTriggerButton>
               .
             </p>
           </section>

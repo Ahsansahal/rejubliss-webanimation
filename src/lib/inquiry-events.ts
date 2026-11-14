@@ -1,10 +1,12 @@
 import { trackStudioEvent } from "@/lib/analytics";
 
 export const INQUIRY_SELECT_EVENT = "rejubliss:select-inquiry-service";
+export const INQUIRY_MODAL_OPEN_EVENT = "rejubliss:open-inquiry-modal";
 
 export interface InquirySelectDetail {
   service?: string;
   contextNote?: string;
+  scrollOnly?: boolean;
 }
 
 export function triggerProjectInquiry(detail?: InquirySelectDetail) {
@@ -21,20 +23,23 @@ export function triggerProjectInquiry(detail?: InquirySelectDetail) {
     );
   }
 
-  const target = document.getElementById("contact");
-  if (target) {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    target.scrollIntoView({
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-      block: "start",
-    });
-  } else {
-    const dest = new URL("/", window.location.origin);
-    if (detail?.service) dest.searchParams.set("service", detail.service);
-    if (detail?.contextNote) dest.searchParams.set("brief", detail.contextNote);
-    dest.hash = "contact";
-    window.location.assign(dest.href);
+  if (detail?.scrollOnly) {
+    const target = document.getElementById("contact");
+    if (target) {
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+      return;
+    }
   }
+
+  window.dispatchEvent(
+    new CustomEvent<InquirySelectDetail>(INQUIRY_MODAL_OPEN_EVENT, {
+      detail: detail || {},
+    })
+  );
 }

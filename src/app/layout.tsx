@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Unbounded, Barlow } from "next/font/google";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { MotionProvider } from "@/components/common/AmbientBackgrounds";
-import { AnalyticsTracker } from "@/components/common/AnalyticsTracker";
+import {
+  AnalyticsNoscript,
+  AnalyticsTracker,
+} from "@/components/common/AnalyticsTracker";
+import { ProjectInquiryModal } from "@/components/common/ProjectInquiryModal";
 import "./globals.css";
 
 const unbounded = Unbounded({
@@ -126,8 +130,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="font-sans antialiased text-text-primary bg-bg-primary selection:bg-accent-primary selection:text-black">
+        <AnalyticsNoscript />
         <ThemeProvider>
-          <MotionProvider>{children}</MotionProvider>
+          <MotionProvider>
+            {children}
+            <ProjectInquiryModal />
+          </MotionProvider>
         </ThemeProvider>
         <AnalyticsTracker />
       </body>

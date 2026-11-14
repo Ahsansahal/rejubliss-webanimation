@@ -25,6 +25,7 @@ import { STUDIO_SERVICES } from "@/data/services";
 import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
 import { STUDIO_FAQS } from "@/data/homepage";
 import { useTheme } from "@/components/common/ThemeProvider";
+import { triggerProjectInquiry } from "@/lib/inquiry-events";
 
 const drawerNavContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -378,7 +379,11 @@ export function Header({
                             </Link>
                             <Link
                               href="/#contact"
-                              onClick={() => setServicesMenuOpen(false)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setServicesMenuOpen(false);
+                                triggerProjectInquiry();
+                              }}
                               className="btn-primary-cta inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[10.5px]"
                             >
                               <span>Start Project</span>
@@ -408,7 +413,11 @@ export function Header({
 
                         <Link
                           href="/#contact"
-                          onClick={() => setServicesMenuOpen(false)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setServicesMenuOpen(false);
+                            triggerProjectInquiry();
+                          }}
                           className="font-display text-[10.5px] uppercase tracking-[0.08em] font-bold text-accent-primary hover:text-accent-highlight flex items-center gap-1 transition-colors"
                         >
                           <span>Request Custom Scope</span>
@@ -491,6 +500,10 @@ export function Header({
 
               <Link
                 href="/#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  triggerProjectInquiry();
+                }}
                 className="btn-primary-cta hidden lg:inline-flex items-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-full text-[10.5px] xl:text-[11px] shrink-0"
               >
                 <span>Start Project</span>
@@ -587,7 +600,13 @@ export function Header({
                           <Link
                             key={chip.label}
                             href={chip.href}
-                            onClick={() => setSearchOpen(false)}
+                            onClick={(e) => {
+                              setSearchOpen(false);
+                              if (chip.href === "/#contact") {
+                                e.preventDefault();
+                                triggerProjectInquiry();
+                              }
+                            }}
                             className="px-3 py-1 rounded-full bg-bg-subtle hover:bg-accent-primary/15 border border-border-subtle hover:border-accent-primary/50 text-text-secondary hover:text-text-heading font-medium transition-colors"
                           >
                             {chip.label}
@@ -903,7 +922,11 @@ export function Header({
             <div className="px-4 sm:px-6 py-5 border-t border-border-subtle bg-bg-secondary shrink-0 space-y-2.5">
               <Link
                 href="/#contact"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  triggerProjectInquiry();
+                }}
                 className="btn-primary-cta w-full py-3.5 px-5 rounded-full flex items-center justify-center gap-2 text-xs"
               >
                 <span>Start Your Project</span>

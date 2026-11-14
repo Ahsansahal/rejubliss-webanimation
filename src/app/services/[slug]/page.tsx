@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { STUDIO_SERVICES, getServiceBySlug } from "@/data/services";
 import { getProjectsBySlugs } from "@/data/portfolio";
@@ -248,18 +249,19 @@ export default async function ServiceDetailPage({ params }: Props) {
               </div>
 
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <Link
+                <InquiryTriggerButton
+                  service={service.title}
                   href={`/?service=${encodeURIComponent(
                     service.title
                   )}#contact`}
-                  className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group"
+                  className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group cursor-pointer"
                 >
                   <span>Request a {service.shortTitle} Quote</span>
                   <ArrowUpRight
                     size={15}
                     className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                   />
-                </Link>
+                </InquiryTriggerButton>
                 <Link
                   href="/work"
                   className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs"
@@ -601,13 +603,14 @@ export default async function ServiceDetailPage({ params }: Props) {
               Direct answers on timelines, source files, technical deliverables,
               and how we scope {service.title.toLowerCase()} briefs.
             </p>
-            <Link
+            <InquiryTriggerButton
+              service={service.title}
               href={`/?service=${encodeURIComponent(service.title)}#contact`}
-              className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.06em] font-bold text-accent-primary hover:text-accent-highlight pt-1"
+              className="inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.06em] font-bold text-accent-primary hover:text-accent-highlight pt-1 cursor-pointer"
             >
               <span>Ask a project-specific question</span>
               <ArrowUpRight size={13} />
-            </Link>
+            </InquiryTriggerButton>
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-5">

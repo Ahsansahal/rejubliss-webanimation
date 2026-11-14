@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
@@ -120,16 +121,13 @@ export default function WorkIndexPage() {
               </p>
             </div>
 
-            <Link
-              href="/#contact"
-              className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs shrink-0 w-fit group"
-            >
+            <InquiryTriggerButton className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs shrink-0 w-fit group cursor-pointer">
               <span>Start Your Project</span>
               <ArrowUpRight
                 size={15}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
-            </Link>
+            </InquiryTriggerButton>
           </div>
         </div>
       </section>

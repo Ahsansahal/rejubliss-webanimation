@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { STUDIO_SERVICES, SOLUTION_GROUPS } from "@/data/services";
 
@@ -126,16 +127,13 @@ export default function ServicesIndexPage() {
               scoped around clear deliverables and milestone sign-offs.
             </p>
             <div className="flex flex-wrap items-center gap-3.5">
-              <Link
-                href="/#contact"
-                className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group"
-              >
+              <InquiryTriggerButton className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 rounded-full text-xs group cursor-pointer">
                 <span>Start Your Project</span>
                 <ArrowUpRight
                   size={15}
                   className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                 />
-              </Link>
+              </InquiryTriggerButton>
               <Link
                 href="/work"
                 className="btn-secondary-surface inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs"
@@ -215,12 +213,13 @@ export default function ServicesIndexPage() {
                       <span>Explore {srv.shortTitle}</span>
                       <ArrowUpRight size={13} />
                     </Link>
-                    <Link
+                    <InquiryTriggerButton
+                      service={srv.title}
                       href={`/?service=${encodeURIComponent(srv.title)}#contact`}
-                      className="text-xs font-semibold text-text-muted hover:text-text-heading transition-colors"
+                      className="text-xs font-semibold text-text-muted hover:text-text-heading transition-colors cursor-pointer"
                     >
                       Request Quote
-                    </Link>
+                    </InquiryTriggerButton>
                   </div>
                 </div>
               </article>
