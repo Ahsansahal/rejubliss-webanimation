@@ -21,6 +21,7 @@ import {
   getProjectBySlug,
 } from "@/data/portfolio";
 import { STUDIO_SERVICES } from "@/data/services";
+import { SITE_URL } from "@/lib/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       type: "article",
-      url: `https://rejubliss.co.uk/work/${project.slug}`,
+      url: `${SITE_URL}/work/${project.slug}`,
       title: `${project.fullTitle} | Rejubliss Case Study`,
       description: project.synopsis,
       images: [
@@ -85,7 +86,7 @@ export default async function CaseStudyPage({ params }: Props) {
       p.portfolioCategory === project.portfolioCategory
   ).slice(0, 3);
 
-  const canonicalUrl = `https://rejubliss.co.uk/work/${project.slug}`;
+  const canonicalUrl = `${SITE_URL}/work/${project.slug}`;
 
   const structuredData = [
     {
@@ -99,14 +100,14 @@ export default async function CaseStudyPage({ params }: Props) {
       genre: project.portfolioCategory,
       image: project.gallery.slice(0, 4).map((img, i) => ({
         "@type": "ImageObject",
-        contentUrl: `https://rejubliss.co.uk${img}`,
+        contentUrl: `${SITE_URL}${img}`,
         name: `${project.fullTitle} — Visual ${i + 1}`,
       })),
       creator: {
         "@type": "Organization",
-        "@id": "https://rejubliss.co.uk/#organization",
+        "@id": `${SITE_URL}/#organization`,
         name: "Rejubliss 3D Animation Studios",
-        url: "https://rejubliss.co.uk",
+        url: SITE_URL,
       },
       keywords: project.tags.join(", "),
     },
@@ -118,13 +119,13 @@ export default async function CaseStudyPage({ params }: Props) {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://rejubliss.co.uk",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Work & Case Studies",
-          item: "https://rejubliss.co.uk/work",
+          item: `${SITE_URL}/work`,
         },
         {
           "@type": "ListItem",

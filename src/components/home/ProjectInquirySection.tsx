@@ -11,6 +11,7 @@ import {
   Loader2,
   Lock,
   Mail,
+  MapPin,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -21,6 +22,7 @@ import {
   type InquirySelectDetail,
 } from "@/lib/inquiry-events";
 import { trackStudioEvent } from "@/lib/analytics";
+import { STUDIO_ADDRESS } from "@/lib/site";
 import { useGsapSectionReveal } from "@/lib/use-gsap-reveal";
 
 const QUICK_SCOPE_PILLS = [
@@ -382,7 +384,7 @@ export function ProjectInquirySection() {
             {/* Direct Studio Contact Card */}
             <div className="p-5 sm:p-6 rounded-[22px] bg-bg-card text-text-heading border border-border-subtle shadow-[var(--shadow-card)] space-y-3">
               <span className="editorial-eyebrow text-[11px] block">
-                Direct Studio Desk · London, UK
+                Direct Studio Desk · Uxbridge, Greater London
               </span>
               <div className="flex flex-col gap-2.5 pt-0.5">
                 <a
@@ -399,6 +401,13 @@ export function ProjectInquirySection() {
                   <Phone size={15} className="text-accent-primary shrink-0" />
                   <span>+44 20 8123 4567</span>
                 </a>
+                <address className="not-italic inline-flex items-start gap-2.5 text-xs sm:text-sm text-text-secondary leading-relaxed pt-0.5">
+                  <MapPin
+                    size={15}
+                    className="text-accent-primary shrink-0 mt-0.5"
+                  />
+                  <span>{STUDIO_ADDRESS.full}</span>
+                </address>
               </div>
             </div>
           </div>

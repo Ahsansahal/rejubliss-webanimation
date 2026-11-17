@@ -49,7 +49,7 @@ const drawerNavItemVariants: Variants = {
 
 const PRIMARY_NAV_ITEMS = [
   { label: "Flagship", href: "/#portfolio-spotlight" },
-  { label: "Work", href: "/#portfolio" },
+  { label: "Work", href: "/work" },
   { label: "Process", href: "/#process" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
@@ -234,22 +234,32 @@ export function Header({
 
               {/* Services Mega Menu */}
               <div
-                className="relative py-2"
+                className="relative py-2 flex items-center gap-1"
                 onMouseEnter={handleServicesEnter}
                 onMouseLeave={handleServicesLeave}
               >
-                <button
-                  type="button"
-                  onClick={toggleServices}
-                  className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase tracking-[0.09em] ${
+                <Link
+                  href="/services"
+                  onClick={() => {
+                    setServicesMenuOpen(false);
+                    setActiveTab("Services");
+                  }}
+                  className={`transition-colors uppercase tracking-[0.09em] ${
                     servicesMenuOpen || activeTab === "Services"
                       ? "text-text-heading"
                       : "text-text-muted hover:text-text-heading"
                   }`}
+                >
+                  Services
+                </Link>
+                <button
+                  type="button"
+                  onClick={toggleServices}
+                  aria-label="Toggle Services menu"
                   aria-haspopup="true"
                   aria-expanded={servicesMenuOpen}
+                  className="p-0.5 flex items-center justify-center cursor-pointer text-text-muted hover:text-text-heading transition-colors"
                 >
-                  <span>Services</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
                       servicesMenuOpen
@@ -257,10 +267,21 @@ export function Header({
                         : "text-text-muted"
                     }`}
                   />
-                  {servicesMenuOpen || activeTab === "Services" ? (
-                    <span className="absolute bottom-0.5 left-0 right-0 h-[1.5px] bg-accent-primary" />
-                  ) : null}
                 </button>
+                {servicesMenuOpen || activeTab === "Services" ? (
+                  <span className="absolute bottom-0.5 left-0 right-0 h-[1.5px] bg-accent-primary pointer-events-none" />
+                ) : null}
+
+                {/* SSR-crawlable service links when mega-menu is closed */}
+                {!servicesMenuOpen ? (
+                  <div className="sr-only">
+                    {STUDIO_SERVICES.map((srv) => (
+                      <Link key={srv.slug} href={`/services/${srv.slug}`}>
+                        {srv.title}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
 
                 <AnimatePresence>
                   {servicesMenuOpen ? (

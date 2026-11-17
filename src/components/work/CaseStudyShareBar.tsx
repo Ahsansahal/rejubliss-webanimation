@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Check, Link2, Share2 } from "lucide-react";
 import { trackStudioEvent } from "@/lib/analytics";
+import { SITE_URL } from "@/lib/site";
 
 interface CaseStudyShareBarProps {
   slug: string;
@@ -17,10 +18,10 @@ export function CaseStudyShareBar({
 }: CaseStudyShareBarProps) {
   const [copied, setCopied] = useState(false);
 
-  const canonicalUrl = `https://rejubliss.co.uk/work/${slug}`;
+  const canonicalUrl = `${SITE_URL}/work/${slug}`;
   const fullImageUrl = imageUrl.startsWith("http")
     ? imageUrl
-    : `https://rejubliss.co.uk${imageUrl}`;
+    : `${SITE_URL}${imageUrl}`;
 
   const encodedUrl = encodeURIComponent(canonicalUrl);
   const encodedTitle = encodeURIComponent(`${title} — Rejubliss Case Study`);

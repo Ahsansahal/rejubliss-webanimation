@@ -17,6 +17,7 @@ import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { ProjectInquirySection } from "@/components/home/ProjectInquirySection";
 import { STUDIO_SERVICES } from "@/data/services";
 import { STUDIO_FAQS } from "@/data/homepage";
+import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://rejubliss.co.uk",
+    url: SITE_URL,
     siteName: "Rejubliss 3D Animation Studios",
     title:
       "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
@@ -45,24 +46,26 @@ export default function HomePage() {
     {
       "@context": "https://schema.org",
       "@type": ["Organization", "ProfessionalService"],
-      "@id": "https://rejubliss.co.uk/#organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Rejubliss 3D Animation Studios",
       alternateName: "Rejubliss",
-      url: "https://rejubliss.co.uk",
+      url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://rejubliss.co.uk/images/logo.png",
+        url: `${SITE_URL}/images/logo.png`,
         width: 933,
         height: 247,
       },
-      image:
-        "https://rejubliss.co.uk/images/portfolio/rezilo-recovery/01-paddington-billboard.png",
+      image: `${SITE_URL}/images/portfolio/rezilo-recovery/01-paddington-billboard.png`,
       email: "info@rejubliss.co.uk",
       telephone: "+44-20-8123-4567",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "London",
-        addressCountry: "GB",
+        streetAddress: STUDIO_ADDRESS.streetAddress,
+        addressLocality: STUDIO_ADDRESS.addressLocality,
+        addressRegion: STUDIO_ADDRESS.addressRegion,
+        postalCode: STUDIO_ADDRESS.postalCode,
+        addressCountry: STUDIO_ADDRESS.addressCountry,
       },
       areaServed: [
         { "@type": "Country", name: "United Kingdom" },
@@ -96,7 +99,7 @@ export default function HomePage() {
             "@type": "Service",
             name: srv.title,
             description: srv.directDefinition,
-            url: `https://rejubliss.co.uk/services/${srv.slug}`,
+            url: `${SITE_URL}/services/${srv.slug}`,
           },
         })),
       },
@@ -104,25 +107,25 @@ export default function HomePage() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://rejubliss.co.uk/#website",
-      url: "https://rejubliss.co.uk",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
       name: "Rejubliss 3D Animation Studios",
       inLanguage: "en-GB",
       publisher: {
-        "@id": "https://rejubliss.co.uk/#organization",
+        "@id": `${SITE_URL}/#organization`,
       },
     },
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": "https://rejubliss.co.uk/#webpage",
-      url: "https://rejubliss.co.uk",
+      "@id": `${SITE_URL}/#webpage`,
+      url: SITE_URL,
       name: "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
       isPartOf: {
-        "@id": "https://rejubliss.co.uk/#website",
+        "@id": `${SITE_URL}/#website`,
       },
       about: {
-        "@id": "https://rejubliss.co.uk/#organization",
+        "@id": `${SITE_URL}/#organization`,
       },
     },
     {

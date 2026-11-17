@@ -7,6 +7,7 @@ import {
   AnalyticsTracker,
 } from "@/components/common/AnalyticsTracker";
 import { ProjectInquiryModal } from "@/components/common/ProjectInquiryModal";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const unbounded = Unbounded({
@@ -28,7 +29,7 @@ const bingVerification =
   process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rejubliss.co.uk"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default:
       "Rejubliss | London 3D Animation, CGI, Motion & Interactive WebGL Studio",
@@ -48,9 +49,6 @@ export const metadata: Metadata = {
     "Architectural Visualization London",
     "Rejubliss",
   ],
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -75,7 +73,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://rejubliss.co.uk",
+    url: SITE_URL,
     siteName: "Rejubliss 3D Animation Studios",
     title:
       "Rejubliss | London 3D Animation, CGI, Motion & Interactive WebGL Studio",

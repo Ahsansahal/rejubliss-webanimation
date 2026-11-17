@@ -7,6 +7,7 @@ import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { PortfolioSection } from "@/components/home/PortfolioSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Portfolio & Case Studies | 3D, CGI, Brand & WebGL Work",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://rejubliss.co.uk/work",
+    url: `${SITE_URL}/work`,
     title: "Portfolio & Case Studies | Rejubliss 3D, CGI, Motion & WebGL",
     description:
       "Explore 18 client commissions and technical showcases with transparent breakdowns of challenge, creative direction, pipeline, and deliverables.",
@@ -35,13 +36,13 @@ export default function WorkIndexPage() {
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "@id": "https://rejubliss.co.uk/work#webpage",
-      url: "https://rejubliss.co.uk/work",
+      "@id": `${SITE_URL}/work#webpage`,
+      url: `${SITE_URL}/work`,
       name: "Rejubliss Portfolio & Case Studies",
       description:
         "Selected 3D animation, photorealistic CGI, brand campaign, and WebGL case studies by Rejubliss 3D Animation Studios.",
       isPartOf: {
-        "@id": "https://rejubliss.co.uk/#website",
+        "@id": `${SITE_URL}/#website`,
       },
       mainEntity: {
         "@type": "ItemList",
@@ -50,7 +51,7 @@ export default function WorkIndexPage() {
           "@type": "ListItem",
           position: index + 1,
           name: proj.fullTitle,
-          url: `https://rejubliss.co.uk/work/${proj.slug}`,
+          url: `${SITE_URL}/work/${proj.slug}`,
         })),
       },
     },
@@ -62,13 +63,13 @@ export default function WorkIndexPage() {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://rejubliss.co.uk",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Work & Case Studies",
-          item: "https://rejubliss.co.uk/work",
+          item: `${SITE_URL}/work`,
         },
       ],
     },

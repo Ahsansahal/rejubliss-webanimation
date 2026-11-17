@@ -361,6 +361,20 @@ export function FlagshipReleasesSection() {
             </div>
           </div>
         </div>
+
+        {/* SSR-crawlable links for inactive flagship campaign tabs */}
+        <div className="sr-only">
+          {flagshipProjects.map((proj, idx) =>
+            idx === activeProjectIdx ? null : (
+              <article key={proj.slug}>
+                <h3>
+                  <Link href={`/work/${proj.slug}`}>{proj.fullTitle}</Link>
+                </h3>
+                <p>{proj.synopsis}</p>
+              </article>
+            )
+          )}
+        </div>
       </div>
 
       {lightboxState ? (

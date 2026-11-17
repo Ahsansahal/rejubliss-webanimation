@@ -14,6 +14,7 @@ import {
 import { trackStudioEvent } from "@/lib/analytics";
 import { useTheme } from "@/components/common/ThemeProvider";
 import { triggerProjectInquiry } from "@/lib/inquiry-events";
+import { STUDIO_ADDRESS } from "@/lib/site";
 
 export function Footer() {
   const { theme } = useTheme();
@@ -104,7 +105,7 @@ export function Footer() {
           <div className="lg:col-span-5 flex flex-col items-start gap-6">
             <div>
               <span className="editorial-eyebrow block mb-2.5">
-                London, United Kingdom · 3D, CGI &amp; WebGL Studio
+                Uxbridge, United Kingdom · 3D, CGI &amp; WebGL Studio
               </span>
               <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-md">
                 Cinematic 3D animation, photorealistic CGI product
@@ -329,9 +330,9 @@ export function Footer() {
                 Connect
               </span>
               <div className="flex flex-col gap-2.5 text-sm">
-                <span className="text-text-secondary">
-                  London, United Kingdom
-                </span>
+                <address className="not-italic text-text-secondary leading-relaxed">
+                  {STUDIO_ADDRESS.full}
+                </address>
                 <a
                   href="mailto:info@rejubliss.co.uk"
                   className="text-text-secondary hover:text-accent-primary transition-colors break-all"

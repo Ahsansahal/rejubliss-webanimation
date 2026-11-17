@@ -22,6 +22,7 @@ import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { STUDIO_SERVICES, getServiceBySlug } from "@/data/services";
 import { getProjectsBySlugs } from "@/data/portfolio";
+import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       type: "website",
-      url: `https://rejubliss.co.uk/services/${service.slug}`,
+      url: `${SITE_URL}/services/${service.slug}`,
       title: service.seoTitle,
       description: service.seoDescription,
       images: [
@@ -83,7 +84,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     (s) => s.slug !== service.slug
   ).slice(0, 4);
 
-  const canonicalUrl = `https://rejubliss.co.uk/services/${service.slug}`;
+  const canonicalUrl = `${SITE_URL}/services/${service.slug}`;
 
   const structuredData = [
     {
@@ -94,16 +95,19 @@ export default async function ServiceDetailPage({ params }: Props) {
       serviceType: service.title,
       url: canonicalUrl,
       description: service.directDefinition,
-      image: `https://rejubliss.co.uk${service.heroImage}`,
+      image: `${SITE_URL}${service.heroImage}`,
       provider: {
         "@type": "ProfessionalService",
-        "@id": "https://rejubliss.co.uk/#organization",
+        "@id": `${SITE_URL}/#organization`,
         name: "Rejubliss 3D Animation Studios",
-        url: "https://rejubliss.co.uk",
+        url: SITE_URL,
         address: {
           "@type": "PostalAddress",
-          addressLocality: "London",
-          addressCountry: "GB",
+          streetAddress: STUDIO_ADDRESS.streetAddress,
+          addressLocality: STUDIO_ADDRESS.addressLocality,
+          addressRegion: STUDIO_ADDRESS.addressRegion,
+          postalCode: STUDIO_ADDRESS.postalCode,
+          addressCountry: STUDIO_ADDRESS.addressCountry,
         },
       },
       areaServed: [
@@ -130,13 +134,13 @@ export default async function ServiceDetailPage({ params }: Props) {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://rejubliss.co.uk",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Services",
-          item: "https://rejubliss.co.uk/services",
+          item: `${SITE_URL}/services`,
         },
         {
           "@type": "ListItem",

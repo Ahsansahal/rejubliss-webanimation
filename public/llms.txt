@@ -2,11 +2,11 @@
 
 > Rejubliss is a London-based creative 3D animation, photorealistic CGI, motion graphics, explainer video, website design, and interactive WebGL studio partnering with consumer, luxury, healthcare, hospitality, retail, and technology brands in the UK and worldwide.
 
-- Website: https://rejubliss.co.uk
-- Studio Location: London, United Kingdom (serving UK, European, Middle East, and global clients)
+- Website: https://www.rejubliss.co.uk
+- Company Address: 18 Blythe Wood Court, Waterloo Road, Uxbridge, United Kingdom, UB8 2SP
 - Contact Email: info@rejubliss.co.uk
 - Studio Telephone: +44 20 8123 4567
-- Inquiry & Custom Proposal Form: https://rejubliss.co.uk/#contact
+- Inquiry & Custom Proposal Form: https://www.rejubliss.co.uk/#contact
 
 ## Studio Overview
 
@@ -22,40 +22,43 @@ Every engagement follows a six-stage milestone-gated workflow:
 
 ## Core Creative Services
 
-- [Services Overview](https://rejubliss.co.uk/services): Complete index of Rejubliss's 9 specialist disciplines and commissionable deliverables.
-- [3D Animation](https://rejubliss.co.uk/services/3d-animation): Cinematic 3D product launch films, mechanical cutaways, and raytraced commercial sequences in 4K UHD.
-- [CGI & Photorealistic Rendering](https://rejubliss.co.uk/services/cgi-rendering): 300 DPI print and OOH billboard key visuals, multi-SKU packaging renders, and physically based surface studies.
-- [Product Visualization](https://rejubliss.co.uk/services/product-visualization): Studio 3D product twins, liquid/botanical splash VFX, exploded hardware views, and 360-degree e-commerce renders.
-- [Motion Graphics](https://rejubliss.co.uk/services/motion-graphics): 2D/3D kinetic typography, fluid procedural VFX, broadcast identity packages, paid-social video toolkits, and Lottie UI motion.
-- [Explainer Video Production](https://rejubliss.co.uk/services/explainer-videos): Script-to-screen 2D, 3D, and hybrid explainer animations for SaaS, FinTech, healthcare/MedTech, and technical products.
-- [Character Animation](https://rejubliss.co.uk/services/character-animation): Custom 3D and 2D character design, facial/skeletal rigging, brand mascots, and narrative storytelling.
-- [Architectural Visualization](https://rejubliss.co.uk/services/architectural-visualization): Photorealistic retail storefronts, illuminated signage pre-visualization, transit/mall OOH mockups, and interior/exterior CGI.
-- [Website Design](https://rejubliss.co.uk/services/website-design): Bespoke Figma UI/UX systems and Core-Web-Vitals-optimized Next.js & TypeScript websites.
-- [Interactive WebGL Experiences](https://rejubliss.co.uk/services/interactive-webgl): Real-time 60fps Three.js / React Three Fiber 3D product configurators, custom GLSL shaders, and scroll-choreographed 3D microsites.
+- [Services Overview](https://www.rejubliss.co.uk/services): Complete index of Rejubliss's 9 specialist disciplines and commissionable deliverables.
+- [3D Animation](https://www.rejubliss.co.uk/services/3d-animation): Cinematic 3D product launch films, mechanical cutaways, and raytraced commercial sequences in 4K UHD.
+- [CGI & Photorealistic Rendering](https://www.rejubliss.co.uk/services/cgi-rendering): 300 DPI print and OOH billboard key visuals, multi-SKU packaging renders, and physically based surface studies.
+- [Product Visualization](https://www.rejubliss.co.uk/services/product-visualization): Studio 3D product twins, liquid/botanical splash VFX, exploded hardware views, and 360-degree e-commerce renders.
+- [Motion Graphics](https://www.rejubliss.co.uk/services/motion-graphics): 2D/3D kinetic typography, fluid procedural VFX, broadcast identity packages, paid-social video toolkits, and Lottie UI motion.
+- [Explainer Video Production](https://www.rejubliss.co.uk/services/explainer-videos): Script-to-screen 2D, 3D, and hybrid explainer animations for SaaS, FinTech, healthcare/MedTech, and technical products.
+- [Character Animation](https://www.rejubliss.co.uk/services/character-animation): Custom 3D and 2D character design, facial/skeletal rigging, brand mascots, and narrative storytelling.
+- [Architectural Visualization](https://www.rejubliss.co.uk/services/architectural-visualization): Photorealistic retail storefronts, illuminated signage pre-visualization, transit/mall OOH mockups, and interior/exterior CGI.
+- [Website Design](https://www.rejubliss.co.uk/services/website-design): Bespoke Figma UI/UX systems and Core-Web-Vitals-optimized Next.js & TypeScript websites.
+- [Interactive WebGL Experiences](https://www.rejubliss.co.uk/services/interactive-webgl): Real-time 60fps Three.js / React Three Fiber 3D product configurators, custom GLSL shaders, and scroll-choreographed 3D microsites.
 
 ## Selected Client Case Studies
 
-- [Portfolio & Case Studies Index](https://rejubliss.co.uk/work): All 18 published client commissions and studio technical showcases.
-- [Desi Chai London — Brand Identity, 3D Packaging & Storefront CGI](https://rejubliss.co.uk/work/desi-chai-london): 11-piece brand world, 3D takeaway cup & maska-bun packaging renders, and London storefront signage visualization.
-- [Yeah! Scoopy Ice Cream — 3D Packaging & Mall OOH Campaign](https://rejubliss.co.uk/work/scoopy-ice-cream): 5-flavour 3D tub renders with procedural frost/ice physics and mall escalator/elevator OOH wraps.
-- [Rezilo Wellness — 3D Hardware CGI & Paddington Underground Launch](https://rejubliss.co.uk/work/rezilo-recovery): Precision 3D muscle-recovery hardware visualization deployed across London Underground billboards, bus shelters, and social carousels.
-- [G Natural Skincare — 20+ SKU Botanical Product Visualization](https://rejubliss.co.uk/work/g-natural-botanicals): Photorealistic amber-glass dropper renders, essential-oil liquid splash VFX, and multi-slide educational social suites.
-- [Lure Fine Jewellery — Monochrome & 24K Gold Bridal Editorial](https://rejubliss.co.uk/work/lure-luxury-jewellery): Selective-color luxury campaign art direction for fine gold bridal jewellery.
-- [Gul Ahmed — Seasonal Retail & E-Commerce Campaign Suites](https://rejubliss.co.uk/work/gul-ahmed-campaigns): Multi-format retail promotional creatives across fashion and home collections.
-- [Nando's — Topical Brand & Social Campaign Creative](https://rejubliss.co.uk/work/nandos-peri-peri): Culturally reactive visual storytelling and bold typographic campaign compositions.
-- [Durex (#PlaySafe) — Conceptual Social Advertising Series](https://rejubliss.co.uk/work/durex-social-campaigns): Minimalist visual-metaphor campaign spots crafted for organic social shareability.
-- [Chatori Street Food UK — Pop-Art Brand Identity & Print Collateral](https://rejubliss.co.uk/work/chatori-street-food): 12-piece illustrated brand identity, packaging, and hospitality print suite.
-- [Dewa Trust — 13-Piece Inclusion & Awareness Campaign](https://rejubliss.co.uk/work/dewa-trust-campaign): Illustrated awareness storytelling for the Academy of Special Dreams.
+- [Portfolio & Case Studies Index](https://www.rejubliss.co.uk/work): All 18 published client commissions and studio technical showcases.
+- [Desi Chai London — Brand Identity, 3D Packaging & Storefront CGI](https://www.rejubliss.co.uk/work/desi-chai-london): 11-piece brand world, 3D takeaway cup & maska-bun packaging renders, and London storefront signage visualization.
+- [Yeah! Scoopy Ice Cream — 3D Packaging & Mall OOH Campaign](https://www.rejubliss.co.uk/work/scoopy-ice-cream): 5-flavour 3D tub renders with procedural frost/ice physics and mall escalator/elevator OOH wraps.
+- [Rezilo Wellness — 3D Hardware CGI & Paddington Underground Launch](https://www.rejubliss.co.uk/work/rezilo-recovery): Precision 3D muscle-recovery hardware visualization deployed across London Underground billboards, bus shelters, and social carousels.
+- [G Natural Skincare — 20+ SKU Botanical Product Visualization](https://www.rejubliss.co.uk/work/g-natural-botanicals): Photorealistic amber-glass dropper renders, essential-oil liquid splash VFX, and multi-slide educational social suites.
+- [Lure Fine Jewellery — Monochrome & 24K Gold Bridal Editorial](https://www.rejubliss.co.uk/work/lure-luxury-jewellery): Selective-color luxury campaign art direction for fine gold bridal jewellery.
+- [Gul Ahmed — Seasonal Retail & E-Commerce Campaign Suites](https://www.rejubliss.co.uk/work/gul-ahmed-campaigns): Multi-format retail promotional creatives across fashion and home collections.
+- [Nando's — Topical Brand & Social Campaign Creative](https://www.rejubliss.co.uk/work/nandos-peri-peri): Culturally reactive visual storytelling and bold typographic campaign compositions.
+- [Durex (#PlaySafe) — Conceptual Social Advertising Series](https://www.rejubliss.co.uk/work/durex-social-campaigns): Minimalist visual-metaphor campaign spots crafted for organic social shareability.
+- [Chatori Street Food UK — Pop-Art Brand Identity & Print Collateral](https://www.rejubliss.co.uk/work/chatori-street-food): 12-piece illustrated brand identity, packaging, and hospitality print suite.
+- [Dewa Trust — 13-Piece Inclusion & Awareness Campaign](https://www.rejubliss.co.uk/work/dewa-trust-campaign): Illustrated awareness storytelling for the Academy of Special Dreams.
 
 ## Studio Technical Showcases
 
-- [Velox Hypercar — 4K Raytraced Automotive Commercial](https://rejubliss.co.uk/work/velox-automotive-commercial): Studio automotive CGI lighting, carbon-weave shaders, and dynamic camera choreography.
-- [Nexora — Interactive WebGL & GLSL Platform](https://rejubliss.co.uk/work/nexora-kinetic-web): Real-time browser 3D experience combining Next.js and custom shaders.
-- [Strata — 3D Footwear E-Commerce Configurator](https://rejubliss.co.uk/work/strata-ecommerce-3d): Interactive 360-degree browser product customizer with PBR material switching.
-- [Lumina — Expressive 3D Character Rigging & Lighting](https://rejubliss.co.uk/work/lumina-character-3d): Subsurface-scattered 3D character sculpt and facial blendshape performance reel.
-- [Vortex — Houdini Procedural Fluid & Ribbon Motion](https://rejubliss.co.uk/work/vortex-fluid-motion): 60fps procedural particle and crystalline ribbon motion design.
+- [Velox Hypercar — 4K Raytraced Automotive Commercial](https://www.rejubliss.co.uk/work/velox-automotive-commercial): Studio automotive CGI lighting, carbon-weave shaders, and dynamic camera choreography.
+- [Nexora — Interactive WebGL & GLSL Platform](https://www.rejubliss.co.uk/work/nexora-kinetic-web): Real-time browser 3D experience combining Next.js and custom shaders.
+- [Strata — 3D Footwear E-Commerce Configurator](https://www.rejubliss.co.uk/work/strata-ecommerce-3d): Interactive 360-degree browser product customizer with PBR material switching.
+- [Lumina — Expressive 3D Character Rigging & Lighting](https://www.rejubliss.co.uk/work/lumina-character-3d): Subsurface-scattered 3D character sculpt and facial blendshape performance reel.
+- [Vortex — Houdini Procedural Fluid & Ribbon Motion](https://www.rejubliss.co.uk/work/vortex-fluid-motion): 60fps procedural particle and crystalline ribbon motion design.
+- [FinTech Web Platform — Enterprise Dashboard & Design System](https://www.rejubliss.co.uk/work/fintech-portal-design): Conversion-engineered financial web architecture and interactive data visualization.
+- [Kinetic Identity — 3D Broadcast & Motion Brand System](https://www.rejubliss.co.uk/work/kinetic-identity-package): Modular 3D kinetic typography and metallic motion identity toolkit.
+- [Mobile FinTech Launch — App UI Motion & 3D Device Showcase](https://www.rejubliss.co.uk/work/mobile-fintech-brand): Studio 3D hardware hero sequences paired with mobile product storytelling.
 
 ## Policies & Governance
 
-- [Privacy Policy](https://rejubliss.co.uk/privacy): UK GDPR data protection, confidential brief handling, and mutual NDA commitments.
-- [Terms & Conditions](https://rejubliss.co.uk/terms): Statement of Work governance, milestone revision structure, and commercial usage rights.
+- [Privacy Policy](https://www.rejubliss.co.uk/privacy): UK GDPR data protection, confidential brief handling, and mutual NDA commitments.
+- [Terms & Conditions](https://www.rejubliss.co.uk/terms): Statement of Work governance, milestone revision structure, and commercial usage rights.

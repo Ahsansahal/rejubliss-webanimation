@@ -7,6 +7,7 @@ import { Footer } from "@/components/common/Footer";
 import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { STUDIO_SERVICES, SOLUTION_GROUPS } from "@/data/services";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "3D Animation, CGI, Motion, Explainer & WebGL Services",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://rejubliss.co.uk/services",
+    url: `${SITE_URL}/services`,
     title:
       "Creative 3D, CGI, Motion, Explainer & WebGL Services | Rejubliss London",
     description:
@@ -36,16 +37,16 @@ export default function ServicesIndexPage() {
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "@id": "https://rejubliss.co.uk/services#webpage",
-      url: "https://rejubliss.co.uk/services",
+      "@id": `${SITE_URL}/services#webpage`,
+      url: `${SITE_URL}/services`,
       name: "Rejubliss Creative 3D, CGI, Motion & WebGL Services",
       description:
         "Overview of Rejubliss 3D Animation Studios' 9 specialist creative capabilities and commissionable deliverables.",
       isPartOf: {
-        "@id": "https://rejubliss.co.uk/#website",
+        "@id": `${SITE_URL}/#website`,
       },
       about: {
-        "@id": "https://rejubliss.co.uk/#organization",
+        "@id": `${SITE_URL}/#organization`,
       },
       mainEntity: {
         "@type": "ItemList",
@@ -56,7 +57,7 @@ export default function ServicesIndexPage() {
           position: index + 1,
           name: srv.title,
           description: srv.summary,
-          url: `https://rejubliss.co.uk/services/${srv.slug}`,
+          url: `${SITE_URL}/services/${srv.slug}`,
         })),
       },
     },
@@ -68,13 +69,13 @@ export default function ServicesIndexPage() {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://rejubliss.co.uk",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Services",
-          item: "https://rejubliss.co.uk/services",
+          item: `${SITE_URL}/services`,
         },
       ],
     },

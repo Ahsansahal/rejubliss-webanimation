@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { STUDIO_SERVICES } from "@/data/services";
 import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
+import { SITE_URL } from "@/lib/site";
 
-const BASE_URL = "https://rejubliss.co.uk";
-const CONTENT_LAST_MODIFIED = "2026-11-13";
+const BASE_URL = SITE_URL;
+const CONTENT_LAST_MODIFIED = "2026-11-16";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

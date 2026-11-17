@@ -380,6 +380,23 @@ export function PortfolioSection({
           ))}
         </div>
 
+        {/* SSR-crawlable directory for remaining case studies when in curated homepage mode */}
+        {isCuratedAll ? (
+          <nav aria-label="Additional studio case studies" className="sr-only">
+            <ul>
+              {ALL_PORTFOLIO_PROJECTS.filter(
+                (proj) => !CURATED_FEATURED_SLUGS.includes(proj.slug)
+              ).map((proj) => (
+                <li key={proj.slug}>
+                  <Link href={`/work/${proj.slug}`}>
+                    {proj.fullTitle} — {proj.client}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
+
         {/* Post-Portfolio Conversion Strip */}
         <div
           data-gsap-reveal

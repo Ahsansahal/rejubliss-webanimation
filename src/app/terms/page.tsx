@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
+import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://rejubliss.co.uk/terms",
+    url: `${SITE_URL}/terms`,
     title: "Terms & Conditions | Rejubliss 3D Animation Studios",
     description:
       "Statement of Work governance, milestone revision structure, and intellectual property terms for Rejubliss commissions.",
@@ -25,10 +26,10 @@ export default function TermsPage() {
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": "https://rejubliss.co.uk/terms#webpage",
-      url: "https://rejubliss.co.uk/terms",
+      "@id": `${SITE_URL}/terms#webpage`,
+      url: `${SITE_URL}/terms`,
       name: "Terms & Conditions | Rejubliss 3D Animation Studios",
-      isPartOf: { "@id": "https://rejubliss.co.uk/#website" },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
     },
     {
       "@context": "https://schema.org",
@@ -38,13 +39,13 @@ export default function TermsPage() {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://rejubliss.co.uk",
+          item: SITE_URL,
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Terms & Conditions",
-          item: "https://rejubliss.co.uk/terms",
+          item: `${SITE_URL}/terms`,
         },
       ],
     },
@@ -79,8 +80,8 @@ export default function TermsPage() {
           Terms &amp; Conditions
         </h1>
         <p className="text-xs sm:text-sm uppercase tracking-[0.14em] text-text-muted pb-8 mb-8 border-b border-border-subtle">
-          Last updated: 2026 · Rejubliss 3D Animation Studios, London, United
-          Kingdom
+          Last updated: 2026 · Rejubliss 3D Animation Studios ·{" "}
+          {STUDIO_ADDRESS.full}
         </p>
 
         <div className="space-y-8 text-sm sm:text-base text-text-secondary leading-relaxed bg-bg-card border border-border-subtle rounded-[22px] p-6 sm:p-10 shadow-[var(--shadow-card)]">
@@ -145,7 +146,7 @@ export default function TermsPage() {
               <InquiryTriggerButton className="text-accent-primary font-semibold underline cursor-pointer">
                 request a custom proposal
               </InquiryTriggerButton>
-              .
+              . Registered studio address: {STUDIO_ADDRESS.full}.
             </p>
           </section>
         </div>

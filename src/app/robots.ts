@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Search Engine & AI Discovery Crawler Policy (SEO, AEO & GEO)
@@ -53,7 +54,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: disallowedPrivatePaths,
       },
     ],
-    sitemap: "https://rejubliss.co.uk/sitemap.xml",
-    host: "https://rejubliss.co.uk",
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }
