@@ -228,15 +228,6 @@ export function ServicesSection() {
                   <p className="text-sm text-text-secondary leading-snug">
                     {activeService.imageCaption}
                   </p>
-                  <div className="mt-2.5 flex items-center gap-3">
-                    <Link
-                      href={`/services/${activeService.primarySlug}`}
-                      className="inline-flex items-center gap-1 font-display text-[10.5px] font-bold uppercase tracking-[0.08em] text-accent-primary hover:text-accent-highlight transition-colors"
-                    >
-                      <span>View Studio Specs</span>
-                      <ArrowUpRight size={12} />
-                    </Link>
-                  </div>
                 </div>
 
                 {/* Clean Framed Look-Dev Inset Detail */}

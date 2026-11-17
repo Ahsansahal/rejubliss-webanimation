@@ -284,7 +284,9 @@ export function FlagshipReleasesSection() {
                 </div>
 
                 <h3 className="font-display text-2xl sm:text-[28px] font-bold tracking-[-0.03em] text-text-heading leading-[1.12]">
-                  {activeProject.title}
+                  {activeProject.title.length < 12
+                    ? `${activeProject.client} — 3D & OOH Campaign`
+                    : activeProject.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-text-muted mt-1">
                   {activeProject.subtitle}
@@ -366,12 +368,10 @@ export function FlagshipReleasesSection() {
         <div className="sr-only">
           {flagshipProjects.map((proj, idx) =>
             idx === activeProjectIdx ? null : (
-              <article key={proj.slug}>
-                <h3>
-                  <Link href={`/work/${proj.slug}`}>{proj.fullTitle}</Link>
-                </h3>
+              <div key={proj.slug}>
+                <Link href={`/work/${proj.slug}`}>{proj.fullTitle}</Link>
                 <p>{proj.synopsis}</p>
-              </article>
+              </div>
             )
           )}
         </div>

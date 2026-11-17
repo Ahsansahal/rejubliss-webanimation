@@ -8,24 +8,6 @@ const GTM_CONTAINER_IDS = ["GTM-5W9FRRJR", "GTM-WXPQB7DN"] as const;
  * Google Tag Manager (`GTM-5W9FRRJR`, `GTM-WXPQB7DN`), `gtag` dataLayer bootstrap,
  * and optional direct GA4 measurement support (`NEXT_PUBLIC_GA_MEASUREMENT_ID`).
  */
-export function AnalyticsNoscript() {
-  return (
-    <>
-      {GTM_CONTAINER_IDS.map((id) => (
-        <noscript key={id}>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${id}`}
-            height="0"
-            width="0"
-            title={`Google Tag Manager ${id}`}
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-      ))}
-    </>
-  );
-}
-
 export function AnalyticsTracker() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
 

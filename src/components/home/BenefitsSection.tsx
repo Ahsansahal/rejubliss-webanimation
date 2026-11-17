@@ -111,9 +111,9 @@ export function BenefitsSection() {
                   <span className="editorial-index shrink-0">
                     {item.number}
                   </span>
-                  <h3 className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
+                  <div className="font-display text-lg sm:text-xl font-bold tracking-[-0.02em] text-text-heading">
                     {item.title}
-                  </h3>
+                  </div>
                 </div>
                 <p className="sm:col-span-7 text-sm sm:text-[15px] text-text-secondary leading-relaxed">
                   {item.description}

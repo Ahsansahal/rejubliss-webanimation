@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Unbounded, Barlow } from "next/font/google";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { MotionProvider } from "@/components/common/AmbientBackgrounds";
-import {
-  AnalyticsNoscript,
-  AnalyticsTracker,
-} from "@/components/common/AnalyticsTracker";
+import { AnalyticsTracker } from "@/components/common/AnalyticsTracker";
 import { ProjectInquiryModal } from "@/components/common/ProjectInquiryModal";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -31,24 +28,11 @@ const bingVerification =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "Rejubliss | London 3D Animation, CGI, Motion & Interactive WebGL Studio",
+    default: "Rejubliss | 3D Animation, CGI & WebGL Studio London",
     template: "%s | Rejubliss",
   },
   description:
-    "London creative studio crafting bespoke 3D animation, photorealistic CGI rendering, product visualization, explainer videos, motion graphics, website design, and interactive WebGL experiences.",
-  keywords: [
-    "3D Animation Studio London",
-    "CGI Product Visualization",
-    "Photorealistic 3D Rendering",
-    "Explainer Video Production London",
-    "Motion Graphics Studio",
-    "Interactive WebGL Studio",
-    "Three.js Product Configurator",
-    "Character Animation Studio",
-    "Architectural Visualization London",
-    "Rejubliss",
-  ],
+    "London 3D animation, photorealistic CGI, explainer video, motion graphics, and interactive WebGL studio crafting standout brand campaigns.",
   robots: {
     index: true,
     follow: true,
@@ -128,7 +112,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="font-sans antialiased text-text-primary bg-bg-primary selection:bg-accent-primary selection:text-black">
-        <AnalyticsNoscript />
         <ThemeProvider>
           <MotionProvider>
             {children}

@@ -216,15 +216,15 @@ export function ProcessSection() {
                     </div>
 
                     {/* Unboxed Milestone Typography */}
-                    <h3
-                      className={`font-display text-base sm:text-lg font-bold tracking-[-0.02em] mb-2 transition-colors ${
+                    <span
+                      className={`block font-display text-base sm:text-lg font-bold tracking-[-0.02em] mb-2 transition-colors ${
                         isCurrent
                           ? "text-accent-primary"
                           : "text-text-heading group-hover:text-accent-primary"
                       }`}
                     >
                       {step.title}
-                    </h3>
+                    </span>
 
                     <p className="text-xs sm:text-[13.5px] text-text-secondary leading-relaxed mb-3">
                       {step.summary}

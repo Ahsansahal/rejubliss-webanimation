@@ -51,14 +51,12 @@ export function FinalCtaSection({
                 className="font-display text-2xl sm:text-4xl lg:text-[42px] font-extrabold uppercase leading-[1.03] tracking-[-0.035em]"
               >
                 <span className="block text-[#f5f4ef]">
-                  Ready to Turn Your Brief
+                  Turn Your Brief Into
                 </span>
                 <span className="block text-[#e53726]">
-                  Into an Unforgettable
+                  Unforgettable 3D, CGI
                 </span>
-                <span className="block text-[#e53726]">
-                  3D &amp; WebGL Experience?
-                </span>
+                <span className="block text-[#e53726]">&amp; WebGL Work</span>
               </h2>
 
               <p className="text-sm sm:text-base text-[#f5f4ef]/76 leading-relaxed max-w-2xl">
@@ -69,12 +67,9 @@ export function FinalCtaSection({
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-3.5">
-                <Link
-                  href="/#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    triggerProjectInquiry();
-                  }}
+                <button
+                  type="button"
+                  onClick={() => triggerProjectInquiry()}
                   className="btn-primary-cta inline-flex items-center gap-2 px-7 py-4 rounded-full text-xs cursor-pointer group"
                 >
                   <span>Start Your Project</span>
@@ -82,7 +77,7 @@ export function FinalCtaSection({
                     size={16}
                     className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                   />
-                </Link>
+                </button>
 
                 <Link
                   href="/work"

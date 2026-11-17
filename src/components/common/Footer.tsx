@@ -310,17 +310,14 @@ export function Footer() {
                 >
                   Client Endorsements
                 </Link>
-                <Link
-                  href="/#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    triggerProjectInquiry();
-                  }}
-                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1 cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => triggerProjectInquiry()}
+                  className="inline-flex items-center gap-1 text-accent-primary hover:text-accent-highlight font-semibold transition-colors pt-1 cursor-pointer w-fit"
                 >
                   <span>Start Your Project</span>
                   <ArrowUpRight size={13} />
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -377,7 +374,8 @@ export function Footer() {
                   aria-label={item.label}
                   className="w-10 h-10 rounded-full bg-bg-card border border-border-subtle hover:bg-accent-primary hover:text-black hover:border-accent-primary text-text-secondary flex items-center justify-center transition-all duration-300 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <span className="sr-only">{item.label}</span>
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     {item.icon}
                   </svg>
                 </a>

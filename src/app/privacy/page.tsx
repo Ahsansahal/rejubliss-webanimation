@@ -6,9 +6,11 @@ import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: {
+    absolute: "Privacy Policy & UK GDPR | Rejubliss Studio London",
+  },
   description:
-    "How Rejubliss 3D Animation Studios collects, protects, and processes project inquiry details, CAD/brief attachments, and UK GDPR data rights.",
+    "How Rejubliss 3D Animation Studios protects confidential project briefs, CAD files, personal contact details, and UK GDPR data rights.",
   alternates: {
     canonical: "/privacy",
   },

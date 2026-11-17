@@ -41,12 +41,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Service Not Found | Rejubliss" };
   }
 
-  // Strip trailing "| Rejubliss" if present since root layout template appends "| Rejubliss"
-  const cleanTitle = service.seoTitle.replace(/\s*\|\s*Rejubliss$/i, "");
+  const shortSeoTitle = `${service.title} Studio London | Rejubliss`;
+  const trimmedDesc =
+    service.seoDescription.length > 155
+      ? `${service.seoDescription.slice(0, 152).replace(/\s+\S*$/, "")}.`
+      : service.seoDescription;
 
   return {
-    title: cleanTitle,
-    description: service.seoDescription,
+    title: {
+      absolute:
+        shortSeoTitle.length <= 56
+          ? shortSeoTitle
+          : `${service.shortTitle} Services London | Rejubliss`,
+    },
+    description: trimmedDesc,
     alternates: {
       canonical: `/services/${service.slug}`,
     },

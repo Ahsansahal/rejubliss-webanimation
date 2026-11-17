@@ -10,9 +10,11 @@ import { STUDIO_SERVICES, SOLUTION_GROUPS } from "@/data/services";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "3D Animation, CGI, Motion, Explainer & WebGL Services",
+  title: {
+    absolute: "3D Animation, CGI, Motion & WebGL Services | Rejubliss",
+  },
   description:
-    "Explore Rejubliss's 9 specialist creative services in London—3D animation, photorealistic CGI rendering, product visualization, motion graphics, explainer videos, character animation, architectural visualization, website design, and interactive WebGL.",
+    "Explore Rejubliss's 9 creative services in London: 3D animation, photorealistic CGI, product visualization, explainer films, motion, and WebGL.",
   alternates: {
     canonical: "/services",
   },

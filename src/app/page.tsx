@@ -21,21 +21,19 @@ import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute:
-      "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
+    absolute: "Rejubliss | 3D Animation, CGI & WebGL Studio London",
   },
   description:
-    "Rejubliss is a London creative studio crafting 4K 3D product animation, photorealistic packaging & OOH CGI, explainer videos, motion graphics, and interactive Three.js WebGL websites.",
+    "London 3D animation, photorealistic CGI, explainer video, motion graphics, and interactive WebGL studio crafting standout brand campaigns.",
   alternates: {
-    canonical: "/",
+    canonical: `${SITE_URL}/`,
   },
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     siteName: "Rejubliss 3D Animation Studios",
-    title:
-      "Rejubliss | London 3D Animation, Photorealistic CGI, Motion & WebGL Studio",
+    title: "Rejubliss | 3D Animation, CGI & WebGL Studio London",
     description:
       "Commission bespoke 3D product animation, 300 DPI packaging & OOH CGI, explainer videos, motion design, and interactive WebGL experiences from our London studio.",
   },

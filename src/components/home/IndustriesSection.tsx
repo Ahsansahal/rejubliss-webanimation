@@ -129,9 +129,9 @@ export function IndustriesSection() {
 
               {/* Concise Editorial Industry Context */}
               <div className="lg:col-span-6 space-y-5">
-                <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading">
+                <div className="font-display text-2xl sm:text-3xl font-bold tracking-[-0.025em] text-text-heading">
                   {sector.title}
-                </h3>
+                </div>
 
                 <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
                   {sector.description}
@@ -141,7 +141,7 @@ export function IndustriesSection() {
                   {sector.applicationNote}
                 </p>
 
-                {relatedProjects.length > 0 ? (
+                {isSelected && relatedProjects.length > 0 ? (
                   <div className="pt-3">
                     <span className="block editorial-eyebrow text-[10.5px] mb-3">
                       Relevant Portfolio Proof
@@ -153,18 +153,16 @@ export function IndustriesSection() {
                           href={`/work/${proj.slug}`}
                           className="inline-flex items-center gap-3 pr-4 p-1.5 rounded-full bg-bg-card border border-border-subtle hover:border-accent-primary/50 transition-colors group"
                         >
-                          {isSelected ? (
-                            <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-[#050507] border border-border-subtle">
-                              <Image
-                                src={proj.image}
-                                alt=""
-                                fill
-                                loading="lazy"
-                                sizes="36px"
-                                className="object-cover"
-                              />
-                            </div>
-                          ) : null}
+                          <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 bg-[#050507] border border-border-subtle">
+                            <Image
+                              src={proj.image}
+                              alt={`${proj.title} thumbnail`}
+                              fill
+                              loading="lazy"
+                              sizes="36px"
+                              className="object-cover"
+                            />
+                          </div>
                           <div className="text-xs">
                             <span className="font-display font-bold text-text-heading group-hover:text-accent-primary transition-colors">
                               {proj.title}

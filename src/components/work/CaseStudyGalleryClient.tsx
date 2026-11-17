@@ -88,7 +88,7 @@ export function CaseStudyGalleryClient({
               >
                 <Image
                   src={img}
-                  alt=""
+                  alt={`${title} thumbnail ${idx + 1}`}
                   fill
                   loading="lazy"
                   sizes="96px"

@@ -167,16 +167,16 @@ export function Hero() {
             >
               <span className="w-2 h-2 rounded-full bg-accent-primary animate-pulse-subtle shrink-0" />
               <span className="text-[10.5px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-text-heading">
-                London · 3D, CGI &amp; WebGL Studio
+                Rejubliss · Creative Production House
               </span>
             </div>
 
             <h1 className="font-display text-[clamp(1.85rem,3.3vw,3.85rem)] font-extrabold uppercase leading-[1.03] tracking-[-0.035em] text-text-heading">
-              <span className="block">Ideas Crafted</span>
+              <span className="block">London 3D Animation,</span>
               <span className="block text-accent-primary">
-                Into Extraordinary
+                CGI &amp; Interactive
               </span>
-              <span className="block">3D, CGI &amp; WebGL.</span>
+              <span className="block">WebGL Studio.</span>
             </h1>
 
             <p
@@ -220,20 +220,17 @@ export function Hero() {
               data-hero-accent
               className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3.5 w-full sm:w-auto"
             >
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  triggerProjectInquiry();
-                }}
-                className="btn-primary-cta inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full text-xs group flex-1 sm:flex-initial"
+              <button
+                type="button"
+                onClick={() => triggerProjectInquiry()}
+                className="btn-primary-cta inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full text-xs cursor-pointer group flex-1 sm:flex-initial"
               >
                 <span>Start Your Project</span>
                 <ArrowUpRight
                   size={15}
                   className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                 />
-              </a>
+              </button>
 
               <button
                 type="button"

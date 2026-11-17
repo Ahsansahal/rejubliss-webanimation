@@ -6,9 +6,11 @@ import { InquiryTriggerButton } from "@/components/common/ProjectInquiryModal";
 import { SITE_URL, STUDIO_ADDRESS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: {
+    absolute: "Terms & Conditions | Rejubliss 3D Studio London",
+  },
   description:
-    "Website usage terms, Statement of Work governance, milestone approvals, and commercial usage rights for Rejubliss 3D Animation Studios.",
+    "Statement of Work governance, milestone approval stages, intellectual property, and commercial usage rights at Rejubliss 3D Animation Studios.",
   alternates: {
     canonical: "/terms",
   },

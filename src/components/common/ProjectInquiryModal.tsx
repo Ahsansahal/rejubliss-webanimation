@@ -202,17 +202,15 @@ export interface InquiryTriggerButtonProps {
 export function InquiryTriggerButton({
   service,
   contextNote,
-  href = "/#contact",
   className = "",
   ariaLabel,
   children,
 }: InquiryTriggerButtonProps) {
   return (
-    <a
-      href={href}
+    <button
+      type="button"
       aria-label={ariaLabel}
-      onClick={(e) => {
-        e.preventDefault();
+      onClick={() => {
         triggerProjectInquiry(
           service || contextNote ? { service, contextNote } : undefined
         );
@@ -220,7 +218,7 @@ export function InquiryTriggerButton({
       className={className}
     >
       {children}
-    </a>
+    </button>
   );
 }
 

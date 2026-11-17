@@ -219,20 +219,23 @@ function PortfolioBentoCard({
         </div>
 
         {/* Bottom-Right Circular Case Study Arrow */}
-        <Link
-          href={`/work/${project.slug}`}
-          aria-label={`Open ${project.title} case study`}
-          className="absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-[#f5f4ef] group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300"
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/80 group-hover:bg-accent-primary text-[#f5f4ef] group-hover:text-black border border-white/15 group-hover:border-accent-primary flex items-center justify-center transition-all duration-300"
         >
           <ArrowUpRight size={15} />
-        </Link>
+        </span>
       </div>
 
       {/* Unboxed Editorial Metadata Beneath Frame */}
       <div className="pt-4 px-0.5 space-y-1">
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-display text-lg sm:text-xl font-bold tracking-[-0.025em] text-text-heading group-hover:text-accent-primary transition-colors leading-snug">
-            <Link href={`/work/${project.slug}`}>{project.title}</Link>
+            <Link href={`/work/${project.slug}`}>
+              {project.title.length < 12
+                ? `${project.title} — ${project.portfolioCategory}`
+                : project.title}
+            </Link>
           </h3>
         </div>
 
@@ -385,7 +388,14 @@ export function PortfolioSection({
           <nav aria-label="Additional studio case studies" className="sr-only">
             <ul>
               {ALL_PORTFOLIO_PROJECTS.filter(
-                (proj) => !CURATED_FEATURED_SLUGS.includes(proj.slug)
+                (proj) =>
+                  !CURATED_FEATURED_SLUGS.includes(proj.slug) &&
+                  ![
+                    "rezilo-recovery",
+                    "scoopy-ice-cream",
+                    "desi-chai-london",
+                    "g-natural-botanicals",
+                  ].includes(proj.slug)
               ).map((proj) => (
                 <li key={proj.slug}>
                   <Link href={`/work/${proj.slug}`}>
@@ -438,25 +448,17 @@ export function PortfolioSection({
             <span className="text-xs sm:text-sm text-text-muted hidden sm:inline">
               Planning a product reveal, CGI campaign, or interactive web build?
             </span>
-            <Link
-              href="/#contact"
-              onClick={(e) => {
-                if (
-                  typeof window !== "undefined" &&
-                  window.location.pathname === "/"
-                ) {
-                  e.preventDefault();
-                  triggerProjectInquiry();
-                }
-              }}
-              className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs group"
+            <button
+              type="button"
+              onClick={() => triggerProjectInquiry()}
+              className="btn-primary-cta inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs cursor-pointer group"
             >
               <span>Start Your Project</span>
               <ArrowUpRight
                 size={15}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

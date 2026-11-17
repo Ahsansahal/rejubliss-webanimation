@@ -41,9 +41,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: "Project Not Found | Rejubliss",
     };
   }
+  const candidateTitle = `${project.title} — ${project.client} | Rejubliss`;
+  const seoTitle =
+    candidateTitle.length <= 56
+      ? candidateTitle
+      : `${project.title} Case Study | Rejubliss`;
+  const trimmedDesc =
+    project.synopsis.length > 155
+      ? `${project.synopsis.slice(0, 152).replace(/\s+\S*$/, "")}.`
+      : project.synopsis;
+
   return {
-    title: `${project.fullTitle} | ${project.caseStudy.projectTypeLabel}`,
-    description: project.synopsis,
+    title: {
+      absolute: seoTitle,
+    },
+    description: trimmedDesc,
     alternates: {
       canonical: `/work/${project.slug}`,
     },

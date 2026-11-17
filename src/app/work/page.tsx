@@ -10,9 +10,11 @@ import { ALL_PORTFOLIO_PROJECTS } from "@/data/portfolio";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Portfolio & Case Studies | 3D, CGI, Brand & WebGL Work",
+  title: {
+    absolute: "3D, CGI, Motion & WebGL Portfolio | Rejubliss London",
+  },
   description:
-    "Browse 18 Rejubliss portfolio productions and client case studies across 3D packaging CGI, London OOH billboards, skincare VFX, motion design, and interactive WebGL.",
+    "Browse 18 Rejubliss client case studies and studio showcases across 3D packaging CGI, London OOH billboards, skincare VFX, motion, and WebGL.",
   alternates: {
     canonical: "/work",
   },

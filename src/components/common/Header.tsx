@@ -272,17 +272,6 @@ export function Header({
                   <span className="absolute bottom-0.5 left-0 right-0 h-[1.5px] bg-accent-primary pointer-events-none" />
                 ) : null}
 
-                {/* SSR-crawlable service links when mega-menu is closed */}
-                {!servicesMenuOpen ? (
-                  <div className="sr-only">
-                    {STUDIO_SERVICES.map((srv) => (
-                      <Link key={srv.slug} href={`/services/${srv.slug}`}>
-                        {srv.title}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-
                 <AnimatePresence>
                   {servicesMenuOpen ? (
                     <motion.div
@@ -519,17 +508,14 @@ export function Header({
                 </span>
               </a>
 
-              <Link
-                href="/#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  triggerProjectInquiry();
-                }}
-                className="btn-primary-cta hidden lg:inline-flex items-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-full text-[10.5px] xl:text-[11px] shrink-0"
+              <button
+                type="button"
+                onClick={() => triggerProjectInquiry()}
+                className="btn-primary-cta hidden lg:inline-flex items-center gap-1.5 px-4 xl:px-5 py-2.5 rounded-full text-[10.5px] xl:text-[11px] shrink-0 cursor-pointer"
               >
                 <span>Start Project</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
+              </button>
 
               <button
                 type="button"

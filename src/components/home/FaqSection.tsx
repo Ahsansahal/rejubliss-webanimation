@@ -44,20 +44,17 @@ export function FaqSection() {
             </div>
 
             <div className="pt-2">
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  triggerProjectInquiry();
-                }}
-                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] group"
+              <button
+                type="button"
+                onClick={() => triggerProjectInquiry()}
+                className="btn-secondary-surface inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] cursor-pointer group"
               >
                 <span>Ask About Your Scope</span>
                 <ArrowUpRight
                   size={13}
                   className="text-accent-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                 />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -70,7 +67,7 @@ export function FaqSection() {
 
               return (
                 <div key={faq.id} className="py-1">
-                  <h3>
+                  <div>
                     <button
                       type="button"
                       id={triggerId}
@@ -97,7 +94,7 @@ export function FaqSection() {
                         }`}
                       />
                     </button>
-                  </h3>
+                  </div>
 
                   <div
                     id={panelId}

@@ -85,9 +85,9 @@ export function TestimonialsSection() {
                     {pillar.number}
                   </span>
                   <div>
-                    <h3 className="font-display text-base sm:text-lg font-bold tracking-[-0.02em] text-text-heading mb-1">
+                    <div className="font-display text-base sm:text-lg font-bold tracking-[-0.02em] text-text-heading mb-1">
                       {pillar.title}
-                    </h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                       {pillar.description}
                     </p>
